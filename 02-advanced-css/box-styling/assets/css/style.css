@@ -69,6 +69,13 @@ footer {
   padding: 10px;
   margin: 20px;
   flex: 0 0 300px;
+  
+  /* Rounded corners */
+  border-radius: 10px;
+  /* Shadow effect */
+  box-shadow: 20px 10px 10px rgba(0, 0, 0, 0.1); /* values for shadow spread, blur, and color */
+  /* Slight rotation */
+  transform: rotate(2deg); 
 }
 
 .card header {
