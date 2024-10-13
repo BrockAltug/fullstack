@@ -9,11 +9,14 @@ body {
 
 main {
   display: flex;
+  /* Forces elements to the next line if they don't fit */
+  flex-wrap: wrap; /* This is the key to making the layout responsive */ 
   margin-top: 2%;
 }
 
 .main-header {
-  display: flex;
+  display: flex; /* This is the key to making the layout responsive */
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 60px;
   background: #13293d;
