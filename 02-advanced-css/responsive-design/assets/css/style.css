@@ -1,12 +1,22 @@
+/* 
+  * Applies `box-sizing: border-box` to all elements, including `::before` and `::after` pseudo-elements. 
+  * This makes sure that padding and border are included in the element's total width and height.
+*/
 * {
   box-sizing: border-box;
 }
 
+/* 
+  * Sets the font of the body to Arial and removes the default margin.
+*/
 body {
   font-family: Arial;
   margin: 0;
 }
 
+/* 
+  * Styles the header with padding, centers the text, and applies a background color and text color.
+*/
 header {
   padding: 40px;
   text-align: center;
@@ -15,14 +25,21 @@ header {
 }
 
 /* 
-What happens when we set the display property to flex? 
-TODO: Write your answer here 
+  What happens when we set the display property to flex? 
+  TODO: Write your answer here
+*/
+/* 
+  * Sets the navigation (nav) to be a flex container, which allows its children to be flex items that can be arranged in a row or column.
+  * Also applies a background color to the nav bar.
 */
 nav {
   display: flex;
   background-color: #d8a47f;
 }
 
+/* 
+  * Styles the links inside the navigation bar with color, padding, no text decoration, and centers the text.
+*/
 nav a {
   color: #13293d;
   padding: 14px 20px;
@@ -31,14 +48,21 @@ nav a {
 }
 
 /* 
-What is the flex-wrap property? 
-TODO: Write your answer here 
+  What is the flex-wrap property? 
+  TODO: Write your answer here
+*/
+/* 
+  * Sets the main content area as a flex container and allows the child elements to wrap onto the next line if they don't fit in a single row.
 */
 main {
   display: flex;
   flex-wrap: wrap;
 }
 
+/* 
+  * Styles the aside element with a flex-grow value of 1, meaning it will take up the remaining space in the flex container.
+  * Also sets a background color, padding, and centers the text.
+*/
 aside {
   flex: 1;
   background-color: #b9c6ae;
@@ -46,7 +70,9 @@ aside {
   text-align: center;
 }
 
-
+/* 
+  * Styles the footer with padding, centers the text, and applies a background color and text color.
+*/
 footer {
   padding: 20px;
   text-align: center;
@@ -55,8 +81,12 @@ footer {
 }
 
 /* 
-What does the justify-content property do? 
-TODO: Write your answer here 
+  What does the justify-content property do? 
+  TODO: Write your answer here
+*/
+/* 
+  * Defines a flex container for the products section, allows child elements to wrap, and centers the flex items horizontally within the container.
+  * This ensures the product cards are centered on the page.
 */
 .products {
   flex: 4;
@@ -68,9 +98,13 @@ TODO: Write your answer here
 }
 
 /* 
-What is the flex property a shorthand property for?
-What is it doing here? 
-TODO: Write your answer here 
+  What is the flex property a shorthand property for?
+  What is it doing here? 
+  TODO: Write your answer here
+*/
+/* 
+  * Styles the card with a solid border, rounded corners, padding, and uses the flex shorthand to set the flex-grow, flex-shrink, and flex-basis properties.
+  * `flex: 0 0 400px;` means the card will not grow or shrink but will take up 400px of space.
 */
 .card {
   border-style: solid;
@@ -80,22 +114,35 @@ TODO: Write your answer here
   flex: 0 0 400px;
 }
 
+/* 
+  * Adds padding to the header within the card.
+*/
 .card header {
   padding: 20px;
 }
 
+/* 
+  * Centers the text in paragraph elements within the card.
+*/
 .card p {
   text-align: center;
 }
 
+/* 
+  * Ensures the image inside the card takes up 100% of the card's width.
+*/
 .card img {
   width: 100%;
 }
 
 /* 
-What does the flex-direction property define?
-What is it doing here? 
-TODO: Write your answer here 
+  What does the flex-direction property define?
+  What is it doing here? 
+  TODO: Write your answer here
+*/
+/* 
+  * Media query that applies styles when the screen width is 768px or less.
+  * Changes the flex-direction of the main and nav elements to column, stacking their children vertically instead of horizontally.
 */
 @media screen and (max-width: 768px) {
   main,
