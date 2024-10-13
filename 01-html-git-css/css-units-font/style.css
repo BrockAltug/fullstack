@@ -1,0 +1,16 @@
+.the-contents {
+    background-color:#fffacd;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#fact-1 {
+    font-weight: bold;
+}
+
+#fact-2 {
+    font-size: 24px;
+}
+
+#fact-3 {
+    line-height: 50px;
+}
