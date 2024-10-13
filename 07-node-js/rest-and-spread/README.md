@@ -1,6 +1,6 @@
 # Learning JavaScript: Spread Operator, Rest Parameters, and Reduce Method
 
-## Concepts Covered
+# Concepts Covered
 
 - **Spread Operator (`...`)**: How to use the spread operator to copy arrays.
 - **Rest Parameters (`...`)**: How to use the rest parameter to handle an indefinite number of arguments.
