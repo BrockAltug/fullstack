@@ -60,8 +60,24 @@ article p {
 }
 
 /* TODO: Style the term/phrase - underline, black text, grab cursor */
+#css-span {
+  position: relative;
+  text-decoration: underline;
+  color: #000;
+  cursor: grab;
+}
 
 /* TODO: Position tooltip above the term/phrase, same color as header and nav links, no border-radius, smaller font size */
+#css-span:hover::after {
+  content: "Commonly known as CSS";
+  position: absolute;
+  left: 0px;
+  bottom: 24px;
+  width: auto;
+  background-color: #13293d;
+  color: #fff;
+  font-size: 80%;
+}
 
 aside {
   width: 25%;
