@@ -1,33 +1,35 @@
-/* TODO: Label selector type */
+/* universal selector: applies the styles to all elements on the page */
 * {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  }
-
-/* TODO: Label selector type */
-body {
-  background-color: lemonchiffon;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; /* sets the font family for all elements */
 }
 
+/* type selector: targets the body element */
+body {
+background-color: lemonchiffon; /* sets the background color of the entire page to lemonchiffon */
+}
+
+/* type selectors: targets the header and footer elements */
 header,
 footer {
-  width: 100%;
-  height: 100px;
-  line-height: 100px;
-  color: #f0ead6;
-  background-color: #191970;
+width: 100%; /* sets the width of the header and footer to 100% of the parent container */
+height: 100px; /* sets the height of the header and footer to 100px */
+line-height: 100px; /* aligns the text vertically in the center of the header and footer */
+color: #f0ead6; /* sets the text color to a light beige */
+background-color: #191970; /* sets the background color of the header and footer to midnight blue */
 }
 
+/* type selector: targets the figure element */
 figure {
-  width: 200px;
-  background-color: #f0ead6;
+width: 200px; /* sets the width of the figure element to 200px */
+background-color: #f0ead6; /* sets the background color of the figure element to a light beige */
 }
 
-/* TODO: Label selector type */
+/* class selector: targets elements with the class "highlighted-text" */
 .highlighted-text {
-  font-weight: bolder;
+font-weight: bolder; /* makes the text within this class bolder */
 }
 
-/* TODO: Label selector type */
+/* id selector: targets the element with the id "contact-section" */
 #contact-section {
-  background-color: #f0ead6;
+background-color: #f0ead6; /* sets the background color of the contact section to a light beige */
 }
