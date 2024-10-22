@@ -18,4 +18,3 @@ Create functions that log specific messages based on whether the values are equa
 - Learn the difference between strict equality (`===`) and loose equality (`==`) operators.
 - Gain experience with conditional logic to handle different comparison outcomes.
 - Practice rewriting a function declaration as a function expression and calling both types of functions.
-
