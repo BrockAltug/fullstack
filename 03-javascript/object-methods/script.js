@@ -1,4 +1,4 @@
-const chosenPet = "Lulu";
+const chosenPet = "Spot";
 
 const shelter = {
   dogs: ["Mackie", "Bernice", "Cookie Monster", "Spot"],
@@ -10,20 +10,22 @@ const shelter = {
 
 // TODO: Debug the code below
 const dogMessage = function () {
-   console.log(`Congrats! ${chosenPet.Lulu}, a great dog, is available for adoption!`);
-   apptMessage();
+  // chosenPet is a variable that holds a value "Lulu"
+   console.log(`Congrats! ${chosenPet}, a great dog, is available for adoption!`);
+   shelter.apptMessage(); // This is the correct way to access the apptMessage method in the shelter object
 }
 
 const catMessage = function () {
   console.log(`Congrats! ${chosenPet}, an awesome cat, is available for adoption!`);
-  shelter.apptMessage;
+  shelter.apptMessage(); // This is the correct way to access the apptMessage method in the shelter object
 }
 
-if (dogs.includes(chosenPet)) {
+
+if (shelter.dogs.includes(chosenPet)) { // This is the correct way to access the array of dogs in the shelter object
   dogMessage();
-} else if (cats.includes(chosenPet)) {
+} else if (shelter.cats.includes(chosenPet)) {
   catMessage();
 } else {
   console.log("It looks like the pet is not available.");
-  console.log(`Check out our featured dog, ${shelter[0]}. or our featured cat, ${cat.shelter[0]}!`);
+  console.log(`Check out our featured dog, ${shelter.dogs[0]}. or our featured cat, ${shelter.cats[0]}!`); // This is the correct way to access the first element in the dogs and cats arrays in the shelter object
 }
