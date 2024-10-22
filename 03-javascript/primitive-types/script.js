@@ -7,19 +7,19 @@ let six = "Howdy!";
 let seven;
 
 // Insert comments to explain what each console log below will log to the console
-console.log(typeof one); 
-console.log(typeof two); 
-console.log(typeof three); 
-console.log(typeof four); 
-console.log(typeof five);
-console.log(typeof six);
-console.log(typeof seven);
+console.log(typeof one); // will print a number to console
+console.log(typeof two); // will print a string to console
+console.log(typeof three); // will print a boolean to console
+console.log(typeof four); // will print an object to console
+console.log(typeof five); // will print a number to console
+console.log(typeof six); // will print a string to console
+console.log(typeof seven); // will print undefined to console
 
-five = "Hello!";
-six = false;
-seven = 23;
+five = "Hello!"; // five is now a string
+six = false; // six is now a boolean
+seven = 23; // seven is now a number
 
 // Insert comments to explain what each console log below will log to the console
-console.log(typeof five);
-console.log(typeof six);
-console.log(typeof seven);
+console.log(typeof five); // will print a string to console
+console.log(typeof six); // will print a boolean to console
+console.log(typeof seven); // will print a number to console
