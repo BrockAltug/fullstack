@@ -15,7 +15,8 @@ function passwordGenerator(num) {
   return password;
 }
 
-passwordBtnEl.on('dblclick', function () {
+// Change 'dblclick' to 'click' to allow single-click password generation
+passwordBtnEl.on('click', function () {
   const newPassword = passwordGenerator(15);
   passwordDisplayEl.text(newPassword);
 });
