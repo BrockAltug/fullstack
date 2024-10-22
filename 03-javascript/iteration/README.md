@@ -1,4 +1,4 @@
-# stu-iteration
+# Iteration
 
 ## Greeting Classmates with JavaScript Loops
 
@@ -18,4 +18,4 @@ Demonstrates how to store and manipulate an array of strings in JavaScript. It i
 - Gain experience with different looping techniques, including `for` loops and `for-of` loops, to iterate over array elements.
 - Practice logging personalized messages to the console for each element in an array.
 
-03-javascript/01-activities/14-stu-iteration
+
