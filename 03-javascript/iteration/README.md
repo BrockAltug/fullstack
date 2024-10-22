@@ -17,5 +17,3 @@ Demonstrates how to store and manipulate an array of strings in JavaScript. It i
 - Learn how to determine the size of an array using the `.length` property.
 - Gain experience with different looping techniques, including `for` loops and `for-of` loops, to iterate over array elements.
 - Practice logging personalized messages to the console for each element in an array.
-
-
