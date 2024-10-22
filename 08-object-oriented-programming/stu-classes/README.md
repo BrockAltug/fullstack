@@ -1,4 +1,4 @@
-# Stu-Classes
+# Classes
 
 ## BlogPost and Comment Class Implementation
 
