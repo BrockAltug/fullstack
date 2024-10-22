@@ -23,6 +23,7 @@ const handleFormSubmit = function (event) {
 
   printSkills(nameInput, dateInput);
 
+  // resets form
   nameInputEl.val('');
   dateInputEl.val('');
 };
@@ -64,5 +65,9 @@ $(function () {
   });
 });
 
-// Add interaction here
-//
+// Sortable interaction
+$(function () {
+  $('#skills-list').sortable({
+    placeholder: 'ui-state-highlight',
+  });
+});
