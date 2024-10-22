@@ -23,14 +23,44 @@ const handleFormSubmit = function (event) {
 
   printSkills(nameInput, dateInput);
 
+  // resets form
   nameInputEl.val('');
   dateInputEl.val('');
 };
 
 formEl.on('submit', handleFormSubmit);
 
-// Add Autocomplete widget here
-//
+// Autocomplete widget
+$(function () {
+  const skillNames = [
+    'Bootstrap',
+    'C',
+    'C++',
+    'CSS',
+    'Express.js',
+    'Git',
+    'HTML',
+    'Java',
+    'JavaScript',
+    'jQuery',
+    'JSON',
+    'PostgreSQL',
+    'Node.js',
+    'NoSQL',
+    'PHP',
+    'Python',
+    'React',
+    'Ruby',
+  ];
+  $('#skill-name').autocomplete({
+    source: skillNames,
+  });
+});
 
-// Add Datepicker widget here
-//
+// Datepicker widget
+$(function () {
+  $('#datepicker').datepicker({
+    changeMonth: true,
+    changeYear: true,
+  });
+});
