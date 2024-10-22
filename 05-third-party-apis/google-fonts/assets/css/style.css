@@ -11,6 +11,22 @@
   background-color: var(--light);
 }
 
+body {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+}
+
 .custom-navbar {
   background-color: var(--teal);
 }
