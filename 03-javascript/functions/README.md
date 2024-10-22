@@ -1,4 +1,4 @@
-# stu-functions
+# Functions
 
 ## JavaScript Equality Comparison Functions
 
@@ -19,4 +19,3 @@ Create functions that log specific messages based on whether the values are equa
 - Gain experience with conditional logic to handle different comparison outcomes.
 - Practice rewriting a function declaration as a function expression and calling both types of functions.
 
-03-javascript/01-activities/16-stu-functions
