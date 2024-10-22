@@ -30,3 +30,14 @@ site3El.children[1].children[0].setAttribute('alt', 'women working');
 site3El.children[1].children[0].setAttribute('style', 'padding:10px;');
 
 // Write Your Code Below
+
+//all the <h4> elements are selected and stored in a single variable
+const h4El = document.querySelectorAll('h4'); //all <h4> elements stored in h4El variable using querySelectorAll from the document object
+
+//It's done when the text of each <h4> is set to blue and the font size is 30px and the padding-left is 10px and the margin is 0px
+h4El.forEach((element) => { //forEach loop is used to iterate over each <h4> element in the h4El variable
+  element.style.color = 'blue'; //each <h4> can be accessed using the element parameter 
+  element.style.fontSize = '30px';
+  element.style.paddingLeft = '10px';
+  element.style.margin = '0px';
+});
