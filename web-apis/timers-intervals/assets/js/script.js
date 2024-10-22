@@ -13,7 +13,14 @@ function countdown() {
     //
     // YOUR CODE HERE
     //
-  });
+
+    timerEl.textContent = timeLeft + ' seconds left'; // update the countdown display with the time left
+    timeLeft--; // decrement the time left by 1
+    if (timeLeft === 0) { // if timeLeft reaches 0, stop the countdown and start displaying the message
+      clearInterval(timeInterval); // stop the countdown interval
+      displayMessage(); // call function to display the message one word at a time
+    }
+  }, 1000); // set the interval to run every 1000 milliseconds
 }
 
 // Displays the message one word at a time
