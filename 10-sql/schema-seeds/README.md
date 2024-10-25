@@ -42,4 +42,4 @@ Populate the `products` table with initial data using the following values:
 
 ## Summary
 
-This guide provides a comprehensive overview of creating and managing a PostgreSQL database for grocery items. It covers the steps necessary to define a table structure for storing product information and how to insert seed data for initial population. By following these steps, you can effectively set up a grocery database that supports easy access and management of product data.
+This guide provides a comprehensive overview of creating and managing a PostgreSQL database for grocery items. It covers the steps necessary to define a table structure for storing product information and how to insert seed data for initial population. By following these steps, you can effectively set up a grocery database that supports easy access and management of product data

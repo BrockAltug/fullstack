@@ -44,4 +44,4 @@ The `customer_id` field in the `customer_orders` table is defined as a foreign k
 
 ## Summary
 
-This guide demonstrates how to set up a PostgreSQL database with tables that utilize foreign and primary key relationships. By establishing these relationships, you can maintain data integrity and ensure that your database schema supports logical connections between different entities, such as customers and their orders. Understanding and implementing foreign and primary keys is fundamental for designing relational databases effectively.
+This guide demonstrates how to set up a PostgreSQL database with tables that utilize foreign and primary key relationships. By establishing these relationships, you can maintain data integrity and ensure that your database schema supports logical connections between different entities, such as customers and their orders. Understanding and implementing foreign and primary keys is fundamental for designing relational databases effectively

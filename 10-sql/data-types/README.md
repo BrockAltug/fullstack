@@ -33,4 +33,4 @@ Define the structure of the `customers` table, which includes various data types
 
 ## Summary
 
-This guide demonstrates how to set up a PostgreSQL database using different data types to effectively manage customer information. By defining appropriate data types and constraints, you ensure that your database maintains data integrity and accurately reflects the characteristics of the data being stored. Understanding and utilizing data types is essential for effective database design and management.
+This guide demonstrates how to set up a PostgreSQL database using different data types to effectively manage customer information. By defining appropriate data types and constraints, you ensure that your database maintains data integrity and accurately reflects the characteristics of the data being stored. Understanding and utilizing data types is essential for effective database design and management

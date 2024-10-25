@@ -14,4 +14,4 @@
 
 ## Summary
 
-This PostgreSQL Database Setup guide demonstrates essential SQL commands for creating and managing databases. It focuses on safe practices by using `DROP DATABASE IF EXISTS` to handle potential conflicts and ensures a smooth setup process. By following these instructions, you will be able to quickly set up and connect to a new database, laying the foundation for further development and data management.
+This PostgreSQL Database Setup guide demonstrates essential SQL commands for creating and managing databases. It focuses on safe practices by using `DROP DATABASE IF EXISTS` to handle potential conflicts and ensures a smooth setup process. By following these instructions, you will be able to quickly set up and connect to a new database, laying the foundation for further development and data management

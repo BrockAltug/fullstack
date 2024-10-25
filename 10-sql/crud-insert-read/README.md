@@ -43,4 +43,4 @@ Retrieve all records from the `biographies` table. This command selects and disp
 
 ## Summary
 
-This guide provides a comprehensive overview of creating and managing a PostgreSQL database and table, along with inserting and querying data. By following these steps, you can effectively set up a database for managing book biographies, ensuring data integrity and accessibility. This foundational knowledge is essential for anyone looking to work with PostgreSQL in their projects.
+This guide provides a comprehensive overview of creating and managing a PostgreSQL database and table, along with inserting and querying data. By following these steps, you can effectively set up a database for managing book biographies, ensuring data integrity and accessibility. This foundational knowledge is essential for anyone looking to work with PostgreSQL in their projects
