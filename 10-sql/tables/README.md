@@ -23,4 +23,4 @@
 
 ## Summary
 
-This setup for the `books_db` database demonstrates fundamental SQL database management tasks, including creating and deleting databases, defining tables with primary keys, and enforcing data integrity using constraints. It provides a basic yet essential foundation for managing structured data within SQL, ensuring reliability and consistency throughout the data management process.
+This setup for the `books_db` database demonstrates fundamental SQL database management tasks, including creating and deleting databases, defining tables with primary keys, and enforcing data integrity using constraints. It provides a basic yet essential foundation for managing structured data within SQL, ensuring reliability and consistency throughout the data management process
