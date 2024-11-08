@@ -1717,3 +1717,7 @@ label form [type='radio'] {
 .code {
   font-family: monospace;
 }
+
+.nice-bg {
+  background-color: aqua;
+}
