@@ -24,4 +24,4 @@ In this section, you will learn to create a gallery display that showcases multi
 
 ## Summary
 
-This guide provides an overview of integrating Handlebars with Express.js to dynamically generate HTML content. By using Handlebars templates, you can create reusable components and render data effectively from your server. Understanding these concepts is essential for developing dynamic web applications with Express and Handlebars.
+This guide provides an overview of integrating Handlebars with Express.js to dynamically generate HTML content. By using Handlebars templates, you can create reusable components and render data effectively from your server. Understanding these concepts is essential for developing dynamic web applications with Express and Handlebars
