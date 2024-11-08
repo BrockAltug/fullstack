@@ -4,6 +4,16 @@
 
     {{#each gallery.paintings as |painting|}}
     <!-- TODO: Use the 'painting-details' partial to render each painting of the gallery -->
+    <section class="card">
+      <a href="/painting/{{id}}">
+        <header>{{title}}</header>
+
+        <div class="card-body">
+          <img src="/images/{{filename}}" alt="{{description}}">
+          <p>By: {{artist}}</p>
+        </div>
+      </a>
+    </section>
     {{/each}}
   </section>
 </section>
