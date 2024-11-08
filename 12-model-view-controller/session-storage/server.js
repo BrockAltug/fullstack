@@ -17,14 +17,19 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: 'Super secret secret',
   // TODO: Add a comment describing the purpose of adding a cookies object to our options to our session object
+  // The cookies object allows us to define specific options for session cookies, controlling their behavior and security attributes.
   cookie: {
     // TODO: Add a comment describing the functionality of the maxAge attribute
+    // maxAge sets the duration (in milliseconds) for which the session cookie is valid. Here, it’s set to 1 hour (60 * 60 * 1000 ms).
     maxAge: 60 * 60 * 1000,
     // TODO: Add a comment describing the functionality of the httpOnly attribute
+    // httpOnly ensures that the cookie is only accessible via HTTP(S) requests, preventing client-side JavaScript access for added security.
     httpOnly: true,
     // TODO: Add a comment describing the functionality of the secure attribute
+    // secure specifies that the cookie should only be sent over HTTPS. It's set to false here for development but should be true in production.
     secure: false,
     // TODO: Add a comment describing the functionality of the sameSite attribute
+    // sameSite restricts the cookie to same-origin requests, helping prevent cross-site request forgery (CSRF) attacks by blocking third-party access.
     sameSite: 'strict',
   },
   resave: false,
