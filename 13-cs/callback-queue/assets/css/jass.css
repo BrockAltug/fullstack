@@ -110,8 +110,8 @@ a:visited {
   transition: all 0.5s;
 }
 
-.btn:hover,
-.pill:hover {
+.btn:not(:disabled):hover,
+.pill:not(:disabled):hover {
   color: var(--secondary);
   background-color: var(--dark);
 }
