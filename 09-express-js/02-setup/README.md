@@ -1,30 +1,47 @@
-# 🏗️ Implement Express.js Routing
+# basic-express-setup
 
-Work with a partner to implement the following user story:
+## Express Application for Serving Static Files and Handling Routes
 
-* As a developer, I want to implement Express.js into my app so that client requests relate to server responses.
+### Concepts Covered
 
-## Acceptance Criteria
+- Setting up an Express.js project to handle HTTP requests.
+- Serving static files from a designated directory.
+- Defining routes to serve HTML files dynamically using `path`.
 
-* It's done when I have created an `app` variable set to the value of `express()`.
+### Learning Objectives
 
-* It's done when I have set up middleware to serve static files from `/public`.
+- Understand how to initialize a Node.js project and manage dependencies using npm.
+- Learn how to set up an Express.js server to serve static files and define basic routes.
+- Learn how to use the `path` module to resolve file paths.
 
-* It's done when I have created an HTML route to serve up `paths.html`.
+### Features
 
----
+- **Static File Serving**: Serves HTML files and other assets from a `public` directory.
+- **Dynamic Routing**: Provides custom routes to serve specific HTML files.
+- **Custom Port Configuration**: Configured to run on port `3001` (default) but can be adjusted as needed.
 
-## 💡 Hints
+### Expected Behavior
 
-What is the `path` module used for when defining routes?
+1. When the `npm init -y` command is run, it generates a `package.json` file.
+2. When the `npm install express` command is executed, it installs the Express.js framework and lists it in the `package.json` file.
+3. When the command `node index.js` is executed, the server:
+   - Serves static files from the `public` directory.
+   - Handles the following routes:
+     - `/`: Displays a message with navigation instructions.
+     - `/send`: Serves the `send.html` file from the `public` directory.
+     - `/paths`: Serves the `paths.html` file from the `public` directory.
+4. The server listens on port `3001` and logs the URL to access it in the console.
 
-## 🏆 Bonus
+### Directory Structure
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+```
+├── public/
+│   ├── send.html         # HTML file served at /send
+│   └── paths.html        # HTML file served at /paths
+├── index.js              # Main application file
+└── package.json          # Project metadata and dependencies
+```
 
-* How would you create a web server without the Express.js library?
+### Summary
 
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates how to use Express.js to build a basic server that serves static files and handles custom routes. It covers key Express.js concepts such as static file serving, routing, and dynamic port configuration.
