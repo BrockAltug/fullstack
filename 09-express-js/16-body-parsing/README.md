@@ -1,53 +1,106 @@
-# 📖 Implement Body Parsing for Post Requests
+# express-body-parsing
 
-Work with a partner to implement the following user story:
+## Parsing JSON and URL-Encoded Data with Express.js
 
-* As a developer, I want my application to be backward compatible with URL-encoded data in addition to JSON.
+## Concepts Covered
 
-## Acceptance Criteria
+- Using Express.js middleware to parse JSON and URL-encoded data.
+- Handling `GET` and `POST` requests with parsed request bodies.
+- Responding to client requests based on request parameters and body data.
 
-* It's done when I implement Express.js middleware to parse JSON in my server.
+## Learning Objectives
 
-* It's done when I implement Express.js middleware to parse URL-encoded data in my server.
+- Understand how to use `express.json()` to parse JSON request bodies.
+- Understand how to use `express.urlencoded()` to parse URL-encoded form data.
+- Learn how to handle dynamic routes with parameters and manage data flow.
 
-* It's done when I use Insomnia to make a POST request to `api/upvotes/:review_id`, using JSON to upvote a given post by passing in: 
+## Features
 
-```json
+- **GET Requests**:
+  - Retrieves all reviews or a specific review based on the review ID.
+  - Responds with appropriate status codes for missing or invalid IDs.
+- **POST Requests**:
+  - Adds a new review or updates the upvote count for a review.
+  - Validates the request body to ensure required data is present.
+
+## API Endpoints
+
+### `GET /api/reviews`
+
+- **Description**: Fetches all reviews.
+- **Response Example**:
+  ```json
+  [
     {
-        "upvote": true
+      "review_id": 1,
+      "product": "Product A",
+      "review": "Great product!",
+      "upvotes": 5
+    },
+    {
+      "review_id": 2,
+      "product": "Product B",
+      "review": "Not bad.",
+      "upvotes": 2
     }
-```
+  ]
+  ```
 
-* It's done when I use Insomnia to make a POST request to `api/upvotes/:review_id`, using URL-encoded data to upvote a given post by passing in:
+### `GET /api/reviews/:review_id`
 
-```
-    "upvote"="true"
-```
-* It's done when I verify that both POST requests return a response that contains the updated vote count.
+- **Description**: Fetches a single review by its ID.
+- **Response Example**:
+  ```json
+  {
+    "review_id": 1,
+    "product": "Product A",
+    "review": "Great product!",
+    "upvotes": 5
+  }
+  ```
 
-## 📝 Notes
+### `POST /api/reviews`
 
-Refer to the documentation:
+- **Description**: Adds a new review with the request body containing `product` and `review`.
+- **Request Body Example**:
+  ```json
+  {
+    "product": "Product C",
+    "review": "Amazing quality!"
+  }
+  ```
+- **Response Example**:
+  ```json
+  {
+    "status": "success",
+    "data": {
+      "product": "Product C",
+      "review": "Amazing quality!"
+    }
+  }
+  ```
 
-[Express.js documentation on req.body](http://expressjs.com/en/api.html#req.body)
+### `POST /api/upvotes/:review_id`
 
-[Optional Chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+- **Description**: Increments the upvote count for a specific review by its ID.
+- **Request Body Example**:
+  ```json
+  {
+    "upvote": true
+  }
+  ```
+- **Response Example**:
+  ```json
+  "New upvote count is 6!"
+  ```
 
----
+## Expected Behavior
 
-## 💡 Hints
+1. The server listens on port `3001`.
+2. `GET` requests return reviews data or specific review details.
+3. `POST` requests validate and process data in the request body.
+4. Responses include appropriate status codes (e.g., `200`, `201`, `400`, `404`).
 
-How do we use Insomnia to pass data inside a `req.body` object when making a POST request to the server?
+## Summary
 
-Take a look at the Form URL Encoded option in Insomnia to pass URL-encoded data.
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* What is URL encoding?
-
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates how to use Express.js middleware to parse JSON and URL-encoded data in incoming requests. It highlights best practices for handling and responding to `GET` and `POST` requests based on request parameters and body data.
