@@ -1,40 +1,78 @@
-# 🐛 Adding a Review Overwrites Existing JSON
+# express-data-persistence
 
-Work with a partner to resolve the following issues:
+## Persisting Data with File System in Express.js
 
-* As a user, I want to be able to append my review to the list of existing reviews so that existing reviews don't get overwritten.
+## Concepts Covered
+
+- Using Express.js to handle `GET` and `POST` requests for data.
+- Persisting data by reading from and writing to a JSON file.
+- Generating unique IDs for data entries using helper functions.
+
+## Learning Objectives
+
+- Learn how to persist data on the server using the `fs` module.
+- Understand how to handle asynchronous file operations.
+- Practice validating and processing request data.
+
+## Features
+
+- **GET Requests**:
+  - Fetches all reviews stored in a JSON file.
+- **POST Requests**:
+  - Adds a new review and persists it to a JSON file.
+  - Generates a unique ID for each review.
+
+## API Endpoints
+
+### `GET /api/reviews`
+
+- **Description**: Fetches all reviews from the JSON file.
+- **Response Example**:
+  ```json
+  "GET request received to get reviews"
+  ```
+
+### `POST /api/reviews`
+
+- **Description**: Adds a new review to the JSON file.
+- **Request Body Example**:
+  ```json
+  {
+    "product": "Product C",
+    "review": "Amazing quality!",
+    "username": "JaneDoe"
+  }
+  ```
+- **Response Example**:
+  ```json
+  {
+    "status": "success",
+    "body": {
+      "product": "Product C",
+      "review": "Amazing quality!",
+      "username": "JaneDoe",
+      "review_id": "unique-id"
+    }
+  }
+  ```
 
 ## Expected Behavior
 
-When a user adds a review, the review should append to the list of reviews in the JSON file.
+1. The server listens on port `3001`.
+2. `GET` requests retrieve reviews stored in the `reviews.json` file.
+3. `POST` requests validate incoming data, generate a unique ID, and persist the new review to the `reviews.json` file.
+4. Responses include appropriate status codes (`200`, `201`, `500`).
 
-## Actual Behavior
+## Data Persistence Flow
 
-When a user adds a review, the entire JSON file gets overwritten with the new review, and the existing reviews get replaced.
+1. The `POST /api/reviews` route:
+   - Reads the current data from `reviews.json`.
+   - Appends the new review to the array of existing reviews.
+   - Writes the updated array back to the `reviews.json` file.
 
-## Steps to Reproduce the Problem
+2. The `GET /api/reviews` route:
+   - Responds with the current data in `reviews.json`.
 
-1. Run the back-end server by running `npm install` and `npm start`.
+## Summary
 
-2. Click the link in the terminal to visit `http://localhost:3001/`.
-
-3. Fill out the necessary fields to add a review.
-
-4. Check the content of `db/reviews.json` and note that the old entries have been replaced.
-
----
-
-## 💡 Hints
-
-How can the built-in `fs` module accomplish appending data to a JSON file?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* Without having a database, what other tools can you use to persist data on the server?
-
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates how to persist data in a server-side application using the Node.js `fs` module. It highlights how to handle file operations asynchronously and manage data integrity for dynamic server-side functionality.
