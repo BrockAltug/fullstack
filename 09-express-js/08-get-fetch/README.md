@@ -1,38 +1,55 @@
-# 🐛 Client/Server Requests Not Working
+# express-get-fetch
 
-Work with a partner to resolve the following issues:
+## Client-Side Fetching with Express.js Backend
 
-* As a user, I want to be able to view pet data on the page by pressing a **Fetch pets** button.
+## Concepts Covered
+
+- Using the Fetch API to make GET requests to an Express.js backend.
+- Dynamically rendering HTML elements based on API response data.
+
+## Learning Objectives
+
+- Understand how to set up a client-side application to fetch data from an API.
+- Learn how to dynamically create and append HTML elements using JavaScript.
+- Learn how to handle user interactions with event listeners.
+
+## Features
+
+- **GET Request**: Fetches pet data from an API endpoint (`/api/pets`).
+- **Dynamic Rendering**: Creates and displays pet cards dynamically based on the API response.
+- **User Interaction**: Fetches and renders pets when a button is clicked.
+
+## API Endpoints
+
+### `GET /api/pets`
+
+- **Description**: Returns a JSON array of pet objects.
+- **Response Example**:
+  ```json
+  [
+    {
+      "name": "Bella",
+      "description": "A friendly golden retriever.",
+      "image_url": "https://example.com/bella.jpg"
+    },
+    {
+      "name": "Milo",
+      "description": "A curious tabby cat.",
+      "image_url": "https://example.com/milo.jpg"
+    }
+  ]
+  ```
 
 ## Expected Behavior
 
-When the user clicks the **Fetch Pets** button from the front end, each pet is rendered in a card on the screen.
+1. The server listens on port `3001`.
+2. When the browser navigates to [http://localhost:3001](http://localhost:3001), it displays a simple frontend.
+3. Clicking the button with the ID `term-btn` triggers a `GET` request to `/api/pets`.
+4. The returned pet data is dynamically rendered as cards on the page. Each card includes:
+   - A title (pet name).
+   - A description.
+   - An image.
 
-## Actual Behavior
+## Summary
 
-When a user requests the terms by clicking **Fetch Pets**, nothing is rendered to the page and an error appears in the developer console.
-
-## Steps to Reproduce the Problem
-
-1. Open the page by visiting [http://localhost:3001](http://localhost:3001)
-
-2. Open the developer console by pressing Command+Option+K (Mac), or Ctrl+Shift+J (Windows).
-
-3. Click **Fetch Pets**, then note the lack of results on the page and the error in the develop console.
-
----
-
-## 💡 Hints
-
-How can we test the endpoints outside of the browser?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* What are static assets?
-
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates how to use the Fetch API to retrieve data from an Express.js backend and dynamically render it on a webpage. It showcases a complete flow from backend API setup to client-side interaction and rendering.
