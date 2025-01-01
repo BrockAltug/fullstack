@@ -1,41 +1,84 @@
-# 📖 Deploy an Express.js App to Render
+# express-deploy-render
 
-Work with a partner to implement the following user story:
+## Deploying an Express.js Application to Render
 
-- As a web developer, I want to deploy my application to services like Render so that I can share my app with the world.
+## Concepts Covered
 
-## Acceptance Criteria
+- Preparing an Express.js application for deployment.
+- Configuring a Render service to host the application.
+- Ensuring public assets and API routes work seamlessly in a production environment.
 
-- It's done when I have initialized a Git repository by creating a repository on GitHub and cloned it locally
+## Learning Objectives
 
-- It's done when I have added the `PORT` variable in `server.js` according to the Render documentation.
+- Learn how to deploy an Express.js app to Render.
+- Understand the necessary configurations for a successful deployment.
+- Test deployment to ensure all routes and static files are functional.
 
-- It's done when I have pushed my code to a new GitHub repository.
+## Deployment Steps
 
-- It's done when I have connected Render with my GitHub account.
+1. **Prepare the Application**:
+   - Ensure all dependencies are listed in `package.json`.
+   - Verify the `PORT` is dynamically assigned using:
+     ```javascript
+     const PORT = process.env.PORT || 3001;
+     ```
 
-- It's done when I have setup an automatic deployment process on Render to the `main` branch of my repo.
+2. **Create a GitHub Repository**:
+   - Push your application code to a GitHub repository.
 
-- It's done after I have confirmed that the application was deployed successfully by visiting the resulting URL e.g. `example.onRender.com`.
+3. **Set Up a Render Service**:
+   - Log in to [Render](https://render.com) and create a new Web Service.
+   - Connect the Render service to your GitHub repository.
+   - Choose the branch to deploy from (e.g., `main`).
+   - Specify `node` as the environment and `npm start` as the start command.
 
-## 📝 Notes
+4. **Environment Variables**:
+   - Ensure the `PORT` environment variable is configured on Render.
+   - Render automatically assigns a `PORT` variable, so no manual configuration is required.
 
-Refer to the [Full-Stack Blog on deploying to Render.](https://coding-boot-camp.github.io/full-stack/render/render-deployment-guide).
+5. **Deployment**:
+   - Click "Deploy" and wait for the build process to complete.
+   - Once deployed, Render provides a URL for accessing your application.
 
-Refer to the documentation:
+## Application Features
 
-[Render documentation on setting environment variables](https://docs.render.com/configure-environment-variables)
+### Static File Serving
 
-[Render documentation on linking Github](https://docs.render.com/github)
+- Public assets (HTML, CSS, JS) are served from the `public` directory using:
+  ```javascript
+  app.use(express.static('public'));
+  ```
 
-## 🏆 Bonus
+### Custom Middleware
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+- Logs request details to the console:
+  ```javascript
+  app.use(clog);
+  ```
 
-- How can you create an app from the dashboard on Render instead of connecting it to GitHub and using that pipeline?
+### API Routes
 
-Use [Google](https://www.google.com) or another search engine to research this.
+- API routes are modularized and handled via `routes/index.js`.
 
----
+### Example Routes
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+1. `GET /`:
+   - Serves the homepage from `public/index.html`.
+
+2. `GET /feedback`:
+   - Serves the feedback page from `public/pages/feedback.html`.
+
+3. `GET /api/tips`:
+   - Fetches tips data from the backend.
+
+4. `POST /api/feedback`:
+   - Submits new feedback to the backend.
+
+## Expected Behavior
+
+- The application is accessible via the URL provided by Render.
+- All API endpoints and static routes function as intended.
+
+## Summary
+
+This project demonstrates how to deploy an Express.js application to Render. It includes static file serving, modular API routes, and middleware functionality, ensuring a seamless production deployment process.
