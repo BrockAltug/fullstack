@@ -1,32 +1,60 @@
-# 🏗️ Create an API Route
+# api-html-routes
 
-Work with a partner to implement the following user story:
+## Express Application for Serving JSON Data via API
 
-* As a developer, I want to implement an API route that returns content from a JSON file, using an Express.js server.
+### Concepts Covered
 
-## Acceptance Criteria
+- Setting up an Express.js server to handle API routes.
+- Returning JSON data using `res.json()`.
 
-* It's done when I have imported Express.js into my project.
+### Learning Objectives
 
-* It's done when I have created an `app` variable set to the value of `express()`.
+- Understand how to use Express.js to define and handle API routes.
+- Learn how to use `res.json()` to send JSON responses.
+- Learn how to serve JSON data from a file through a defined route.
 
-* It's done when I have created an API route to `/api/`.
+### Features
 
-* It's done when GET requests made using the browser to the API endpoint return the content found in `terms.json`.
+- **JSON API Route**: Serves JSON data from a `terms.json` file.
+- **Simple Root Route**: Provides a navigation message at the root URL.
+- **Custom Port Configuration**: Configured to run on port `3001`.
 
----
+### Expected Behavior
 
-## 💡 Hints
+1. When the `npm init -y` command is run, it generates a `package.json` file.
+2. When the `npm install express` command is executed, it installs the Express.js framework and lists it in the `package.json` file.
+3. When the command `node index.js` is executed, the server:
+   - Handles the following routes:
+     - `/`: Displays a navigation message.
+     - `/api`: Returns the contents of the `terms.json` file as a JSON response.
+4. The server listens on port `3001` and logs the URL to access it in the console.
 
-Which method can we use on the `res` object that will allow us to send JSON to the client?
+### Directory Structure
 
-## 🏆 Bonus
+```
+├── terms.json           # JSON file containing the data to be served
+├── index.js             # Main application file
+└── package.json         # Project metadata and dependencies
+```
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+### Example JSON Response
 
-* What other methods are available on the `res` object?
+For a `terms.json` file containing:
+```json
+[
+  { "term": "HTML", "description": "A markup language for creating web pages." },
+  { "term": "CSS", "description": "A stylesheet language for styling web pages." }
+]
+```
 
-Use [Google](https://www.google.com) or another search engine to research this.
+The `/api` route returns:
+```json
+[
+  { "term": "HTML", "description": "A markup language for creating web pages." },
+  { "term": "CSS", "description": "A stylesheet language for styling web pages." }
+]
+```
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+### Summary
+
+This project demonstrates how to set up an Express.js server to handle API routes and return JSON data. It covers the basics of defining routes, using `res.json()`, and serving data from a file.
