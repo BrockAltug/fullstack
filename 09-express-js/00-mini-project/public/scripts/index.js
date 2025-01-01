@@ -40,10 +40,11 @@ const createCard = (tip) => {
 // Get a list of existing tips from the server
 const getTips = () =>
   fetch('/api/tips', {
-    method: 'GET',
+    method: 'GET', // or 'PUT'
     headers: {
       'Content-Type': 'application/json',
     },
+    // body: JSON.stringify(data),
   })
     .then((response) => response.json())
     .then((data) => data)
@@ -73,7 +74,6 @@ const postTip = (tip) =>
 getTips().then((data) => data.forEach((tip) => createCard(tip)));
 
 // Function to validate the tips that were submitted
-// TODO: Use this function to validate the form data. Accepts an object with {username, topic, tip}. Returns { isValid: boolean, and errors: Object }
 const validateTip = (newTip) => {
   const { username, topic, tip } = newTip;
 
@@ -112,6 +112,7 @@ const validateTip = (newTip) => {
 };
 
 // Helper function to deal with errors that exist in the result
+
 const showErrors = (errorObj) => {
   const errors = Object.values(errorObj);
   errors.forEach((error) => {
@@ -121,13 +122,20 @@ const showErrors = (errorObj) => {
   });
 };
 
-// Helper function to send a POST request to the diagnostics route (/api/diagnostics)
+// Helper function to send a POST request to the diagnostics route
 const submitDiagnostics = (submissionObj) => {
-  // TODO: your code here
-  console.info(
-    '⚠️ Create the logic for the fetch POST request in scripts/index.js'
-  );
-  alert('Add your logic to scripts/index.js');
+  fetch('/api/diagnostics', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(submissionObj),
+  })
+    .then((response) => response.json())
+    .then(() => showErrors(submissionObj.errors))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 };
 
 // Function to handle when a user submits the feedback form

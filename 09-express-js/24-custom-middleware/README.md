@@ -1,46 +1,136 @@
-# 🐛 Middleware Logging Not Working
+# express-custom-middleware
 
-Work with a partner to resolve the following issues:
+## Using Custom Middleware in Express.js
 
-* As a developer, I want to use logging middleware in my application so that I can know when a specific endpoint has been used.
+## Concepts Covered
+
+- Creating and using custom middleware in Express.js.
+- Logging request details with a middleware function.
+- Organizing routes with modular routing.
+
+## Learning Objectives
+
+- Learn how to create and apply custom middleware in an Express.js application.
+- Understand how to modularize routes for maintainability.
+- Practice implementing `GET` and `POST` routes with JSON data handling.
+
+## Features
+
+- **Custom Middleware**:
+  - Logs the request method and path to the console for every request.
+- **Modular Routing**:
+  - Separates API routes for tips and feedback into dedicated route files.
+- **Dynamic Data Handling**:
+  - Reads from and appends data to JSON files for tips and feedback.
+
+## Middleware: `clog`
+
+A custom middleware function logs the method and path of incoming requests:
+
+### Example Log Output
+
+- `📗 GET request to /api/tips`
+- `📘 POST request to /api/feedback`
+
+### Implementation
+
+```javascript
+const clog = (req, res, next) => {
+  const fgCyan = '\x1b[36m';
+  switch (req.method) {
+    case 'GET': {
+      console.info(`📗 ${fgCyan}${req.method} request to ${req.path}`);
+      break;
+    }
+    case 'POST': {
+      console.info(`📘 ${fgCyan}${req.method} request to ${req.path}`);
+      break;
+    }
+    default:
+      console.log(`📙${fgCyan}${req.method} request to ${req.path}`);
+  }
+  next();
+};
+```
+
+## API Endpoints
+
+### `GET /api/tips`
+
+- **Description**: Fetches all tips from `tips.json`.
+- **Response Example**:
+  ```json
+  [
+    {
+      "username": "JaneDoe",
+      "topic": "UI Design",
+      "tip": "Use consistent spacing",
+      "tip_id": "12345"
+    }
+  ]
+  ```
+
+### `POST /api/tips`
+
+- **Description**: Adds a new tip to `tips.json`.
+- **Request Body Example**:
+  ```json
+  {
+    "username": "JohnDoe",
+    "topic": "UX Research",
+    "tip": "Test with real users"
+  }
+  ```
+- **Response Example**:
+  ```json
+  "Tip added successfully"
+  ```
+
+### `GET /api/feedback`
+
+- **Description**: Fetches all feedback from `feedback.json`.
+- **Response Example**:
+  ```json
+  [
+    {
+      "email": "user@example.com",
+      "feedbackType": "Bug",
+      "feedback": "The submit button is not working",
+      "feedback_id": "54321"
+    }
+  ]
+  ```
+
+### `POST /api/feedback`
+
+- **Description**: Adds new feedback to `feedback.json`.
+- **Request Body Example**:
+  ```json
+  {
+    "email": "user@example.com",
+    "feedbackType": "Feature Request",
+    "feedback": "Add dark mode support"
+  }
+  ```
+- **Response Example**:
+  ```json
+  {
+    "status": "success",
+    "body": {
+      "email": "user@example.com",
+      "feedbackType": "Feature Request",
+      "feedback": "Add dark mode support",
+      "feedback_id": "67890"
+    }
+  }
+  ```
 
 ## Expected Behavior
 
-When a user makes a request to an endpoint, the middleware will intercept the request, log out information about the request (GET, POST), and log it to the console.
+1. Custom middleware logs every request to the console.
+2. API routes handle data retrieval (`GET`) and data submission (`POST`) for tips and feedback.
+3. JSON files (`tips.json`, `feedback.json`) are dynamically updated with new data.
 
-## Actual Behavior
+## Summary
 
-When a user makes a request to endpoints in the application, we can tell that something was written to the file system, but custom middleware does not log any information.
-
-## Steps to Reproduce the Problem
-
-1. Navigate to `24-Stu_Custom-Middleware/Unsolved` and run `npm install` and `npm start`.
-
-2. Using Insomnia, make a POST request to `http://localhost:3001/api/tips` with the following request body:
-
-    ```json
-    {
-        "username": "Sarah",
-        "topic": "UI",
-        "tip": "Make your application accessible by adding alt properties "
-    }
-    ```
-
-3. In the terminal where your Express.js server is running, note that the logging middleware failed to log that the request was received.
-
----
-
-## 💡 Hints
-
-How can checking where the middleware is defined help you troubleshoot this bug?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* What is a **wildcard rule** when defining route paths?
-
-Use [Google](https://www.google.com) or another search engine to research this
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates the use of custom middleware in Express.js for logging and the organization of modular routes. It includes examples of `GET` and `POST` requests, with dynamic data handling for a tips and feedback API.

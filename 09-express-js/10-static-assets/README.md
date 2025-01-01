@@ -1,36 +1,60 @@
-# 📖  Implement Middleware for Static Assets
+# express-static-assets
 
-Work with a partner to implement the following user story:
+## Serving Static Assets with Express.js
 
-* As a web developer, I want to automatically serve all static assets using middleware so that I don't need to create a specific GET route for each file.
+## Concepts Covered
 
-## Acceptance Criteria
+- Using Express.js to serve static files such as images, CSS, and JavaScript.
+- Configuring middleware to serve assets from a designated folder.
 
-* It's done when I have set up middleware to serve all static files in Express.js.
+## Learning Objectives
 
-* It's done when I have used the `express.static()` method to declare the root directory to serve assets from.
+- Understand how to set up an Express.js server to serve static assets.
+- Learn how to structure a project with a `public` folder containing static files.
+- Reference static assets in an HTML file.
 
-* It's done when I have used the `express.static()` method (inside the `app.use()` method) for granting access to the `public` folder assets.
+## Features
 
-## 📝 Notes
+- **Static File Serving**: Serves files (e.g., images, CSS, JS) from the `public` directory.
+- **Middleware Setup**: Configures Express middleware to use the `express.static` function for serving static files.
+- **HTML Integration**: Displays static content (e.g., images, styles) in an HTML file served from the `public` folder.
 
-Refer to the documentation:
+## Expected Behavior
 
-[Express.js documentation on serving static files](http://expressjs.com/en/starter/static-files.html)
+1. The server listens on port `3001`.
+2. When the browser navigates to [http://localhost:3001](http://localhost:3001), it serves the `index.html` file.
+3. All static assets (e.g., images, CSS files) located in the `public` directory are accessible via their relative paths.
+4. The `index.html` file displays job postings with styled cards and images loaded from the `public` directory.
 
----
+## Example Static Assets
 
-## 💡 Hints
+- **CSS**: Styles are served from `public/styles/jass.css`.
+- **Images**: Job-related images are served from `public/images/`.
 
-How would we use routes to access the contents of a directory nested inside the `public` directory?
+## Key Code Snippets
 
-## 🏆 Bonus
+### Express Middleware
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+The `express.static` middleware is used to serve static files:
+```javascript
+app.use(express.static('public'));
+```
 
-* What are other examples of middleware in Express.js?
+### HTML Integration
 
-Use [Google](https://www.google.com) or another search engine to research this.
+The `index.html` file references static assets such as CSS and images:
+```html
+<link rel="stylesheet" href="styles/jass.css" />
+<img class="card-image" src="images/google.png" />
+```
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+### Example Static Asset Reference
+
+For an image located at `public/images/google.png`, the file is accessible via the URL:
+```
+http://localhost:3001/images/google.png
+```
+
+## Summary
+
+This project demonstrates how to configure an Express.js server to serve static assets from a `public` directory. It showcases how to integrate static files like CSS and images into an HTML file to create a complete web page with dynamic content.

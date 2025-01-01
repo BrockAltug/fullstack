@@ -1,34 +1,60 @@
-# 🏗️ Query Express.js App Using Insomnia
+# express-insomnia
 
-Work with a partner to implement the following user story:
+## Using Express.js with Insomnia for API Testing
 
-* As a developer, I want to use Insomnia to test endpoints that I created using Express.js, to debug my API.
+## Concepts Covered
 
-## Acceptance Criteria
+- Creating an Express.js server with basic routes.
+- Serving JSON data through an API endpoint.
+- Testing API responses using Insomnia.
 
-* It's done when I have required the `db/repos.json` file in the server.js file.
+## Learning Objectives
 
-* It's done when I have created a variable called `app` in the server.js file that is an instance of the Express.js app.
+- Learn how to set up a basic Express.js server.
+- Serve JSON data through a `GET` route.
+- Test API endpoints with tools like Insomnia or Postman.
 
-* It's done when I have created a `GET` route for `/api` that will return the content of our json file.
+## Features
 
-* It's done when I have tested my endpoint by performing a `GET` request to `/api` using Insomnia.
+- **GET Route**: Serves JSON data from a local file (`repos.json`) through the `/api` endpoint.
+- **HTML Endpoint**: Provides instructions at the root (`/`) endpoint with a link to the API.
+- **API Testing**: API endpoints can be tested using Insomnia.
 
----
+## API Endpoints
 
-## 💡 Hints
+### `GET /`
 
-Do we need to pass a request body to the server when we are using query parameters?
+- **Description**: Returns an HTML message with a link to the `/api` endpoint.
+- **Response Example**:
+  ```html
+  Use the API endpoint at <a href="http://localhost:3001/api">localhost:3001/api</a>
+  ```
 
-How can the [GitHub Docs on pulls](https://docs.github.com/en/rest/reference/pulls) help us with usage?
+### `GET /api`
 
-## 🏆 Bonus
+- **Description**: Returns JSON data from the `repos.json` file.
+- **Response Example**:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "awesome-repo",
+      "description": "An awesome repository for demo purposes."
+    },
+    {
+      "id": 2,
+      "name": "another-repo",
+      "description": "Another repository example."
+    }
+  ]
+  ```
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+## Expected Behavior
 
-* How can you save multiple request URLs in Insomnia?
+1. The server listens on port `3001`.
+2. Navigating to [http://localhost:3001](http://localhost:3001) in a browser displays an HTML message with a link to the `/api` endpoint.
+3. Accessing [http://localhost:3001/api](http://localhost:3001/api) directly or via Insomnia returns the JSON content of `repos.json`.
 
-Use [Google](https://www.google.com) or another search engine to research this.
+## Summary
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This project demonstrates how to set up a simple API using Express.js and serve JSON data through a `GET` route. It also shows how to test the API responses using tools like Insomnia for validation.

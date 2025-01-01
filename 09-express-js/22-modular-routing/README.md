@@ -1,40 +1,79 @@
-# 📖 Implement Modular Routes
+# express-modular-routing
 
-Work with a partner to implement the following user story:
+## Modular Routing in Express.js
 
-* As a developer, I want to modularize my route logic from the rest of my server so that I can separate concerns appropriately.
+## Concepts Covered
 
-## Acceptance Criteria
+- Using modular routing to organize Express.js applications.
+- Setting up middleware for custom route files.
+- Handling dynamic API endpoints with separate route files.
 
-* It's done when the routes in `server.js` are broken into modules based on different endpoints.
+## Learning Objectives
 
-* It's done when I have moved my tips routes to a `tips.js` file that uses express.Router.
+- Learn how to use `app.use()` to apply modular routes.
+- Organize routes into separate files for maintainability.
+- Understand how to use middleware to mount routes under a specific path.
 
-* It's done when I have an `index.js` file that imports all my router files.
+## Features
 
-* It's done when I have required my `index.js` file inside my `server.js` file.
+- **Modular Routes**:
+  - API routes are organized in a `routes` directory and imported into the main server file.
+- **Static File Serving**:
+  - Serves static assets from the `public` directory.
+- **Page Navigation**:
+  - Includes routes for the homepage and a feedback page.
 
-## 📝 Notes
+## API Endpoints
 
-Refer to the documentation:
+### `/api` (Base Path for API)
 
-[Express.js documentation on express.Router](http://expressjs.com/en/guide/routing.html#express-router)
+- All API routes are prefixed with `/api` to separate them from other application routes.
+- Custom routes (e.g., `/api/tips`) are handled in separate files within the `routes` directory.
 
----
+### `GET /api/tips`
 
-## 💡 Hints
+- **Description**: Fetches all tips from the database.
+- **Response Example**:
+  ```json
+  [
+    {
+      "id": "1",
+      "title": "Stay organized",
+      "content": "Use modular routing to structure your application."
+    },
+    {
+      "id": "2",
+      "title": "Write clean code",
+      "content": "Separate concerns by keeping route logic in individual files."
+    }
+  ]
+  ```
 
-When we modularize our routes, which dependencies will we need to import at the top of our new files?
+## Directory Structure
 
-How does the separation of concerns help other developers who might work with your code in the future?
+- `routes/`: Contains all modular route files.
+- `public/`: Static assets like HTML, CSS, and JavaScript files.
+- `helpers/`: Utility functions such as ID generation.
+- `server.js`: Main application file that imports and uses modular routes.
 
-## 🏆 Bonus
+## Middleware Setup
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+1. Import custom routes into `server.js`:
+   ```javascript
+   const apiRoutes = require("./routes/index");
+   ```
 
-* What are some best practices for naming your routes?
+2. Apply middleware to mount API routes under `/api`:
+   ```javascript
+   app.use("/api", apiRoutes);
+   ```
 
-Use [Google](https://www.google.com) or another search engine to research this.
+## Expected Behavior
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+1. The server listens on port `3001`.
+2. Routes are organized into separate files for cleaner code and better maintainability.
+3. The `/api` base path serves API-related routes, while other routes serve static pages.
+
+## Summary
+
+This project demonstrates how to use modular routing in Express.js for better application structure and maintainability. By separating API routes into their own files, you can keep your codebase organized and easier to manage.

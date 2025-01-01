@@ -1,30 +1,68 @@
-# 🏗️ Implement Logging for GET and POST Requests
+# express-post-requests
 
-Work with a partner to implement the following user story:
+## Handling POST and GET Requests with Express.js
 
-* As a developer, I want to ensure that my requests are handled based on their HTTP method so that future create, read, update, and delete (CRUD) operations work as intended.
+## Concepts Covered
 
-## Acceptance Criteria
+- Creating and handling `GET` and `POST` requests in Express.js.
+- Logging incoming requests for debugging and tracking.
+- Sending JSON responses to client requests.
 
-* It's done when I have created a route that logs when a user has made a GET request.
+## Learning Objectives
 
-* It's done when I have created a route that logs when a user has made a POST request.
+- Understand how to create API endpoints for both `GET` and `POST` requests.
+- Learn how to log request information to the console for debugging purposes.
+- Respond to API requests with JSON messages.
 
-* It's done when, if I test my route using Insomnia, GET and POST requests are logged.
+## Features
 
----
+- **GET Requests**:
+  - Retrieves reviews and upvote counts via respective endpoints.
+  - Logs each request method and endpoint for debugging.
+- **POST Requests**:
+  - Adds reviews and upvotes via respective endpoints.
+  - Logs each request method and endpoint for tracking.
 
-## 💡 Hints
+## API Endpoints
 
-How can we enable the same endpoint to handle both GET and POST requests?
+### `GET /api/reviews`
 
-## 🏆 Bonus
+- **Description**: Logs and responds to a request for reviews.
+- **Response Example**:
+  ```json
+  "GET /api/reviews request received to get reviews"
+  ```
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+### `POST /api/reviews`
 
-* When would you use a GET request vs. a POST request?
+- **Description**: Logs and responds to a request to add a review.
+- **Response Example**:
+  ```json
+  "POST /api/reviews request received to add a review"
+  ```
 
-Use [Google](https://www.google.com) or another search engine to research this.
+### `GET /api/upvotes`
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+- **Description**: Logs and responds to a request for the upvote count.
+- **Response Example**:
+  ```json
+  "GET /api/upvotes request received to retrieve upvote count"
+  ```
+
+### `POST /api/upvotes`
+
+- **Description**: Logs and responds to a request to upvote.
+- **Response Example**:
+  ```json
+  "POST /api/upvotes request received to upvote"
+  ```
+
+## Expected Behavior
+
+1. The server listens on port `3001`.
+2. A `GET` or `POST` request to any endpoint logs the request method and endpoint to the console.
+3. Each endpoint responds with a JSON message confirming the action performed.
+
+## Summary
+
+This project demonstrates how to create and handle `GET` and `POST` requests in Express.js. It includes examples of logging incoming requests for debugging and sending JSON responses to the client.

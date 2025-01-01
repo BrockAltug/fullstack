@@ -9,6 +9,8 @@ tips.get('/', (req, res) => {
 
 // POST Route for a new UX/UI tip
 tips.post('/', (req, res) => {
+  console.log(req.body);
+
   const { username, topic, tip } = req.body;
 
   if (username && topic && tip) {

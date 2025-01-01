@@ -5,9 +5,13 @@ const reviews = require('./db/reviews');
 
 const app = express();
 
-// TODO: Implement middleware for the parsing of JSON data
+// Middleware for parsing application/json
+app.use(express.json());
 
-// TODO: Implement middleware for parsing of URL encoded data
+// Middleware for urlecoded data
+// `urlencoded` data represents a URL encoded form. If we had a HTML form with fields: `username` and `password`, our urlencoded data would be "username=JohnAppleseed&password=passw0rd"
+// This middleware will parse that string into an object containing key value pairs
+app.use(express.urlencoded({ extended: true }));
 
 // GET request for ALL reviews
 app.get('/api/reviews', (req, res) => {
@@ -61,7 +65,7 @@ app.post('/api/reviews', (req, res) => {
 });
 
 // POST request to upvote a review
-app.post('/api/upvotes/:review_id', (req, res) => {
+app.post('/api/upvotes/:review_id', async (req, res) => {
   const { review_id } = req.params;
   const { upvote } = req.body;
 

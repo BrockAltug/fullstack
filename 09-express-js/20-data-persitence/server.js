@@ -20,7 +20,7 @@ app.get('/', (req, res) =>
 // GET request for reviews
 app.get('/api/reviews', (req, res) => {
   // Send a message to the client
-  res.json(`${req.method} request received to get reviews`);
+  res.status(200).json(`${req.method} request received to get reviews`);
 
   // Log our request to the terminal
   console.info(`${req.method} request received to get reviews`);
@@ -44,17 +44,28 @@ app.post('/api/reviews', (req, res) => {
       review_id: uuid(),
     };
 
-    // Convert the data to a string so we can save it
-    const reviewString = JSON.stringify(newReview);
+    // Obtain existing reviews
+    fs.readFile('./db/reviews.json', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        // Convert string into JSON object
+        const parsedReviews = JSON.parse(data);
 
-    // Write the string to a file
-    fs.writeFile(`./db/reviews.json`, reviewString, (err) =>
-      err
-        ? console.error(err)
-        : console.log(
-            `Review for ${newReview.product} has been written to JSON file`
-          )
-    );
+        // Add a new review
+        parsedReviews.push(newReview);
+
+        // Write updated reviews back to the file
+        fs.writeFile(
+          './db/reviews.json',
+          JSON.stringify(parsedReviews, null, 4),
+          (writeErr) =>
+            writeErr
+              ? console.error(writeErr)
+              : console.info('Successfully updated reviews!')
+        );
+      }
+    });
 
     const response = {
       status: 'success',

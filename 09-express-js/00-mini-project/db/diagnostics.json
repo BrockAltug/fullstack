@@ -19,11 +19,20 @@
   },
   {
     "time": 1616087317843,
-    "error_id": "ca0616fa-f603-4d85-a9c6-fa62c73a9bf9",
+    "error_id": "20a5edb7-ccca-4de2-be0f-8289a4f9899d",
     "errors": {
       "tip:": "Tip must be at least 15 characters long",
       "topic": "",
       "username": " Username is too short"
+    }
+  },
+  {
+    "time": 1616091575094,
+    "error_id": "ca0616fa-f603-4d85-a9c6-fa62c73a9bf9",
+    "errors": {
+      "username": "Invalid username!",
+      "tip": "Tip must be at least 15 characters",
+      "topic": ""
     }
   }
 ]
