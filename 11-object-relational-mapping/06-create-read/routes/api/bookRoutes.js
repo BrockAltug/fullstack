@@ -1,52 +1,57 @@
 const router = require('express').Router();
 const Book = require('../../models/Book');
 
-// TODO: Add a comment describing the purpose of this route
+// Route to retrieve all books
+// This route fetches all entries from the `book` table and returns them as a JSON response.
 router.get('/', (req, res) => {
-  // TODO: Add a comment describing the functionality of this method
+  // Use Sequelize's `findAll` method to retrieve all book records
   Book.findAll().then((bookData) => {
-    res.json(bookData);
+    res.json(bookData); // Send the retrieved data as a JSON response
   });
 });
 
-// TODO: Add a comment describing the purpose of this route
+// Route to retrieve all paperback books
+// This route fetches all paperback books, ordered by title, and excludes specific fields from the response.
 router.get('/paperbacks', (req, res) => {
   Book.findAll({
-    // TODO: Add a comment describing the functionality of this property
+    // Orders the results alphabetically by the `title` column
     order: ['title'],
-    // TODO: Add a comment describing the functionality of this property
+    // Filters the results to include only books where `is_paperback` is true
     where: {
       is_paperback: true
     },
     attributes: {
-      // TODO: Add a comment describing the functionality of this property
+      // Excludes the `is_paperback` and `edition` columns from the results
       exclude: ['is_paperback', 'edition']
     }
   }).then((bookData) => {
-    res.json(bookData);
+    res.json(bookData); // Send the filtered data as a JSON response
   });
 });
 
-// TODO: Add a comment describing the purpose of this route
+// Route to retrieve a single book by ID
+// This route fetches a book record by its primary key (`book_id`) and returns it as a JSON response.
 router.get('/:id', (req, res) => {
-  // TODO: Add a comment describing the functionality of this method
+  // Use Sequelize's `findByPk` method to find a book by its primary key
   Book.findByPk(req.params.id).then((bookData) => {
-    res.json(bookData);
+    res.json(bookData); // Send the retrieved book data as a JSON response
   });
 });
 
-// CREATE a book
+// Route to create a single book
+// This route accepts book data in the request body and creates a new entry in the `book` table.
 router.post('/', (req, res) => {
   Book.create(req.body)
     .then((newBook) => {
-      res.json(newBook);
+      res.json(newBook); // Send the newly created book record as a JSON response
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err); // Send an error response if the creation fails
     });
 });
 
-// CREATE multiple books
+// Route to seed the database with multiple books
+// This route inserts multiple predefined book records into the `book` table.
 router.post('/seed', (req, res) => {
   Book.bulkCreate([
     {
@@ -99,10 +104,10 @@ router.post('/seed', (req, res) => {
     }
   ])
     .then(() => {
-      res.send('Database seeded!');
+      res.send('Database seeded!'); // Send a success message when the seeding is complete
     })
     .catch((err) => {
-      res.json(err);
+      res.json(err); // Send an error response if the seeding fails
     });
 });
 
