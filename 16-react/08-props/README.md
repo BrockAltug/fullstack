@@ -1,34 +1,122 @@
-# 🏗️ Pass Data Using Props
+# React Props: Dynamic Card Component
 
-## Activity
+## Overview
 
-Work with a partner to implement the following user story:
-
-* As a developer, I want to render a card by passing props.
-
-## Acceptance Criteria
-
-The activity is done when it meets the following criteria:
-
-* It's done when I have updated the return method in `src/components/Display.jsx` to render a card.
-
-* It's done when I have passed data for the kitten's `name`, `description`, and `id` as props to the `Card` component.
-
-* It's done when I have modified to `Card` component to render the `feline` properties.
-
-## 💡 Hints
-
-* How can we use the [React Docs on components and props](https://facebook.github.io/react/docs/components-and-props.html) to understand props better?
-
-* What is the term **props** short for?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* How could we use the [style tag](https://facebook.github.io/react/docs/dom-elements.html#style) to add additional style to our React components?
-
-Use [Google](https://www.google.com) or another search engine to research this.
+This project demonstrates how to use React props to pass data between components. A `Card` component dynamically displays information about a feline, including its name, description, and ID. The `Display` component acts as the parent and passes these props to the `Card` component.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Key Features
+
+1. **Dynamic Data Rendering**:
+   - The `Card` component uses props to display dynamic data passed from the parent component.
+
+2. **Reusable Components**:
+   - The `Card` component can be reused for any data structure containing a `name`, `description`, and `id`.
+
+3. **Props Handling**:
+   - Props are destructured in the `Card` component for clean and readable code.
+
+4. **Randomized Images**:
+   - A helper function generates random placeholder image sizes for variety.
+
+5. **Bootstrap Integration**:
+   - Uses Bootstrap for styling the card layout.
+
+---
+
+## Application Code
+
+### Card Component (`components/Card.jsx`)
+
+```javascript
+export default function Card({ name, description, id }) {
+  const cardStyle = {
+    width: '18rem',
+  };
+
+  // Helper function that generates a random width for our placeholder images
+  const randomWidth = () => {
+    const number = Math.random() * (300 - 200) + 200;
+    return number.toString().split('.')[0];
+  };
+
+  return (
+    <div className="container">
+      <div className="card" style={cardStyle}>
+        <img
+          className="card-img-top"
+          src={`http://placekitten.com/${randomWidth()}`}
+          alt="Card cap"
+        />
+        <div className="card-body">
+          <h5 className="card-title">Name: {name}</h5>
+          <p className="card-text">Description: {description}</p>
+          <p className="card-text">ID: {id}</p>
+          <a href="#" className="btn btn-primary">
+            Adopt {name}
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### Display Component (`components/Display.jsx`)
+
+```javascript
+import Card from './Card';
+
+const feline = {
+  name: 'Fluffykins',
+  description: 'A cat that acts like a dog',
+  id: 1,
+};
+
+export default function Display() {
+  return (
+    <div>
+      {/* Render the Card component and pass the feline data as props */}
+      <Card 
+        name={feline.name} 
+        description={feline.description} 
+        id={feline.id} 
+      />
+    </div>
+  );
+}
+```
+
+---
+
+## Setup Instructions
+
+1. **Install Dependencies**:
+   - Run `npm install` to install the required dependencies, including React and Bootstrap.
+
+2. **Run the Application**:
+   - Start the application using:
+     ```bash
+     npm start
+     ```
+
+3. **View the Application**:
+   - Open [http://localhost:3000](http://localhost:3000) in your browser to view the dynamically rendered card.
+
+---
+
+## Expected Behavior
+
+1. The application renders a Bootstrap card displaying:
+   - The feline's name.
+   - A description.
+   - Its ID.
+   - A random placeholder image.
+2. The "Adopt [Name]" button dynamically reflects the feline's name.
+
+---
+
+## Summary
+
+This project highlights the use of props in React for passing data between components. It showcases best practices for reusable components, props destructuring, and integrating Bootstrap for styling.
