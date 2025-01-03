@@ -1,32 +1,77 @@
-# 🏗️ Implement JSX Expressions
+# JSX Expressions Demo
 
-## Activity
+This project demonstrates how to use JSX expressions to dynamically render variables in a React component.
 
-Work with a partner to implement the following user story:
+## Description
 
-* As a developer, I want to be able to use JSX expressions to render variables in my components.
+The `JSXVariables` component showcases the use of JavaScript variables to dynamically generate content in a React application. By leveraging JSX, we can embed variables and expressions directly into the UI, creating dynamic and interactive interfaces.
 
-## Acceptance Criteria
+## Features
 
-* It's done when I create the JavaScript variables requested in [JSXVariables.jsx](./Unsolved/src/components/JSXVariables.jsx).
+- **Dynamic Variables**: Use JavaScript variables to render content dynamically.
+- **JSX Integration**: Embed variables and expressions seamlessly into the JSX.
+- **Real-Time Updates**: Modify the variables to see the rendered output change.
 
-* It's done when I render a `name` variable that will hold my name.
+## Implementation
 
-* It's done when I render the number of letters in the `name` variable.
+The component utilizes three main variables:
 
-* It's done when I create a variable called `thoughts` that contains a string regarding my thoughts on React.
+1. **`name`**: Holds a string representing the user's name.
+2. **`thoughts`**: Contains a string representing the user's thoughts about React.
+3. **`nameLength`**: Dynamically calculates the number of letters in the `name` variable.
 
-## 💡 Hints
+### Code Example
 
-How can we use the [React Docs on JSX](https://react.dev/learn/writing-markup-with-jsx) to help us while working with JSX?
+```jsx
+// Declaring variables for dynamic rendering
+const name = "John Doe";
+const thoughts = "is an amazing library for building user interfaces.";
 
-## 🏆 Bonus
+function JSXVariables() {
+  const nameLength = name.length;
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+  return (
+    <div className="main-container">
+      <div className="container">
+        <div className="p-5 mb-4 bg-light">
+          <h1>Hi! My name is {name}</h1>
+          <h2>My name has {nameLength} letters</h2>
+          <h2>I think React {thoughts}</h2>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-* What other array methods are available to use on the `name` variable?
+export default JSXVariables;
+```
 
-Use [Google](https://www.google.com) or another search engine to research this.
+## Getting Started
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Follow these instructions to run the project locally.
+
+### Prerequisites
+
+- Node.js installed on your machine.
+- Basic understanding of React.
+
+### Installation
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+3. Open your browser and navigate to `http://localhost:3000`.
+
+## Usage
+
+- Modify the `name` and `thoughts` variables in the `JSXVariables` component to see how the UI updates dynamically.
+- Experiment with other JavaScript expressions in JSX to explore its full potential.
