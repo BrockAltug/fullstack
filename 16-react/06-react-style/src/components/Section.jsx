@@ -2,12 +2,25 @@
 import '../styles/Section.css';
 
 // TODO: Create a styles object called "styles"
+const styles = {
+  section: {
+    backgroundColor: '#f9f9f9', // Changed background color to light gray
+    padding: '20px',            // Added padding for spacing
+    lineHeight: '1.6',          // Increased line height for better readability
+    color: '#333',              // Changed text color to dark gray
+  },
+  heading: {
+    color: '#2C3E50',           // Changed heading color to dark blue
+    fontSize: '2rem',           // Increased heading font size
+    marginBottom: '10px',       // Added margin below heading
+  },
+};
 
 function Section() {
   // TODO: Add a style attribute to `section`
   return (
-    <section className="section">
-      <h2>Lorem Ipsum Dolor Sit Amet</h2>
+    <section className="section" style={styles.section}>
+      <h2 style={styles.heading}>Lorem Ipsum Dolor Sit Amet</h2>
       <p>
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
