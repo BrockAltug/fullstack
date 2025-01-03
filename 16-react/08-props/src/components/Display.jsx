@@ -11,6 +11,12 @@ export default function Display() {
     <div>
         {/* TODO: Write logic that will render a Card component for the kitten */}
         {/* TODO: Pass `name`, `description`, and `id` to the Card component as props */}
+        {/* Render the Card component and pass the feline data as props */}
+      <Card 
+        name={feline.name} 
+        description={feline.description} 
+        id={feline.id} 
+      />
     </div>
   );
 }
