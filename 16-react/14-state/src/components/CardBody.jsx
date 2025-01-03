@@ -1,20 +1,14 @@
 // This file defines a functional React component named CardBody.
-// It represents a "child" component that is designed to display a counter and provide buttons to increment or decrement the count.
-// The component receives its data and event handlers as "props" from its parent component.
-
-// TODO: Add a comment explaining what is being passed to this "child" component as props
-// Props passed to this component include:
-// 1. `count` (number): The current value of the counter, which is displayed in the paragraph element.
-// 2. `handleIncrement` (function): A function to increment the counter when the "Increment" button is clicked.
-// 3. `handleDecrement` (function): A function to decrement the counter when the "Decrement" button is clicked.
+// It represents a "child" component designed to display a counter
+// and provide buttons to increment or decrement the count.
 
 function CardBody(props) {
   return (
     <div className="card-body">
-      {/* Display the current count */}
+      {/* `count` (number): The current value of the counter, displayed here */}
       <p className="card-text">Click Count: {props.count}</p>
 
-      {/* Button to increment the count */}
+      {/* `handleIncrement` (function): Called when this button is clicked */}
       <button
         type="button"
         className="btn btn-primary"
@@ -23,7 +17,7 @@ function CardBody(props) {
         Increment
       </button>{' '}
 
-      {/* Button to decrement the count */}
+      {/* `handleDecrement` (function): Called when this button is clicked */}
       <button
         type="button"
         className="btn btn-danger"
