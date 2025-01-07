@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />, // Fallback for invalid routes
     children: [
-      { path: '/', element: <HomePage /> }, // Home page route
+      { path: '/', index: true ,element: <HomePage /> }, // Home page route
       { path: '/about', element: <AboutPage /> }, // About page route
       { path: '/profile/:userId', element: <ProfilePage /> }, // Dynamic Profile page route
     ],
