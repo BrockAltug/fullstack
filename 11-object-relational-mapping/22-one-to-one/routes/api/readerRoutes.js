@@ -1,11 +1,12 @@
 const router = require('express').Router();
+// use object destructuring to import our two models by name
 const { Reader, LibraryCard } = require('../../models');
 
 // GET all readers
 router.get('/', async (req, res) => {
   try {
     const readerData = await Reader.findAll({
-      // TODO: Add a comment describing the functionality of this property
+      // This will retrieve every Reader's associated LibraryCard data. In SQL, this would be a JOIN function.
       include: [{ model: LibraryCard }],
     });
     res.status(200).json(readerData);
