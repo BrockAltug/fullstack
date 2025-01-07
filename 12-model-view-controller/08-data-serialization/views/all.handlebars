@@ -4,8 +4,10 @@
       &#127869 Current Menu
     </h2>
   </div>
+  <!-- For each dish in the array of dish objects, the following <div> will be rendered. -->
   {{#each dishes as |dish|}}
     <div class="dish col-md-5">
+      <!-- We use dish.id instead of <od> and <li> elements. -->
       <p>
         {{dish.id}}.
         {{dish.dish_name}}
