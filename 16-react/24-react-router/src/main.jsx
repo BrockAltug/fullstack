@@ -1,19 +1,27 @@
 import ReactDOM from 'react-dom/client';
-// Todo: Bring in the appropriate imports
-import { } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-// Bringing in the pages the router will use to conditionally show the appropriate views
 import App from './App';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
 import AboutPage from './pages/AboutPage';
 
+// Define the accessible routes, and which components respond to which URL
 const router = createBrowserRouter([
-  // Todo: Define the accessible routes, and which components respond to which URL
+  {
+    path: '/',
+    element: <App />,
+    errorElement: <ErrorPage />, // Fallback for invalid routes
+    children: [
+      { path: '/', index: true ,element: <HomePage /> }, // Home page route
+      { path: '/about', element: <AboutPage /> }, // About page route
+      { path: '/profile/:id', element: <ProfilePage /> }, // Dynamic Profile page route
+    ],
+  },
 ]);
 
 // Render the RouterProvider component

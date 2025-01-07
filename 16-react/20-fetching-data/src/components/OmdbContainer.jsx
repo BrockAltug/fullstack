@@ -12,26 +12,31 @@ const OmdbContainer = () => {
   const [search, setSearch] = useState('');
 
   // When the search form is submitted, use the API.search method to search for the movie(s)
-  const searchMovie = (query) =>
+  const searchMovie = (query) => {
     API.search(query)
       .then((res) => {
-        setResult(res.data)
-        setSearch('')
+        setResult(res.data);
+        setSearch('');
       })
       .catch((err) => console.log(err));
+  };
 
-  // TODO: Fix the useEffect hook running after every state change
+  // Use useEffect to perform the initial search for "The Matrix"
   useEffect(() => {
     searchMovie('The Matrix');
-  });
+  }, []); // Add an empty dependency array to run only once on mount
 
-  // TODO: Fix the handleInputChange function
-  const handleInputChange = (e) => console.log(e.target.value);
+  // Update the `search` state as the user types into the input field
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-  // TODO: Fix the handleFormSubmit function not actually searching for the movie
+  // Trigger the search functionality when the form is submitted
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setSearch(e.target.value);
+    if (search.trim()) {
+      searchMovie(search);
+    }
   };
 
   // Destructure the result object to make the code more readable, assign them to empty strings to start

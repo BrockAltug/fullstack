@@ -1,34 +1,18 @@
-# 📖 Replace Hardcoded Credentials With Environment Variables
+# Sequelize Database Setup
 
-Work with a group to implement the following user story:
+## Concepts Covered
 
-* As a developer, I want to protect my database credentials by not hardcoding them in the project files.
+- Sequelize ORM Configuration
+- Environment Variables for Secure Database Credentials
+- Connecting to a PostgreSQL Database Using Sequelize
 
-## Acceptance Criteria
+## Learning Objectives
 
-* It's done when the database name, user, and password are moved to environment variables.
+1. Understand how to securely manage database credentials using environment variables.
+2. Learn how to configure Sequelize to connect to a PostgreSQL database.
+3. Practice setting up `.env` files and `.env.EXAMPLE` templates for project collaboration.
+4. Explore safe practices for excluding sensitive data from version control.
 
-* It's done when Sequelize can connect to the database using the `dotenv` npm package.
+## Summary
 
-## 📝 Notes
-
-Refer to the documentation:
-
-* [npm documentation on dotenv](https://www.npmjs.com/package/dotenv)
-
----
-
-## 💡 Hints
-
-How does the `dotenv` npm package use `.env` files?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your group to further your knowledge:
-
-* How can you set environment variables from the command line?
-
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+This Sequelize Database Setup guide covers the configuration of Sequelize to connect to a PostgreSQL database securely. It emphasizes the use of environment variables to manage database credentials safely and introduces the `dotenv` package to load these variables. By following these instructions, you will be able to configure Sequelize for database interaction, ensuring both functionality and security in your project setup.

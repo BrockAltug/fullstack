@@ -1,43 +1,58 @@
 import { useState } from 'react';
 import BucketForm from './BucketForm';
 
-function Bucket(props) {
+function Bucket({ bucket, completeBucketItem, removeBucketItem, editBucketItem }) {
+  // State to track if the user is editing a bucket item
   const [edit, setEdit] = useState({
     id: null,
     value: '',
     eagerness: '',
   });
 
-  console.log(props.bucket);
-
+  // Function to handle submitting the updated bucket item
   const submitUpdate = (value) => {
+    // Call the editBucketItem prop to update the item with new values
+    editBucketItem(edit.id, value);
 
-    // TODO: Write logic to call the editBucketItem prop with the supplied values
-
-    // TODO: Set the key:value pairs in the `edit` object back to empty strings
-
+    // Reset the edit state back to empty after updating
+    setEdit({
+      id: null,
+      value: '',
+      eagerness: '',
+    });
   };
 
-  // If the user is attempting to edit an item, render the bucket form with the edit variable passed as a prop
+  // If the user is editing an item, render the BucketForm component with the edit values
   if (edit.id) {
     return <BucketForm edit={edit} onSubmit={submitUpdate} />;
   }
 
-  return props.bucket.map((item, index) => (
-    // TODO: Add a className of `bucket-row complete ${item.eagerness}` for completed items, and `bucket-row ${item.eagerness}` for non-completed items
-    // TODO: Add a key attribute set to the value of the index position
-    // Hint: use a ternary operator
-    <div className={} key={}>
-
-      {/* TODO: Add an onClick event that invokes the `completeBucketItem` method passing the item id as a argument */}
-      <div key={} onClick={}>
-          {/* TODO: Add the item text here */}
+  // Render the list of bucket items
+  return bucket.map((item, index) => (
+    <div
+      // Apply dynamic class names based on the item's completion status and eagerness level
+      className={`bucket-row ${item.isComplete ? 'complete' : ''} ${item.eagerness}`}
+      key={index}
+    >
+      <div
+        // Handle marking the item as complete or incomplete
+        onClick={() => completeBucketItem(item.id)}
+        key={item.id}
+      >
+        {/* Display the bucket item text */}
+        {item.text}
       </div>
       <div className="icons">
-        {/* TODO: Add an onClick event update the `edit` object with the `id`, `value`, and `eagerness` properties */}
-        <p onClick={}> ✏️</p>
-        {/* TODO: Add an onClick event that will invoke the removeBucketItem method passing in the `item.id` */}
-        <p onClick={}> 🗑️</p>
+        {/* Edit icon: set the edit state with the item's id, value, and eagerness */}
+        <p
+          onClick={() =>
+            setEdit({ id: item.id, value: item.text, eagerness: item.eagerness })
+          }
+        >
+          ✏️
+        </p>
+        {/* Delete icon: call the removeBucketItem prop with the item's id */}
+        <p onClick={() => removeBucketItem(item.id)}> 🗑️</p>
       </div>
     </div>
   ));

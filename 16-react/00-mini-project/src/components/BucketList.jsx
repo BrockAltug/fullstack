@@ -3,44 +3,43 @@ import BucketForm from './BucketForm';
 import Bucket from './Bucket';
 
 function BucketList() {
+  // State to hold the list of bucket items
   const [bucket, setBucket] = useState([]);
 
   // Function to add a bucket list item
   const addBucketItem = (item) => {
-
-    // TODO: Write logic to add the new bucket item to the bucket state variable
-    
+    // Add the new item to the beginning of the bucket array
+    const newBucket = [item, ...bucket];
+    setBucket(newBucket);
   };
 
-  // Function to mark bucket list item as complete
+  // Function to mark a bucket list item as complete or incomplete
   const completeBucketItem = (id) => {
-    // If the ID passed to this function matches the ID of the item that was clicked, mark it as complete
-    let updatedBucket = bucket.map((item) => {
-      
-      // TODO: Write logic that marks an item as complete or incomplete when invoked
-
+    const updatedBucket = bucket.map((item) => {
+      // Toggle the `isComplete` status of the matching item
+      if (item.id === id) {
+        return { ...item, isComplete: !item.isComplete };
+      }
+      return item;
     });
 
-    setBucket(updatedBucket);
+    setBucket(updatedBucket); // Update the bucket state with the modified list
   };
 
-  // Function to remove bucket list item and update state
+  // Function to remove a bucket list item
   const removeBucketItem = (id) => {
-    // TODO: Write logic that will return an array of items that don't contain the ID passed to this function
-
-
-    // TODO: Update the bucket state variable
+    // Filter out the item with the matching ID
+    const updatedBucket = bucket.filter((item) => item.id !== id);
+    setBucket(updatedBucket); // Update the bucket state with the filtered list
   };
 
-  // Function to edit the bucket list item
+  // Function to edit a bucket list item
   const editBucketItem = (itemId, newValue) => {
-    // Make sure that the value isn't empty
     if (!newValue.text) {
-      return;
+      return; // Exit if the new value is empty
     }
 
-    // We use the "prev" argument provided with the useState hook to map through our list of items
-    // We then check to see if the item ID matches the id of the item that was clicked and if so, we set it to a new value
+    // Map through the bucket list and update the matching item with the new value
     setBucket((prev) =>
       prev.map((item) => (item.id === itemId ? newValue : item))
     );
@@ -49,13 +48,15 @@ function BucketList() {
   return (
     <div>
       <h1>What is on your bucket list?</h1>
+      {/* Form to add new bucket list items */}
       <BucketForm onSubmit={addBucketItem} />
+      {/* Display the bucket list items */}
       <Bucket
         bucket={bucket}
         completeBucketItem={completeBucketItem}
         removeBucketItem={removeBucketItem}
         editBucketItem={editBucketItem}
-      ></Bucket>
+      />
     </div>
   );
 }
