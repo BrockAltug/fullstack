@@ -33,8 +33,20 @@ User.init(
     },
   },
   {
-    // TODO: Add hooks here
-
+    hooks: {
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+      beforeUpdate: async (updatedUserData) => {
+        // Uncomment the console.log to see the _changed property available on the Sequelize object. Read more at: https://sequelize.org/docs/v6/other-topics/upgrade/#modelchanged 
+        // console.log(updatedUserData);
+        if (updatedUserData._changed.has("password")) {
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+        }
+        return updatedUserData;
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
