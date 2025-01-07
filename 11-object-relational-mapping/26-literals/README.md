@@ -1,40 +1,142 @@
-# 🐛 Readers Route Is Missing Data
+# Object-Relational Mapping with SQL Literals
 
-Work with a group to resolve the following issues:
+## Overview
 
-* As a user, I want to see the books I own and a count of how many of those are short novels.
+This project demonstrates the use of **SQL Literals** within Sequelize to incorporate raw SQL expressions into queries. It includes routes that count specific data (e.g., short books) for readers by embedding SQL within Sequelize's `literal` function.
+
+---
+
+## Key Features
+
+1. **SQL Literals**:
+
+   - Leverages `sequelize.literal` to embed raw SQL expressions within Sequelize queries.
+
+2. **Dynamic Data Aggregation**:
+
+   - Calculates derived attributes such as the count of short books (100–300 pages) for each reader.
+
+3. **RESTful API**:
+
+   - Provides routes for CRUD operations on the `Reader` model with aggregated data.
+
+4. **Seamless Integration with Sequelize**:
+   - Combines Sequelize's ORM capabilities with the flexibility of raw SQL.
+
+---
+
+## Concepts Covered
+
+1. **SQL Literals in Sequelize**:
+
+   - Uses `sequelize.literal` to execute raw SQL directly within Sequelize queries.
+
+2. **Dynamic Attributes**:
+
+   - Adds computed attributes (e.g., `shortBooks`) to Sequelize model queries.
+
+3. **RESTful API Design**:
+   - Implements routes for CRUD operations on `Reader` and associated models.
+
+---
+
+## Setup Instructions
+
+1. **Install Dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+2. **Set Up the Database**:
+
+   - Configure database credentials in `config/connection.js`.
+   - Run the database schema if applicable.
+
+3. **Run the Application**:
+
+   ```bash
+   npm start
+   ```
+
+4. **Test the Endpoints**:
+
+   - Use a tool like Insomnia or Postman to test the API endpoints.
+
+---
+
+## Application Structure
+
+### **Files and Functionality**
+
+1. **`models/Reader.js`**:
+
+   - Defines the `Reader` model with fields for `id` and reader-specific details.
+   - Associated with `LibraryCard` (one-to-one) and `Book` (one-to-many).
+
+2. **`models/Book.js`**:
+
+   - Defines the `Book` model with fields for `id`, `title`, `author`, `isbn`, `pages`, and `reader_id`.
+
+3. **`routes/api/readerRoutes.js`**:
+   - Provides API routes for:
+     - `GET /api/readers`: Retrieves all readers with their associated library cards, books, and the count of short books (100–300 pages).
+     - `GET /api/readers/:id`: Retrieves a single reader by ID with their associated data and short book count.
+     - `POST /api/readers`: Creates a new reader.
+     - `DELETE /api/readers/:id`: Deletes a reader by ID.
+
+---
 
 ## Expected Behavior
 
-When a request is made for reader data, the response includes a `shortBooks` property that counts the books with between 100 and 300 pages.
+1. **SQL Literals**:
 
-## Actual Behavior
+   - Adds a computed attribute, `shortBooks`, that counts the number of short books (100–300 pages) for each reader.
 
-The user data in the response does not include a `shortBooks` property.
+2. **Data Aggregation**:
 
-## Steps to Reproduce the Problem
+   - Dynamically calculates derived attributes using raw SQL within Sequelize queries.
 
-1. Run `node seeds/seed.js` from the command line to seed the database.
-
-2. Run `npm start` to start the server.
-
-3. In Insomnia, make a GET request to `/api/readers/1`.
-
-4. Note that the response data does not include a `shortBooks` property.
+3. **CRUD Operations**:
+   - Supports create, read, and delete operations for the `Reader` model.
 
 ---
 
-## 💡 Hints
+## Example Usage
 
-How could you obtain this short novel count using a regular SQL query?
+### **Retrieving Readers with Short Book Count**
 
-## 🏆 Bonus
+1. **Get All Readers**:
 
-If you have completed this activity, work through the following challenge with your group to further your knowledge:
+   - Endpoint: `GET /api/readers`
+   - Response includes associated library cards, books, and the count of short books:
+     ```json
+     [
+       {
+         "id": 1,
+         "name": "Jane Doe",
+         "shortBooks": 3,
+         "libraryCard": { ... },
+         "books": [ ... ]
+       }
+     ]
+     ```
 
-* How would you build a many-to-many relationship using Sequelize?
-
-Use [Google](https://www.google.com) or another search engine to research this.
+2. **Get a Single Reader**:
+   - Endpoint: `GET /api/readers/1`
+   - Response includes the associated library card, books, and short book count:
+     ```json
+     {
+       "id": 1,
+       "name": "Jane Doe",
+       "shortBooks": 3,
+       "libraryCard": { ... },
+       "books": [ ... ]
+     }
+     ```
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Summary
+
+This project showcases how to use SQL Literals in Sequelize for advanced data aggregation and dynamic attributes. By combining raw SQL with Sequelize's ORM capabilities, it demonstrates how to efficiently calculate and include derived data in API responses.
