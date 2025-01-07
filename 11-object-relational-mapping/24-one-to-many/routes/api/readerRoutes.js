@@ -1,11 +1,11 @@
-const router = require('express').Router();
-const { Reader, LibraryCard } = require('../../models');
+const router = require("express").Router();
+const { Reader, LibraryCard, Book } = require("../../models");
 
 // GET all readers
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const readerData = await Reader.findAll({
-      include: [{ model: LibraryCard }],
+      include: [{ model: LibraryCard }, { model: Book }],
     });
     res.status(200).json(readerData);
   } catch (err) {
@@ -14,14 +14,14 @@ router.get('/', async (req, res) => {
 });
 
 // GET a single reader
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const readerData = await Reader.findByPk(req.params.id, {
-      include: [{ model: LibraryCard }],
+      include: [{ model: LibraryCard }, { model: Book }],
     });
 
     if (!readerData) {
-      res.status(404).json({ message: 'No reader found with that id!' });
+      res.status(404).json({ message: "No reader found with that id!" });
       return;
     }
 
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE a reader
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const readerData = await Reader.create(req.body);
     res.status(200).json(readerData);
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 });
 
 // DELETE a reader
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const readerData = await Reader.destroy({
       where: {
@@ -51,7 +51,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!readerData) {
-      res.status(404).json({ message: 'No reader found with that id!' });
+      res.status(404).json({ message: "No reader found with that id!" });
       return;
     }
 
