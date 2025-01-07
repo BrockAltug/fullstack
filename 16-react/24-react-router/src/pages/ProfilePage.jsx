@@ -8,8 +8,8 @@ import API from '../utils/API';
 
 export default function ProfilePage() {
   const [user, setUser] = useState({});
-
-  // Todo: Use the useParams hook to find out which user profile has been requested by the user
+  // Use the useParams hook to find out which user profile has been requested by the user
+  const { id } = useParams();
 
   const fetchData = async () => {
     const { data } = await API.getSingleUser(id);
@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]); // Add `id` as a dependency to re-run fetch if the URL changes
 
   return (
     <>
