@@ -1,34 +1,157 @@
-# 🏗️ Refactor the Code to Use `async` and `await` Instead of Promises
+# Object-Relational Mapping with Async/Await
 
-Work with a group to implement the following user story:
+## Overview
 
-* As a developer, my database seed code should be less cluttered with Promises and instead use `async` and `await` for easier readability.
-
-* As a developer, my `PUT` and `DELETE` route code should be less cluttered with Promises and instead use `async` and `await` for easier readability.
-
-## Acceptance Criteria
-
-* It's done when the `bookSeeds.js` code no longer uses Promises and instead uses `async` and `await`.
-
-* It's done when the `bookSeeds.js` code continues to successfully populate the database with sample data.
-
-* It's done when the `bookRoutes.js` code no longer uses Promises and instead uses `async` and `await`.
-
-* It's done when the `bookRoutes.js` code continues to successfully support `PUT` and `DELETE` requests for the `api/books/:book_id` route.
+This project demonstrates the implementation of **Object-Relational Mapping (ORM)** using Sequelize with **async/await** for database operations. It includes examples of model definitions, database seeding, and API routes for interacting with the data.
 
 ---
 
-## 💡 Hints
+## Key Features
 
-How does JavaScript know when a function is asynchronous?
+1. **Async/Await for Database Operations**:
 
-## 🏆 Bonus
+   - Uses `async/await` for cleaner, more readable code when performing asynchronous tasks like database syncing, data insertion, and querying.
 
-If you have completed this activity, work through the following challenge with your group to further your knowledge:
+2. **Dynamic Database Seeding**:
 
-* How could you run this seed file from an npm script? How would you work with multiple models in an `index.js` file?
+   - Seeds the database with sample data for `Book` and `Library` models using `bulkCreate`.
 
-Use [Google](https://www.google.com) or another search engine to research this.
+3. **RESTful Routes**:
+
+   - Supports `PUT` and `DELETE` operations for updating and deleting books in the database.
+
+4. **Seamless Integration with Sequelize**:
+   - Defines and interacts with models using Sequelize's powerful ORM features.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Concepts Covered
+
+1. **Async/Await**:
+
+   - Simplifies handling of asynchronous code, ensuring easier readability and maintenance.
+
+2. **Sequelize ORM**:
+
+   - Provides an abstraction layer for database interactions, reducing the need for raw SQL queries.
+
+3. **RESTful API Design**:
+
+   - Implements API routes for updating and deleting resources using Express.js.
+
+4. **Data Modeling**:
+   - Demonstrates how to define models with fields, data types, and options in Sequelize.
+
+---
+
+## Setup Instructions
+
+1. **Install Dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+2. **Set Up the Database**:
+
+   - Ensure your database credentials are configured in `config/connection.js`.
+   - Run the database schema:
+     ```bash
+     psql -U <username> -d <database_name> -f db/schema.sql
+     ```
+
+3. **Seed the Database**:
+
+   ```bash
+   node seeds/bookSeeds.js
+   ```
+
+4. **Start the Application**:
+
+   ```bash
+   npm start
+   ```
+
+5. **Interact with the API**:
+   - Use a tool like Postman to test the API endpoints.
+
+---
+
+## Application Structure
+
+### **Files and Functionality**
+
+1. **`models/Book.js`**:
+
+   - Defines the `Book` model with fields such as `title`, `author`, `isbn`, and more.
+
+2. **`models/Library.js`**:
+
+   - Defines the `Library` model with fields like `name`, `location`, and `book_capacity`.
+
+3. **`seeds/bookSeeds.js`**:
+
+   - Seeds the database with sample data for books and libraries using `bulkCreate`.
+
+4. **`routes/api/bookRoutes.js`**:
+   - Provides `PUT` and `DELETE` routes for updating and deleting books by `book_id`.
+
+---
+
+## Expected Behavior
+
+1. **Database Seeding**:
+
+   - Runs `seeds/bookSeeds.js` to populate the database with sample data.
+
+2. **API Endpoints**:
+
+   - `PUT /api/books/:book_id`: Updates a book's details based on its ID.
+   - `DELETE /api/books/:book_id`: Deletes a book based on its ID.
+
+3. **Async/Await**:
+   - Ensures promises are handled cleanly and sequentially during database operations.
+
+---
+
+## Example Usage
+
+### **Seeding the Database**
+
+Run:
+
+```bash
+npm run seed
+```
+
+Expected Output:
+
+```
+All Seeds Planted
+```
+
+### **API Request Examples**
+
+1. **Update a Book**:
+
+   - Endpoint: `PUT /api/books/:book_id`
+   - Payload:
+     ```json
+     {
+       "title": "Updated Book Title",
+       "author": "Updated Author",
+       "isbn": "1234567890123",
+       "pages": 300,
+       "edition": 2,
+       "is_paperback": true
+     }
+     ```
+
+2. **Delete a Book**:
+   - Endpoint: `DELETE /api/books/:book_id`
+
+---
+
+## Summary
+
+This project demonstrates a modern approach to building database-backed applications using Sequelize ORM and async/await. It serves as a practical example of managing data models, seeding databases, and building RESTful APIs with enhanced readability and maintainability.
