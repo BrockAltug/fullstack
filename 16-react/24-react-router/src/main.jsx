@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/', index: true ,element: <HomePage /> }, // Home page route
       { path: '/about', element: <AboutPage /> }, // About page route
-      { path: '/profile/:userId', element: <ProfilePage /> }, // Dynamic Profile page route
+      { path: '/profile/:id', element: <ProfilePage /> }, // Dynamic Profile page route
     ],
   },
 ]);
