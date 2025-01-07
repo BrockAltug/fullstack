@@ -1,34 +1,107 @@
-# 🏗️ Implement a GET Route for Food Item Descriptions
 
-Work with a group to implement the following user story:
+# Handlebars.js Expressions: Dynamic Rendering Example
 
-* As a party guest, I want to see a description of one food item that will be at the potluck when I visit `http://localhost:3001/dish/:num`.
+## Overview
 
-## Acceptance Criteria
-
-* It's done when the route called `/dish/:num` is properly configured to retrieve and return a food item and its description.
-
-* It's done when the view displays a description for the food item, where the list number matches the route `/dish/:num`.
-
-## Assets
-
-The following image demonstrates the web application's appearance and functionality:
-
-![A webpage with the header "Potluck Party!" displays the name and description for a Pork Gyoza dish.](images/dish-description.png)
+This project demonstrates how to use **Handlebars.js Expressions** to dynamically render content in a simple dish card. Handlebars.js provides an easy way to insert dynamic data into HTML templates, making it ideal for building dynamic and reusable UI components.
 
 ---
 
-## 💡 Hints
+## Key Features
 
-How can you ensure that the correct Handlebars.js template is rendered?
+1. **Dynamic Data Binding**:
+   - Uses Handlebars.js expressions (`{{}}`) to dynamically insert data into HTML.
 
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your group to further your knowledge:
-
-* How can we render an array of objects using Handlebars.js?
-
-Use [Google](https://www.google.com) or another search engine to research this.
+2. **Reusable Templates**:
+   - The `dish.handlebars` template is designed to render individual dish cards dynamically.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Concepts Covered
+
+1. **Handlebars.js Expressions**:
+   - Insert dynamic values into HTML using curly braces (`{{expression}}`).
+
+2. **Dynamic Rendering**:
+   - Render content dynamically based on the data passed to the template.
+
+---
+
+## Application Structure
+
+### **Files and Functionality**
+
+1. **`views/dish.handlebars`**:
+   - Template for rendering individual dish cards dynamically.
+   - Includes:
+     - `{{dish_name}}`: Renders the name of the dish.
+     - `{{description}}`: Renders the description of the dish.
+
+2. **Example Handlebars.js Expression**:
+   ```handlebars
+   {{dish_name}}
+   ```
+   - Dynamically inserts the name of the dish into the template.
+
+3. **Usage in a Parent Template**:
+   - The `dish.handlebars` file can be included or iterated over within a parent Handlebars.js template for rendering multiple dish cards.
+
+---
+
+## Expected Behavior
+
+1. **Render Dish Card**:
+   - Displays the name and description of a dish dynamically.
+
+2. **Dynamic Data**:
+   - Replaces placeholders (`{{dish_name}}` and `{{description}}`) with actual data passed to the template.
+
+---
+
+## Example Template
+
+### `dish.handlebars`
+```handlebars
+<div class="dish-card">
+  <div class="dish-card-header">
+    {{dish_name}}
+  </div>
+  <div class="card-body">
+    <p>
+      Description:
+      {{description}}
+    </p>
+  </div>
+</div>
+```
+
+### Example Data
+
+```json
+{
+  "dish_name": "French Bread with Brie Cheese",
+  "description": "A delightful combination of freshly baked French bread and creamy brie cheese."
+}
+```
+
+### Rendered Output
+
+```html
+<div class="dish-card">
+  <div class="dish-card-header">
+    French Bread with Brie Cheese
+  </div>
+  <div class="card-body">
+    <p>
+      Description:
+      A delightful combination of freshly baked French bread and creamy brie cheese.
+    </p>
+  </div>
+</div>
+```
+
+---
+
+## Summary
+
+This project highlights the power of Handlebars.js expressions for dynamic data rendering. By using simple expressions like `{{dish_name}}`, developers can create reusable and dynamic templates that simplify UI development.
