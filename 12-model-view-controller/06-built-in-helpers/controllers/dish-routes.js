@@ -19,7 +19,7 @@ const dishes = [
     id: 3,
     dish_name: 'Fish Tacos',
     description:
-      'Battered/fried fish, corn tortillas, fresh slaw with jalapenos and cilantro, pickled red onion',
+      'Battered/fried fish, corn tortillas, fresh slaw with jalapeños and cilantro, pickled red onion',
     has_nuts: false,
   },
   {
@@ -32,7 +32,7 @@ const dishes = [
     id: 5,
     dish_name: 'Pork Gyoza',
     description:
-      'Homemade japanese dumplings stuffed with a pork and green onion filling, served with peanut dipping sauce',
+      'Homemade Japanese dumplings stuffed with a pork and green onion filling, served with peanut dipping sauce',
     has_nuts: true,
   },
   {

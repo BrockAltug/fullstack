@@ -1,5 +1,6 @@
 async function newFormHandler(event) {
   event.preventDefault();
+
   const dish_name = document.querySelector('#dish_name').value;
   const description = document.querySelector('#description').value;
   const guest_name = document.querySelector('#guest_name').value;
@@ -25,4 +26,6 @@ async function newFormHandler(event) {
   }
 }
 
-document.querySelector('.new-dish-form').addEventListener('submit', newFormHandler);
+document
+  .querySelector('.new-dish-form')
+  .addEventListener('submit', newFormHandler);
