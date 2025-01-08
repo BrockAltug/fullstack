@@ -1,36 +1,104 @@
-# 🏗️ Populate User Registry with Database Data
+# MVC Review
 
-Work with a group to implement the following user story:
+## Overview
 
-* As a user, I want to see a list of other users who are registered with the app.
-
-## Acceptance Criteria
-
-* It's done when the homepage displays the user data from the database instead of the hardcoded values.
-
-* It's done when the user data is rendered as part of a Handlebars.js template.
-
-* It's done when the users are sorted alphabetically by name.
-
-## Assets
-
-The following image demonstrates the web application's appearance and functionality:
-
-![The homepage displays a list of users and their e-mail addresses](./Images/01-user-registry.png)
+This project demonstrates the implementation of the Model-View-Controller (MVC) architecture by rendering a dynamic list of users. It highlights how models, views, and controllers work together to process data, manage logic, and render templates.
 
 ---
 
-## 💡 Hints
+## Key Features
 
-Without a signup form, how can you quickly add new users to the database? What needs to happen with the Sequelize data before it can be passed into the Handlebars.js template?
+1. **Dynamic User Rendering**:
 
-## 🏆 Bonus
+   - Displays a list of users fetched from the database and rendered dynamically using Handlebars.js.
 
-If you have completed this activity, work through the following challenge with your group to further your knowledge:
+2. **MVC Architecture**:
 
-* What are some other paradigms besides MVC?
+   - Separates concerns into Models, Views, and Controllers to organize application logic and data handling.
 
-Use [Google](https://www.google.com) or another search engine to research this.
+3. **User Data Management**:
+
+   - Fetches user data from a PostgreSQL database, excludes sensitive information like passwords, and sorts users alphabetically.
+
+4. **Template Rendering**:
+
+   - Utilizes Handlebars.js to loop through user data and display it in a structured and readable format.
+
+5. **Helper Functions**:
+   - Integrates custom Handlebars.js helpers to add dynamic functionality to the templates.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Concepts Covered
+
+1. **Model-View-Controller (MVC)**:
+
+   - Understand the separation of concerns into:
+     - **Models**: Represent the data and business logic.
+     - **Views**: Render user interfaces using templates.
+     - **Controllers**: Handle requests, process data, and return responses.
+
+2. **Database Queries with Sequelize**:
+
+   - Learn how to query data from a PostgreSQL database and process it for use in templates.
+
+3. **Template Engines**:
+
+   - Use Handlebars.js to dynamically render data in HTML templates.
+
+4. **Dynamic Data Rendering**:
+
+   - Iterate over arrays of objects to render lists of data.
+
+5. **Custom Helpers**:
+   - Extend Handlebars.js functionality with custom helpers for dynamic content.
+
+---
+
+## Setup Instructions
+
+1. **Install Dependencies**:
+
+   - Run `npm install` to set up the project and install required packages.
+
+2. **Set Up Environment Variables**:
+
+   - Create a `.env` file with the following variables:
+     ```
+     DB_NAME=your_database_name
+     DB_USER=your_username
+     DB_PASSWORD=your_password
+     PORT=3001
+     ```
+
+3. **Seed the Database**:
+
+   - Populate the database with sample user data:
+     ```bash
+     node seeds/index.js
+     ```
+
+4. **Run the Application**:
+
+   - Start the server:
+     ```bash
+     npm start
+     ```
+
+5. **Access the Application**:
+   - Open [http://localhost:3001](http://localhost:3001) to interact with the application.
+
+---
+
+## Expected Behavior
+
+1. Users are displayed in alphabetical order by name.
+2. The email addresses of users are clickable mailto links.
+3. Templates dynamically render data using Handlebars.js loops and expressions.
+4. Sensitive data like passwords is excluded from the rendered output.
+
+---
+
+## Summary
+
+This project provides a comprehensive review of the MVC architecture by integrating user data with dynamic templates. It showcases best practices for organizing code, fetching and processing data, and rendering dynamic user interfaces.
