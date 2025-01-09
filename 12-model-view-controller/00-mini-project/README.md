@@ -1,108 +1,91 @@
-# Module 14 Mini-Project: Crowdfunding App
+# MVC Mini Project
 
-In this mini-project, you will work with a group to build a full-stack crowdfunding app using Node.js, Express.js, Sequelize, Handlebars.js, and MVC architecture.
+## Concepts Covered
 
-## User Stories
+### **1. Authentication**
 
-* As a user, I want to see a list of current projects seeking funding.
+- Implemented user login and signup functionalities.
+- Used session storage to maintain user sessions with `express-session` and `connect-session-sequelize`.
+- Redirected unauthenticated users to the login page using a custom `withAuth` middleware.
 
-* As a user, I want to be able to create an account.
+### **2. Models**
 
-* As a registered user, I want to post my own projects to ask for funding.
+- **User Model**:
+  - Stores user information (e.g., name, email, password).
+  - Includes password hashing with bcrypt during user creation and updates.
+  - Provides a `checkPassword` method for authentication.
+- **Project Model**:
+  - Stores project details such as name, description, funding required, and creation date.
+  - Associated with the `User` model for relational data management.
 
-### Acceptance Criteria
+### **3. Routes**
 
-* It's done when the `/` homepage route renders a list of all projects from the database.
+- **User Routes**:
+  - `POST /api/users`: Handles user registration.
+  - `POST /api/users/login`: Handles user login.
+  - `POST /api/users/logout`: Handles user logout.
+- **Project Routes**:
+  - `POST /api/projects`: Allows logged-in users to create a new project.
+  - `DELETE /api/projects/:id`: Allows logged-in users to delete a project they created.
+- **Home Routes**:
+  - `GET /`: Renders the homepage with a list of projects.
+  - `GET /project/:id`: Displays details for a specific project.
+  - `GET /profile`: Displays the user's profile and their projects (protected route).
 
-* It's done when the `/project/:id` route renders an individual project's details based on the route parameter id.
+### **4. Views**
 
-* It's done when the `/login` route renders a form to log in and a form to create a new account.
+- **Homepage**:
+  - Displays a list of projects, including funding requirements, creators, and creation dates.
+  - Utilizes Handlebars.js to dynamically render project data.
+- **Profile Page**:
+  - Allows users to view and manage their created projects.
+  - Provides options to add new projects or delete existing ones.
+- **Login Page**:
+  - Enables users to log in or create an account.
 
-* It's done when an existing user can enter their credentials on the login page to create a session on the server.
+### **5. Helpers**
 
-* It's done when a new user can create an account on the login page and then be immediately logged in with a session.
+- Custom Handlebars helpers:
+  - `get_emoji`: Dynamically renders emoji based on certain conditions.
+  - `format_amount`: Formats numbers (e.g., funding required).
+  - `format_date`: Converts and formats dates.
 
-* It's done when the `/profile` route renders the logged-in user's projects and a form to create a new project.
+### **6. Middleware**
 
-* It's done when only a logged in user can visit the `/profile` route.
+- **Custom Authentication Middleware**:
+  - `withAuth`: Redirects unauthenticated users to the login page.
 
-* It's done when a logged in user is redirected to `/profile` when they try to visit `/login` again.
+### **7. Database Setup**
 
-* It's done when a user on the profile page can use the form to create a new project in the database.
+- Utilized Sequelize to define and interact with PostgreSQL.
+- Seeded the database with initial user and project data.
 
-* It's done when a user on the profile page can select a "Delete" button to remove their project from the database.
+### **8. Client-Side Functionality**
 
-* It's done when a logged-in user can select a "Logout" button to remove their session.
+- **Login & Signup (public/js/login.js)**:
+  - Handles user login and account creation.
+  - Redirects users to the profile page upon successful authentication.
+- **Profile Management (public/js/profile.js)**:
+  - Allows users to add new projects or delete existing ones.
+- **Logout (public/js/logout.js)**:
+  - Ends the user's session and redirects them to the homepage.
 
-* It's done when the session for a logged-in user expires after a set time.
+### **9. Server-Side Configuration**
 
-* It's done when the API routes to create and delete posts are protected from non logged-in users.
+- Configured `express-session` with Sequelize as the session store.
+- Used `dotenv` to manage environment variables.
+- Set up Handlebars as the templating engine for server-rendered views.
 
-* It's done when the code is organized using MVC architecture.
+## How to Use
 
-* It's done when the views are rendered with Handlebars.js templates.
-
-## Specifications
-
-* The database models have the following fields and associations:
-
-  * `User`
-
-    * `id`: primary key
-
-    * `name`
-
-    * `email`
-
-    * `password`
-
-  * `Project`
-
-    * `id`: primary key
-
-    * `name`
-
-    * `description`
-
-    * `date_created`
-
-    * `needed_funding`
-
-    * `user_id`: foreign key that references `User.id`
-
-  * Users have many projects, and projects belong to a user.
-
-    * If a user is deleted, all associated projects are also deleted.
-
----
-
-## Getting Started
-
-The following should be created for the Mini-Project:
-
-* Be sure to change the `.env.EXAMPLE` file to just `.env` and update the credentials correctly. 
-
-* Create a `Views` folder to setup the folder structure to follow the MVC paradigm.
-
-* Be sure to review over the [Express Handlebars](https://www.npmjs.com/package/express-handlebars) if you need a refresher on how to set up Handlebars for your `Views` folder. 
-
-* Consider the task based on the Acceptance Criteria. Which folder should you work to see data returning from an API call?
-
-## 💡 Hints
-
-* What tools can you use to test the existing API routes if you don't yet have a front end?
-
-* Where would you place the client-side JavaScript for capturing form data?
-
-* How can middleware help protect routes from non logged-in users?
-
-* How can Handlebars.js helpers (both built-in and custom) be used to render the desired results?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* Add an `/edit/:id` route for logged in users to update their projects' details. Then deploy the app to Render!
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+1. Clone the repository and install dependencies using `npm install`.
+2. Create a `.env` file with the following variables:
+   ```env
+   DB_NAME=your_database_name
+   DB_USER=your_database_user
+   DB_PASSWORD=your_database_password
+   DB_URL=your_database_url # Optional for hosted databases
+   ```
+3. Seed the database with `npm run seed`.
+4. Start the application with `npm start`.
+5. Access the app in your browser at `http://localhost:3001`.

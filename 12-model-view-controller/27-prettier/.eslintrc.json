@@ -4,12 +4,11 @@
     "browser": true,
     "commonjs": true,
     "node": true,
-    "es6": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2020 // Supports ES2020 features, including the ** operator
+    "es6": true,
+    "es2017": true
   },
   "rules": {
+    "no-undef-init": "error",
     "no-duplicate-case": "error",
     "no-empty": "error",
     "no-extra-semi": "error",
@@ -32,7 +31,6 @@
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "radix": "off",
-    "no-undefined": "error" // Disallows setting variables to undefined
+    "radix": "off"
   }
 }
