@@ -13,21 +13,24 @@
     <h1>
       User Registry
     </h1>
-    <!-- TODO: Add a comment describing the functionality of this helper -->
+    <!-- Conditional rendering: If the user is logged in, display the navigation with a logout button -->
     {{#if logged_in}}
     <nav>
       <button class="btn" id="logout">logout</button>
     </nav>
     {{/if}}
   </header>
+  
   <main class="container container-fluid mt-5">
+    <!-- Placeholder for the main content of the page. This is dynamically replaced by the content of other templates. -->
     {{{ body }}}
   </main>
+  
   <footer>
-      
+    <!-- Footer content can be added here -->
   </footer>
 
-  <!-- TODO: Add a comment describing the functionality of this helper -->
+  <!-- Conditional rendering: If the user is logged in, include the logout.js script for handling logout functionality -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
