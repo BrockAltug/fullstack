@@ -5,10 +5,11 @@
     "commonjs": true,
     "node": true,
     "es6": true
-    // TODO: Add option to support ** operators
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020 // Supports ES2020 features, including the ** operator
   },
   "rules": {
-    // TODO: Add rule to disallow setting variables to undefined
     "no-duplicate-case": "error",
     "no-empty": "error",
     "no-extra-semi": "error",
@@ -31,6 +32,7 @@
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "radix": "off"
+    "radix": "off",
+    "no-undefined": "error" // Disallows setting variables to undefined
   }
 }
