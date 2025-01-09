@@ -1,13 +1,20 @@
-// TODO: Refactor the class to a factory function.
-class Lesson {
-  constructor() {
-    this.title = 'Module 17 - Computer Science';
-    this.description = 'CS for JS';
-  }
-  information() {
-    console.log(this.title, this.description);
-  }
-}
+// Pass the state into our action function.
+const getInformation = (state) => ({
+  // Log the title an description
+  information: () => console.log(state.title, state.description),
+});
 
-const csForJS = new Lesson();
+// Create a function.
+const lesson = function () {
+  // Store the locally scoped variables.
+  const state = {
+    title: 'Computer Science',
+    description: 'CS for JS',
+  };
+
+  // Return an inner function named 'getInformation' passing the state as an argument.
+  return { ...getInformation(state) };
+};
+
+const csForJS = lesson();
 csForJS.information();
