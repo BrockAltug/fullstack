@@ -1237,8 +1237,3 @@ a:visited {
     align-items: center;
   }
 }
-
-.btn {
-  min-width: 40px;
-  border-radius: 6px;
-}
