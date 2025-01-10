@@ -1,17 +1,18 @@
-import React from 'react';
-
 // Import the `useParams()` hook from React Router
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 // TODO: Import the required code here
+import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { thoughtId } = useParams();
 
   // TODO: Set up the useQuery to take query for a single thought by its ID 
-  const { loading, data } = useQuery( /* Your Code Here */);
+  const { loading, data } = useQuery( QUERY_SINGLE_THOUGHT, {
+    variables: { thoughtId: thoughtId },
+  });
 
   const thought = data?.thought || {};
 
