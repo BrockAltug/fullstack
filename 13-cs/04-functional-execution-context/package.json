@@ -1,12 +1,11 @@
 {
-  "name": "17_Stu-04-Unsolved-Stu_Functional-Execution-Context",
+  "name": "17_Stu-04-Solved-Stu_Functional-Execution-Context",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "jest": "^26.6.3"
+    "jest": "^29.7.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jest --watchAll"
   },

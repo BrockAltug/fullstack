@@ -1,38 +1,110 @@
-# 🐛 Unit Tests Fail Due to ReferenceError
+# CS Functional Execution Context
 
-Work with a partner to resolve the following issue:
+## Concepts Covered
 
-* The unit tests for the function do not pass.
+This project demonstrates key aspects of the **Functional Execution Context** in JavaScript.
 
-## Expected Behavior
+### 1. Execution Context and Scope
 
-* When we run the unit test, the defined tests pass.
+- When the `avg` function is called, a **functional execution context** is created.
+- Inside the `avg` function, the `sum` function creates another **functional execution context** when invoked.
+- Variables like `total` are stored within the **local execution context** of the `sum` function, making them inaccessible outside of it.
 
-## Actual Behavior
+### 2. Nested Functions
 
-* When we run the unit tests, the defined tests do not pass.
+- The `sum` function is defined inside the `avg` function, providing **closure** over the `array` variable.
+- This allows `sum` to access the `array` variable, which is defined in the **parent execution context** of `avg`.
 
-## Steps to Reproduce the Problem
+### 3. Array Manipulation
 
-1. In the command line, from the [Unsolved](./Unsolved) directory, run `npm install`.
+- The program computes the **average** of an array by summing its elements in the `sum` function and dividing the result by the length of the array in the `avg` function.
 
-2. Run `npm test` to run the unit test.
+---
 
-3. The tests defined in the `__tests__` directory do not pass.
+## File Descriptions
+
+### 1. `index.js`
+
+The `index.js` file contains the `avg` function:
+
+```javascript
+function avg(array) {
+  function sum() {
+    let total = 0;
+    for (let i = 0; i < array.length; i++) {
+      total += array[i];
+    }
+    return total;
+  }
+  return sum() / array.length;
+}
+
+module.exports = avg;
+```
+
+#### Key Features:
+
+- **Nested Function**: `sum` is a function within `avg`, which allows modular logic for calculating the total of the array.
+- **Scoped Variables**: The `total` variable is local to the `sum` function.
+- **Modular Export**: The `avg` function is exported for use in other files.
 
 ---
 
-## 💡 Hints
+### 2. `index.test.js`
 
-* How can the unit test descriptions help us determine what the function is or is not doing?
+The `index.test.js` file tests the functionality of the `avg` function:
 
-## 🏆 Bonus
+```javascript
+const avg = require("../index");
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+describe("The average function", () => {
+  test("can find the average of the array", () => {
+    expect(avg([10, 20, 30, 40, 50, 30])).toBe(30);
+  });
 
-* What does the keyword `this` reference in Node.js for the global context?
+  test("can find the average of the negative numbers in an array", () => {
+    expect(avg([-100, -200, -300])).toBe(-200);
+  });
 
-Use [Google](https://www.google.com) or another search engine to research the above.
+  test("will return NaN for an empty array", () => {
+    expect(avg([])).toBe(NaN);
+  });
+});
+```
+
+#### Key Features:
+
+- **Unit Tests**: Uses Jest to test different scenarios, including:
+  - Arrays with positive numbers.
+  - Arrays with negative numbers.
+  - Empty arrays (to validate edge cases).
+- **Validation**: Ensures correct results and proper handling of edge cases.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Testing
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run the tests:
+   ```bash
+   npm test
+   ```
+
+### Expected Output
+
+- The test suite verifies that the `avg` function behaves as expected for all scenarios.
+
+---
+
+## Key Takeaways
+
+- Functional execution contexts are created when a function is invoked, managing variable storage and scope for the duration of the function call.
+- Nested functions can access variables from their parent execution context, but not vice versa.
+- Proper testing ensures the reliability of functions across different scenarios, including edge cases.
+
+---
