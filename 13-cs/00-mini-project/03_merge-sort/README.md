@@ -1,72 +1,141 @@
-# Merge Sort - The Candidate
+# CS Merge Sort
 
-As the candidate it is your job to properly restate the problem and expected output to ensure you understand what you have been asked to accomplish. If the interviewer prompts you with questions throughout each question, it is not in bad faith, but rather a nudge in the right direction to help your thought process. 
+## Concepts Covered
 
-## Problem
+1. **Merge Sort Algorithm**:
 
-Write a function that accepts an unsorted array of integers, sorts it, and returns the sorted array using the "Merge Sort" algorithm with a Big O complexity of `O(n log (n))`. For example, for the following array:
+   - A recursive divide-and-conquer algorithm used to sort an array.
+   - Splits the array into smaller subarrays, sorts them, and merges them back together.
 
-```js
-const unsortedArr = [2, 42, 100, 23, 500, 34];
+2. **Merge Arrays**:
+
+   - Combines two sorted arrays into one sorted array.
+
+3. **Efficiency**:
+   - Merge sort has a time complexity of O(n log n) and is stable and efficient for large datasets.
+
+---
+
+## Code Overview
+
+### Merge Arrays Function
+
+```javascript
+const mergeArrays = (leftArray, rightArray) => {
+  const resultArray = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+    if (leftArray[leftIndex] < rightArray[rightIndex]) {
+      resultArray.push(leftArray[leftIndex]);
+      leftIndex++;
+    } else {
+      resultArray.push(rightArray[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return resultArray
+    .concat(leftArray.slice(leftIndex))
+    .concat(rightArray.slice(rightIndex));
+};
 ```
 
-We would receive an array like this in return:
+### Merge Sort Function
 
-```js
-const sortedArr = [2, 23, 34, 42, 100, 500];
+```javascript
+const mergeSort = (array) => {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  const middle = Math.floor(array.length / 2);
+  const left = array.slice(0, middle);
+  const right = array.slice(middle);
+
+  return mergeArrays(mergeSort(left), mergeSort(right));
+};
 ```
 
-- - - 
+### Main Execution
 
-## Notes to the Candidate
+```javascript
+const unsortedInputArray = [];
+for (let i = 0; i < 2000; i++) {
+  unsortedInputArray.push(Math.round(Math.random() * 2000));
+}
 
-The merge sort algorithm requires a bit of knowledge in recursion and both time and space complexity for an algorithm. The algorithm works by breaking the input array in half over and over again until the array's values are all in their own array. They are then compared to one another and merged back together in order.
+const sorted = mergeSort(unsortedInputArray);
+console.log("Post Sort:", sorted.join(" "));
+console.log("DONE!");
+```
 
-Take a moment to assess the question being asked and restate it to the interviewer to ensure that you understand the expectations. It's okay to ask questions for clarification during an interview, as long as the question isn't seeking for the direct answer to the question. Some interview questions are purposely stated in a vague fashion to force a job candidate to ask follow-up questions for clarification, it shows that the candidate is thinking critically about the problem.
+---
 
-For this exercise, it's okay to take a moment and do some research on the question asked. In a real technical interview, however, expect to not have that ability. Use Google to search for information or examples of implementation, but don't copy and paste a solution, work your way through it.
+## Key Points
 
-Take a few moments to gather your thoughts and take the interviewer's questions as guides to help you come to a solution. You are not expected to have an answer immediately and it's sometimes okay to not come to a complete solution, interviewers want to see your process just as much as your results, so don't forget to pseudocode and verbally explain your thought process! 
+1. **Merge Sort Functionality**:
 
-## Workspace
+   - The array is recursively divided into halves until each subarray has only one element.
+   - The `mergeArrays` function combines the sorted subarrays into a single sorted array.
 
-Use the starter code provided to help outline and code your solution:
+2. **Edge Case Handling**:
 
-* [merge-sort.js](./merge-sort.js)
+   - If the array length is less than or equal to 1, it is returned as-is.
 
-## Potential Prompts from the Interviewer
+3. **Performance**:
 
-Here are some prompts an interviewer may ask to ensure you understand the problem and can reach a solution. Use these to help guide yourself to a potential solution and practice answering these types of questions.
+   - Merge sort is efficient for large datasets and guarantees O(n log n) time complexity.
 
-* **Prompt**: How would we get the middle point of an array? Can we simply split the array's length in half? 
+4. **Scalability**:
+   - Suitable for applications requiring stable and predictable sorting performance.
 
-* **Good Answer From Candidate**: We can simply split the array's length in half and use that as the index, but we'll want to floor the value first just in case there is an odd number of elements in the array.
+---
 
-* **Note**: Unlike a quick sort algorithm, we are more concerned about breaking our array in half as many times as possible and then sorting it after. To get the middle value, however, we'll want to make sure it's a whole number because it needs to represent an index in the array.
+## Example Usage
 
-- - -
+### Input
 
-* **Prompt**: When merging two arrays together, do we need to loop through every index of each array?  
+```javascript
+const unsortedInputArray = [38, 27, 43, 3, 9, 82, 10];
+```
 
-* **Good Answer From Candidate**: No, we will loop through both arrays until there isn't a next index to check in one of them. We'll get through one array, but the other one will have leftover values that will be concatenated onto the output array.
+### Output
 
-* **Note:** There is no guarantee that both arrays will be the same length, which is fine. The point of this merge functionality is to compare two arrays and create a new array out of it with all of the values merged in order.
+```bash
+Post Sort: 3, 9, 10, 27, 38, 43, 82
+DONE!
+```
 
-- - -
+---
 
-* **Prompt**: How will the function know when to stop splitting the input array into smaller arrays for comparison and sorting?
+## How to Run
 
-* **Good Answer From Candidate**: It will know to stop splitting the input array and return it as-is when there is only one element left in the array.
+1. **Create the Script**:
 
-* **Note**: We need to check if the array only has one element left or less before attempting to split it again. The `mergeSort()` function will stop recursively calling itself once every single element in the input array has been split.
+   - Save the provided code as `merge-sort.js` in your project directory.
 
-- - -
+2. **Execute the Script**:
 
-* **Prompt**: What would be a good reason to use a merge sort algorithm compared to other sorting algorithms? What would be a reason NOT to use one?
+   - Run the script using Node.js:
+     ```bash
+     node merge-sort.js
+     ```
 
-* **Good Answer From Candidate**: A good reason to use a merge sort algorithm is that its Big O complexity in a worst-case scenario is still `O(n log(n))`, whereas some other algorithms may see a Big O complexity of `O(n^2)`, making them slower. A reason to not use this algorithm is that it takes up more space in memory because it is creating and storing numerous arrays. 
+3. **Observe the Output**:
+   - The sorted array will be displayed in the terminal along with the "DONE!" message.
 
-* **Note:** If the machine running this algorithm is powerful enough, having a larger space complexity will be okay if it means a more stable time complexity of `O(n log(n))`. Other sorting algorithms take up less memory during execution but may take longer to complete.
+---
 
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## Learning Objectives
+
+- Understand the divide-and-conquer strategy of merge sort.
+- Implement and optimize recursive algorithms.
+- Learn how to merge two sorted arrays efficiently.
+
+---
+
+## Reflection
+
+Merge sort demonstrates the power of recursion and is an essential algorithm in computer science. Its predictable performance makes it a preferred choice for many large-scale applications. By understanding merge sort, you gain insight into efficient problem-solving strategies.
