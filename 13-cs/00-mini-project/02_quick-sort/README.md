@@ -1,72 +1,113 @@
-# Quick Sort - The Candidate
+# CS Quick Sort
 
-As the candidate it is your job to properly restate the problem and expected output to ensure you understand what you have been asked to accomplish. If the interviewer prompts you with questions throughout each question, it is not in bad faith, but rather a nudge in the right direction to help your thought process. 
+## Concepts Covered
 
-## Problem
+1. **Quick Sort Algorithm**:
 
-Write a function that accepts an unsorted array of integers, sorts it, and returns the sorted array using the "Quick Sort" algorithm with a Big O complexity of `O(n log (n))`. For example, for the following array:
+   - Quick Sort is a highly efficient sorting algorithm that uses a divide-and-conquer approach.
+   - It works by partitioning the array into two subsets around a pivot element, sorting the subsets recursively.
 
-```js
-const unsortedArr = [2, 42, 100, 23, 500, 34];
+2. **Key Characteristics**:
+
+   - The algorithm is recursive.
+   - It does not require additional memory for sorting (in-place sorting).
+
+3. **Pivot Selection**:
+
+   - The pivot is selected randomly to avoid worst-case performance.
+
+4. **Performance**:
+   - **Best Case**: O(n log n)
+   - **Worst Case**: O(n²) (if the pivot divides the array poorly)
+   - **Average Case**: O(n log n)
+
+## Code Overview
+
+### Quick Sort Implementation
+
+```javascript
+// Create our input data
+const unsortedInputArray = [];
+// seed data in unsortedInputArray
+for (let i = 0; i < 2000; i++) {
+  unsortedInputArray.push(Math.round(Math.random() * 2000));
+}
+
+const quickSort = (array) => {
+  // if input array is empty, it doesn't need to be sorted, so return it
+  // this must be in place, or the recursive function calls will never end
+  if (array.length <= 1) {
+    return array;
+  }
+
+  // use `.slice()` to pull a single element out of the input array at random
+  // this will become our pivot value, meaning we will attempt to sort the array based on a value being greater than or less than this value
+  const pivot = array.splice(Math.floor(Math.random() * array.length), 1);
+
+  // we create two empty arrays, one to be populated with all the values less than or equal to the pivot value (left), and the other to be populated with all of the values greater than the pivot (right)
+  const left = [];
+  const right = [];
+
+  // loop through array and push each value into the `left` or `right` arrays based on the pivot value
+  array.forEach((el) => {
+    if (el <= pivot) {
+      left.push(el);
+    } else {
+      right.push(el);
+    }
+  });
+
+  // since the array will likely not be sorted the first time going through this, we recursively call the `quickSort()` function on the `left` and `right` arrays, which will then run through this process over and over again until the input array is less than `1`...indicating the initial array has been sorted and we can return it out of the function
+  return quickSort(left).concat(pivot, quickSort(right));
+};
+
+const sorted = quickSort(unsortedInputArray);
+console.log("Post Sort:", sorted.join(" "));
+console.log("DONE!");
 ```
 
-We would receive an array like this in return:
+## Key Points
 
-```js
-const sortedArr = [2, 23, 34, 42, 100, 500];
-```
+1. **Algorithm Details**:
 
-- - - 
+   - The array is recursively divided into smaller subarrays based on comparisons with a pivot value.
+   - The base condition stops recursion when the array length is 1 or less.
 
-## Notes to the Candidate
+2. **Pivot Selection**:
 
-The quick sort algorithm requires a bit of knowledge in how to handle recursion and how to visualize a binary tree. The key to learning it is to take it step-by-step and an visualize what the data looks like at each step.
+   - A random pivot ensures the array is evenly divided on average.
 
-Take a moment to assess the question being asked and restate it to the interviewer to ensure that you understand the expectations. It's okay to ask questions for clarification during an interview, as long as the question isn't seeking for the direct answer to the question. Some interview questions are purposely stated in a vague fashion to force a job candidate to ask follow-up questions for clarification, it shows that the candidate is thinking critically about the problem.
+3. **Time Complexity**:
 
-For this exercise, it's okay to take a moment and do some research on the question asked. In a real technical interview, however, expect to not have that ability. Use Google to search for information or examples of implementation, but don't copy and paste a solution, work your way through it.
+   - **Best Case**: O(n log n) - when the pivot divides the array evenly.
+   - **Worst Case**: O(n²) - when the pivot divides the array poorly.
+   - **Average Case**: O(n log n).
 
-Take a few moments to gather your thoughts and take the interviewer's questions as guides to help you come to a solution. You are not expected to have an answer immediately and it's sometimes okay to not come to a complete solution, interviewers want to see your process just as much as your results, so don't forget to pseudocode and verbally explain your thought process! 
+4. **Space Complexity**:
+   - O(log n) due to the recursive call stack.
 
-## Workspace
+## How to Run
 
-Use the starter code provided to help outline and code your solution:
+1. Save the script as `quick-sort.js` in your project folder.
 
-* [quick-sort.js](./quick-sort.js)
+2. Open your terminal and navigate to the folder containing the script.
 
-## Potential Prompts from the Interviewer
+3. Execute the script using Node.js:
 
-Here are some prompts an interviewer may ask to ensure you understand the problem and can reach a solution. Use these to help guide yourself to a potential solution and practice answering these types of questions.
+   ```bash
+   node quick-sort.js
+   ```
 
-* **Prompt**: Why is it okay to select a pivot value at random and not simply taking the value at the middle of the array?
+4. Observe the sorted output in your terminal.
 
-* **Good Answer From Candidate**: The array is likely unsorted, so picking a pivot value at random is just as efficient&mdash;if not more efficient&mdash;than using the value at the middle of the array.
+---
 
-* **Note**: With a quick sort, it is all about sorting the values a little bit at a time by splitting the array into smaller sets, sorting them as smaller sets, and concatenating all of the smaller sets to return the array with the values sorted. The a pivot value is what's used to determine where to split the array.
+## Learning Objectives
 
-- - -
+- Understand the divide-and-conquer approach in sorting algorithms.
+- Implement a recursive algorithm with careful handling of the base condition.
+- Optimize sorting through efficient pivot selection.
 
-* **Prompt**: How can we go about selecting a pivot value out of an array?
+## Reflection
 
-* **Good Answer From Candidate**: We can use the JavaScript array `.splice()` method to remove an element from the array and use it as a pivot value.
-
-* **Note**: You may not always recall the specific name to a JavaScript method that needs to be used, that's what Google is for! What's important, however, is that you know what action that tool performs and why it's used in the first place.
-
-- - -
-
-* **Prompt**: Once we get our initial left and right arrays populated, are all of the values sorted?
-
-* **Good Answer From Candidate**: They likely won't be sorted just yet, but we now have two halves that are closer to being sorted amongst themselves. We can run each of them through the same functionality until they're sorted.
-
-* **Note**: This is where recursion comes in. We have our array split into two halves based on the pivot value, which has already done a bit of sorting for us, but they aren't fully sorted just yet. With our smaller sets, however, we can run them each through the quick sort functionality again and continue to split and sort our arrays until they're fully sorted. 
-
-- - -
-
-* **Prompt**: Since we pulled the pivot value out of the array, how do we reinsert it into the array and have it be sorted?
-
-* **Candidate Explains Solution**: Because the array was sorted to the left and right of the pivot value, we can insert it between the two using array concatenation and assume it'll be greater than (or equal to) anything in the left array and less than anything in the right array.
-
-* **Note**: The pivot value for each iteration of the quick sort function has an important role because it is what connects the values lesser than or equal to it in the left array to the values greater than it in the right array.
-
-- - -
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Quick Sort is one of the fastest comparison-based sorting algorithms when implemented correctly. Understanding its mechanism not only improves your algorithmic knowledge but also provides insight into practical optimization strategies used in software development.
