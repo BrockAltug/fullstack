@@ -11,9 +11,11 @@ const resolvers = {
     classes: async () => {
       return await Class.find({}).populate('professor');
     },
-    
-    // TODO: Add a new resolver for a single Class object
-
+    // Define a resolver to retrieve individual classes
+    class: async (parent, args) => {
+      // Use the parameter to find the matching class in the collection
+      return await Class.findById(args.id).populate('professor');
+    },
     professors: async () => {
       return await Professor.find({}).populate('classes');
     }
