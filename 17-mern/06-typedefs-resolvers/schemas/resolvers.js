@@ -11,9 +11,9 @@ const resolvers = {
     classes: async () => {
       return await Class.find({}).populate('professor');
     },
-    // TODO: Update resolver to include classes
     professors: async () => {
-      return await Professor.find({});
+      // Populate the classes subdocument on every instance of Professor
+      return await Professor.find({}).populate('classes');
     }
   }
 };

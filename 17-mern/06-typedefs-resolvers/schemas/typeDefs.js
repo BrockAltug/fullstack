@@ -15,13 +15,14 @@ const typeDefs = `
     professor: Professor
   }
 
-  # TODO: Update type definition to include classes
   type Professor {
     _id: ID
     name: String
     officeHours: String
     officeLocation: String
     studentScore: Float
+    # Add a field that will return an array of Class instances
+    classes: [Class]
   }
 
   type Query {
