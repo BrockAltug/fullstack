@@ -1,6 +1,7 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 
+
 const app = express();
 const port = 3001;
 
@@ -46,10 +47,14 @@ seedDBAndStartServer();
 
 app.use(express.json());
 
-// TODO: Update route to use cursor methods
+// Get request to read all the documents in a collection
 app.get('/numbers', (req, res) => {
   db.collection('numberList')
+    // find() returns all documents. Equivalent to `Select *` in SQL.
     .find()
+    .sort({ number: -1 })
+    .skip(5)
+    .limit(5)
     .toArray()
     .then(results => res.send(results))
     .catch(err => {
