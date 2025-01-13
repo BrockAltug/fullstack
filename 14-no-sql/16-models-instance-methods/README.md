@@ -1,38 +1,124 @@
-# 🏗️ Implement Instance Methods on a Mongoose Model
+# NoSQL Models Instance Methods
 
-Work with a partner to implement the following user story:
+## Overview
 
-* As a developer, I want to perform an action on a specific instance of a Mongoose model.
-
-## Acceptance Criteria
-
-* It is done when I define a new schema named `bookSchema`.
-
-* It is done when the new schema has three properties: `title`, `author`, and `price`.
-
-* It is done when I assign a function named `getDiscount` to the methods object of the `bookSchema` that reduces the price by 50 percent and console logs the title of the book and the reduced price.
-
-* It is done when I have created a model named `Book`.
-
-* It is done when I have created an instance of the model, or document, named `discountedBook`.
-
-* It is done when I test the instance method by running `node models/Book.js`.
-
-* It is done when the price of `discountedBook` is reduced by 50 percent and the results are logged to the console.
+This guide demonstrates how to define and use **instance methods** in Mongoose schemas to add custom behavior to your MongoDB documents. Instance methods allow for reusable and document-specific operations within your database models.
 
 ---
 
-## 💡 Hints
+## Key Concepts
 
-What is the difference between an instance method and a static method?
+1. **Mongoose Schema**:
 
-## 🏆 Bonus
+   - Defines the structure and properties of documents within a MongoDB collection.
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+2. **Instance Methods**:
 
-* How can you add query helper methods to extend Mongoose's chainable query builder API?
+   - Custom methods added to a schema to perform operations on individual instances of a model.
 
-Use [Google](https://www.google.com) or another search engine to research this.
+3. **Creating Models**:
+
+   - Models are created using the `mongoose.model()` method, which binds the schema to a MongoDB collection.
+
+4. **Reusability**:
+   - Instance methods can be reused across multiple instances of the same model.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Code Explanation
+
+### Schema Definition
+
+```javascript
+const mongoose = require("mongoose");
+
+// Schemas define the shape of the documents within the collection.
+const bookSchema = new mongoose.Schema({
+  // Schemas define the properties of the document
+  title: { type: String, required: true },
+  author: String,
+  price: { type: Number, required: true },
+});
+```
+
+- The schema includes three fields:
+  - `title` (required string)
+  - `author` (optional string)
+  - `price` (required number)
+
+### Adding an Instance Method
+
+```javascript
+// Extend methods object with custom method
+bookSchema.methods.getDiscount = function () {
+  const discountPrice = this.price * 0.5;
+  console.log(
+    `The book's title is ${this.title} and the discounted price is ${discountPrice}`
+  );
+};
+```
+
+- `getDiscount` is a custom instance method that calculates a 50% discount on the book's price.
+
+### Creating a Model and Using the Method
+
+```javascript
+// Create model using mongoose.model()
+const Book = mongoose.model("Book", bookSchema);
+
+// Create new instance of model
+const discountedBook = new Book({
+  title: "Oh the Places You Will Go!",
+  price: 100,
+});
+
+// Call custom method on instance
+discountedBook.getDiscount();
+```
+
+- An instance of the `Book` model is created with the `title` and `price` fields.
+- The `getDiscount` method is called on the instance to calculate and log the discounted price.
+
+---
+
+## Usage Instructions
+
+### Prerequisites
+
+- Install MongoDB and start the MongoDB server.
+- Install Node.js and Mongoose.
+
+### Setup
+
+1. **Install Dependencies**:
+
+   ```bash
+   npm install mongoose
+   ```
+
+2. **Run the Script**:
+   Save the code in a file (e.g., `Book.js`) and execute it:
+
+   ```bash
+   node Book.js
+   ```
+
+3. **Expected Output**:
+   ```
+   The book's title is Oh the Places You Will Go! and the discounted price is 50
+   ```
+
+---
+
+## Key Points
+
+- Instance methods in Mongoose allow adding reusable functionality to documents.
+- Methods are defined within the schema and can access document properties using `this`.
+- Models created from schemas enable creating and manipulating MongoDB documents.
+
+---
+
+## Resources
+
+- [Mongoose Documentation](https://mongoosejs.com/docs/index.html)
+- [Instance Methods in Mongoose](https://mongoosejs.com/docs/guide.html#methods)
