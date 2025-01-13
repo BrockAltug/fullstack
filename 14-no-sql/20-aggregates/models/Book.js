@@ -6,7 +6,6 @@ const bookSchema = new mongoose.Schema({
   // Configure individual properties using Schema Types
   title: { type: String, required: true },
   author: { type: String, required: false },
-  // The type of data is set to 'String' and required is set to false, meaning it will accept null values
   publisher: String,
   stockCount: Number,
   price: Number,
@@ -18,7 +17,7 @@ const bookSchema = new mongoose.Schema({
 // Using mongoose.model() to compile a model based on the schema 'bookSchema'
 const Book = mongoose.model('MyBook', bookSchema);
 
-// Create new instances of the model, a document
+// Create a new instance of the model, a document
 Book.create([
   { title: 'Hello, World', price: 5, inStock: true },
   { title: 'Hello World 2.0', price: 10, inStock: false },
