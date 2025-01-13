@@ -33,7 +33,7 @@ const applicationSchema = new Schema(
 
 // Create a virtual property `getTags` that gets the amount of tags associated with an application
 applicationSchema
-  .virtual('getTags')
+  .virtual('getResponses')
   // Getter
   .get(function () {
     return this.tags.length;
