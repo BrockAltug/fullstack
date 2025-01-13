@@ -1,13 +1,31 @@
 const mongoose = require('mongoose');
 
-// TODO: Define a new schema named `bookSchema`
+// Schemas define the shape of the documents within the collection.
+const bookSchema = new mongoose.Schema({
+  // Schemas define the properties of the document
+  title: { type: String, required: true },
+  author: String,
+  price: { type: Number, required: true },
+});
 
-// TODO: Create a custom instance method named `getDiscount`
+// Extend methods object with custom method
+bookSchema.methods.getDiscount = function () {
+  const discountPrice = this.price * 0.5;
+  console.log(
+    `The book's title is ${this.title} and the discounted price is ${discountPrice}`
+  );
+};
 
-// TODO: Create a model named `Book`
+// Create model using mongoose.model()
+const Book = mongoose.model('Book', bookSchema);
 
-// TODO: Create a new instance of the model
+// Create new instance of model
+const discountedBook = new Book({
+  title: 'Oh the Places You Will Go!',
+  price: 100,
+});
 
-// TODO: Call the custom instance method on the instance
+// Call custom method on instance
+discountedBook.getDiscount();
 
 module.exports = Book;

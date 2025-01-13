@@ -56,10 +56,26 @@ app.delete('/genres/:name', async (req, res) => {
   }
 });
 
+// Finds the first document that matches the specified route parameter
+// and updates it using the name provided in the request body.
 app.put('/genres/:name', async (req, res) => {
-  // TODO: Write a route that finds the first document that matches the specified route parameter
-  // and updates it using the name provided in the request body.
-  // Return the updated document
+  try {
+    // Uses findOneAndUpdate() method on model
+    const result = await Genre
+      .findOneAndUpdate(
+        // Finds first document with name in route parameter
+        { name: req.params.name },
+        // Replaces name with value in body param
+        { name: req.body.name },
+        // Sets to true so updated document is returned; Otherwise original document will be returned
+        { new: true }
+      );
+    res.status(200).json(result);
+    console.log(`Updated: ${result}`);
+  } catch (err) {
+    console.log('Uh Oh, something went wrong');
+    res.status(500).json({ message: 'something went wrong' });
+  }
 });
 
 db.once('open', () => {
