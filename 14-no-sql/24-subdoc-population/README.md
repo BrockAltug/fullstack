@@ -1,44 +1,109 @@
-# 🐛 Tag Population Not Working
+# NoSQL Subdoc Population
 
-Work with a partner to resolve the following issue:
+## Overview
 
-* As a user, I should be able to see all tags associated with a `post` after running the Mongoose populate method on the `Posts` model.
-
-## Expected Behavior
-
-When a user queries a `post`, the controller should return the `post` with an array that is populated with the associated `tags`.
-
-## Actual Behavior
-
-When a user runs the application in an attempt to get a post, they are presented with the following error:
-
-```sh
-TypeError: Invalid schema configuration: `Tag` is not a valid type within the array `tags`
-```
-
-## Steps to Reproduce the Problem
-
-Follow these steps to reproduce the problem:
-
-1. In the command line, navigate to `Unsolved/` and run `npm i`.
-
-2. Run `npm run seed` to populate an example database, or `npm run dev` to run the development server.
-
-3. Notice the following error: ``TypeError: Invalid schema configuration: `Tag` is not a valid type within the array `tags``.
-
-## 💡 Hints
-
-* When referencing another schema inside a Post schema, what attributes and types must be specified?
-
-* Use `npm run dev` to automatically restart your application after you save changes.
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* What are the performance benefits associated with using the populate method in Mongoose as opposed to the `$lookup` operator in MongoDB?
-
-Use [Google](https://www.google.com) or another search engine to research this.
+This project demonstrates how to use **subdocument population** in MongoDB and Mongoose to model relationships between documents. Subdocuments are a powerful feature of NoSQL databases that allow embedding related data within a parent document.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Key Features
+
+1. **Subdocument Modeling**:
+
+   - Embeds tags as subdocuments within posts.
+   - Demonstrates relationships between posts and tags.
+
+2. **Subdocument Population**:
+
+   - Uses Mongoose's `.populate()` method to populate referenced documents.
+
+3. **RESTful API**:
+   - Provides endpoints to interact with posts and tags, including creation and retrieval.
+
+---
+
+## Concepts Covered
+
+1. **Subdocument Population**:
+
+   - Models relationships between collections by embedding subdocuments.
+   - Uses Mongoose's `.populate()` to fetch and include related documents.
+
+2. **Database Seeding**:
+
+   - Seeds a MongoDB database with sample posts and tags.
+
+3. **RESTful API with Express.js**:
+   - Implements endpoints to demonstrate subdocument relationships.
+
+---
+
+## Installation and Usage
+
+### **1. Install Dependencies**
+
+Run the following command to install the required Node.js modules:
+
+```bash
+npm install express mongoose
+```
+
+### **2. Seed the Database and Start the Server**
+
+Run the server to seed the database and expose the API endpoints:
+
+```bash
+node server.js
+```
+
+### **3. Test the API Endpoints**
+
+Use a REST client like Postman or curl to interact with the API. Key endpoints include:
+
+- **Get Posts**:
+
+  ```bash
+  GET http://localhost:3001/posts
+  ```
+
+- **Get Tags**:
+  ```bash
+  GET http://localhost:3001/tags
+  ```
+
+---
+
+## Example Usage
+
+### Sample Response for `/posts`:
+
+```json
+[
+  {
+    "_id": "123456789",
+    "published": true,
+    "tags": [
+      {
+        "_id": "987654321",
+        "tagName": "Sample Tag",
+        "color": "blue"
+      }
+    ],
+    "text": "This is a sample post."
+  }
+]
+```
+
+---
+
+## Summary
+
+This project illustrates the use of MongoDB subdocuments and Mongoose's population feature to model and retrieve related data efficiently. The implementation provides a practical demonstration of embedding and referencing documents in NoSQL databases.
+
+---
+
+## Resources
+
+- [Mongoose Population Documentation](https://mongoosejs.com/docs/populate.html)
+- [MongoDB Subdocuments](https://www.mongodb.com/docs/manual/tutorial/model-embedded-one-to-many-relationships-between-documents/)
+- [Express.js Documentation](https://expressjs.com/)

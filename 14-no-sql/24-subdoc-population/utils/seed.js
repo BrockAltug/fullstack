@@ -19,7 +19,6 @@ connection.once('open', async () => {
     await connection.dropCollection('tags');
   }
 
-
   // Empty arrays for randomly generated posts and tags
   const tags = [];
   const posts = [];
@@ -35,22 +34,22 @@ connection.once('open', async () => {
 
   // Create 20 random tags and push them into the tags array
   for (let i = 0; i < 20; i++) {
-    const tagname = getRandomColor();
+    const tagName = getRandomColor();
 
     tags.push({
-      tagname,
-      color: tagname,
+      tagName,
+      color: tagName,
     });
   }
 
   // Wait for the tags to be inserted into the database
-  await Tags.insertMany(tags);
+  await Tags.collection.insertMany(tags);
 
   // For each of the tags that exist, make a random post of length 50
   tags.forEach(() => makePost(getRandomPost(50)));
 
   // Wait for the posts array to be inserted into the database
-  await Post.insertMany(posts);
+  await Post.collection.insertMany(posts);
 
   // Log out a pretty table for tags and posts, excluding the excessively long text property
   console.table(tags);

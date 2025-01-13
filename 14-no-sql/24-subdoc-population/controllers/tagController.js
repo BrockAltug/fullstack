@@ -15,9 +15,11 @@ module.exports = {
       const tag = await Tags.findOne({ _id: req.params.tagId })
         .select('-__v');
 
-      !tag
-        ? res.status(404).json({ message: 'No tag with that ID' })
-        : res.json(tag);
+      if (!tag) {
+        return res.status(404).json({ message: 'No tag with that ID' });
+      }
+
+      res.json(tag);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -25,18 +27,20 @@ module.exports = {
   // create a new tag
   async createTag(req, res) {
     try {
-      const tag = Tags.create(req.body);
-      const post = Post.findOneAndUpdate(
+      const tag = await Tags.create(req.body);
+      const post = await Post.findOneAndUpdate(
         { _id: req.body.postId },
         { $addToSet: { tags: tag._id } },
         { new: true }
       );
 
-      !post
-        ? res
+      if (!post) {
+        return res
           .status(404)
-          .json({ message: 'Tag created, but found no post with that ID' })
-        : res.json('Created the tag 🎉');
+          .json({ message: 'Tag created, but found no post with that ID' });
+      }
+
+      res.json('Created the tag 🎉');
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

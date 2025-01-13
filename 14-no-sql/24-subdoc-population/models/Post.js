@@ -13,8 +13,8 @@ const postSchema = new Schema(
     },
     tags: [
       {
-        type: 'Tag',
-        ref: 'Tag',
+        type: Schema.Types.ObjectId,
+        ref: 'tag',
       },
     ],
     text: {
