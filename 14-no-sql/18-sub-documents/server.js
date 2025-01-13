@@ -16,7 +16,7 @@ app.get('/books', async (req, res) => {
     const result = await Library.find({});
     res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error' })
   }
 });
 
