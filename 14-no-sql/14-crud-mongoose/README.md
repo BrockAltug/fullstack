@@ -1,38 +1,176 @@
-# 📖 Implement CRUD Operations Using Mongoose
+# NoSQL CRUD with Mongoose
 
-Work with a partner to implement the following user story:
+## Key Concepts
 
-* As a developer, I want to implement a `PUT` route which finds a single genre document and update its name by using a Mongoose CRUD method.
+1. **CRUD Operations with Mongoose**:
 
-## Acceptance Criteria
+   - Mongoose simplifies working with MongoDB by providing a schema-based solution for modeling application data.
 
-* It is done when I use a Mongoose CRUD method to select a single document with the specified `name` property and update it.
+2. **Core Methods**:
 
-* It is done when the updated document has an updated `name` property value that matches the value provided in the request body.
+   - **Create**: Add new documents to a MongoDB collection.
+   - **Read**: Query and retrieve documents.
+   - **Update**: Modify existing documents.
+   - **Delete**: Remove documents from a collection.
 
-* It is done when only the `name` property has been updated in the document and no other changes have been made.
+3. **Express Routes**:
 
-* It is done when I test the `PUT` Route in Insomnia and the updated document is returned.
+   - Each route performs a specific operation on the database using Mongoose methods.
 
-## 📝 Notes
+4. **Data Validation**:
+   - Mongoose schemas validate the structure and content of data before saving to MongoDB.
 
-Refer to the documentation:
+---
 
-[Mongoose docs on findOneAndUpdate()](https://mongoosejs.com/docs/tutorials/findoneandupdate.html)
+## Code Overview
+
+### `server.js`
+
+```javascript
+const express = require("express");
+const db = require("./config/connection");
+// Require model
+const { Genre } = require("./models");
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Create a new document
+app.post("/genres", (req, res) => {
+  const newGenre = new Genre({ name: req.body.name });
+  newGenre.save();
+  if (newGenre) {
+    res.status(200).json(newGenre);
+  } else {
+    console.log("Uh Oh, something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
+// Find all documents
+app.get("/genres", async (req, res) => {
+  try {
+    const result = await Genre.find({});
+    res.status(200).json(result);
+  } catch (err) {
+    console.log("Uh Oh, something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
+// Find a single document by name
+app.get("/genres/:name", async (req, res) => {
+  try {
+    const result = await Genre.findOne({ name: req.params.name });
+    res.status(200).json(result);
+  } catch (err) {
+    console.log("Uh Oh, something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
+// Delete a document by name
+app.delete("/genres/:name", async (req, res) => {
+  try {
+    const result = await Genre.findOneAndDelete({ name: req.params.name });
+    res.status(200).json(result);
+    console.log(`Deleted: ${result}`);
+  } catch (err) {
+    console.log("Uh Oh, something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
+// Update a document by name
+app.put("/genres/:name", async (req, res) => {
+  try {
+    const result = await Genre.findOneAndUpdate(
+      { name: req.params.name },
+      { name: req.body.name },
+      { new: true }
+    );
+    res.status(200).json(result);
+    console.log(`Updated: ${result}`);
+  } catch (err) {
+    console.log("Uh Oh, something went wrong");
+    res.status(500).json({ message: "something went wrong" });
+  }
+});
+
+db.once("open", () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+  });
+});
+```
 
 ---
 
-## 💡 Hints
+## Key Features
 
-* How can you add an option to your Mongoose CRUD method so that the updated object is returned?
+1. **CRUD Functionality**:
 
-## 🏆 Bonus
+   - `POST /genres`: Create a new genre.
+   - `GET /genres`: Retrieve all genres.
+   - `GET /genres/:name`: Retrieve a specific genre by name.
+   - `PUT /genres/:name`: Update a genre's name.
+   - `DELETE /genres/:name`: Delete a genre by name.
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+2. **Mongoose Integration**:
 
-* What is the difference between `insert()`, `insertMany()`, and `create()`? Why would you use one method over the other?
+   - Simplifies MongoDB interaction with a schema-based approach.
+   - Includes methods like `find()`, `findOne()`, `findOneAndUpdate()`, and `findOneAndDelete()`.
 
-Use [Google](https://www.google.com) or another search engine to research this.
+3. **Real-Time Updates**:
+   - The server listens for changes and updates the database accordingly.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Usage
+
+1. **Setup**:
+
+   - Ensure MongoDB is running locally or provide a connection string in `config/connection.js`.
+
+2. **Run the Server**:
+
+   ```bash
+   npm start
+   ```
+
+3. **API Endpoints**:
+   - Create a genre:
+     ```bash
+     curl -X POST -H "Content-Type: application/json" -d '{"name":"Action"}' http://localhost:3001/genres
+     ```
+   - Retrieve all genres:
+     ```bash
+     curl http://localhost:3001/genres
+     ```
+   - Retrieve a genre by name:
+     ```bash
+     curl http://localhost:3001/genres/Action
+     ```
+   - Update a genre:
+     ```bash
+     curl -X PUT -H "Content-Type: application/json" -d '{"name":"Adventure"}' http://localhost:3001/genres/Action
+     ```
+   - Delete a genre:
+     ```bash
+     curl -X DELETE http://localhost:3001/genres/Adventure
+     ```
+
+---
+
+## Reflection
+
+This project demonstrates the power and simplicity of Mongoose when performing CRUD operations in a NoSQL database. It highlights how to efficiently manage data structures, validate data, and build APIs.
+
+---
+
+## Resources
+
+- [Mongoose Documentation](https://mongoosejs.com/docs/)
