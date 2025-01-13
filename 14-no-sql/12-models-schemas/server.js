@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./config/connection');
-// TODO: Add a comment describing the functionality of the code below
+// Import the `Book` model, which we will use to access the books in our collection.
 const { Book } = require('./models');
 
 const PORT = process.env.PORT || 3001;
@@ -11,7 +11,8 @@ app.use(express.json());
 
 app.get('/books', async (req, res) => {
   try {
-    // TODO: Add a comment describing the functionality of the code below
+    // Use the `.find()` method on our `Book` model to find all the books in our collection.
+    // Return the results in JSON format.
     const result = await Book.find({});
     res.status(200).json(result);
   } catch (err) {
