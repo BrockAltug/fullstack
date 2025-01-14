@@ -6,6 +6,7 @@ for (let i = 0; i < 2000; i++) {
   unsortedInputArray.push(Math.round(Math.random() * 2000));
 }
 
+
 // slightly more efficient since it will stop the `while` loop early if array is sorted
 const bubbleSort = (array) => {
   // set flag indicating the array hasn't been sorted yet
