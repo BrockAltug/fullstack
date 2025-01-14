@@ -1,6 +1,6 @@
 import pretty from 'pretty';
 import { render } from '@testing-library/react';
-// TODO: Import the IssueItem component here
+import IssueItem from '../components/IssueItem'; // Import the IssueItem component
 
 const issue = {
   url: 'https://api.github.com/repos/microsoft/vscode/issues/68',
@@ -13,15 +13,23 @@ const issue = {
 
 describe('IssueItem', () => {
   it('should contain the expected text', () => {
-    // TODO: Add a render code block that checks to see if the component renders properly
-    // HINT: The render method needs a target element
-    render();
+    // Render the component
+    render(<IssueItem issue={issue} />);
 
+    // Check if the text content matches
     expect(document.querySelector('.item').textContent).toBe(
       'Git: Support git history in VSCode'
     );
   });
 
-  // TODO: render the IssueItem component and format the rendered HTML with the pretty package before saving it as an snapshot.
-  it('should match snapshot', () => {});
+  it('should match snapshot', () => {
+    // Render the component
+    const { container } = render(<IssueItem issue={issue} />);
+
+    // Format the HTML using the pretty package
+    const html = pretty(container.innerHTML);
+
+    // Save the snapshot
+    expect(html).toMatchSnapshot();
+  });
 });

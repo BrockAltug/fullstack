@@ -1,6 +1,6 @@
 import pretty from 'pretty';
 import { render } from '@testing-library/react';
-// TODO: Import the IssueList component
+import IssueList from '../components/IssueList'; // Import the IssueList component
 
 const issues = [
   {
@@ -22,22 +22,24 @@ const issues = [
 ];
 
 describe('IssueList', () => {
-  // In this example, we render the IssueList component and format the rendered HTML with the pretty package before saving it as an snapshot.
   it('should render', () => {
-    // Render the component inside the target container
-    render(<IssueList issues={issues} />);
+    // Render the component
+    const { container } = render(<IssueList issues={issues} />);
 
-    // TODO: Format the rendered HTML with the pretty package
+    // Format the HTML with the pretty package
+    const html = pretty(container.innerHTML);
 
-    // TODO: Expect the rendered component to match the snapshot
+    // Save the snapshot
+    expect(html).toMatchSnapshot();
   });
 
-  // In this example, we check to see if the issueList contains the text "Git: Support git history in VSCode"
   it('should contain text', () => {
     // Render the component
     render(<IssueList issues={issues} />);
 
-    // TODO: Check to see if the rendered HTML contains the text "Git: Support git history in VSCode"
-    expect(document.querySelector('.list').innerHTML).toContain('Git: Support git history in VSCode');
+    // Check if the rendered HTML contains the specific text
+    expect(document.querySelector('.list').innerHTML).toContain(
+      'Git: Support git history in VSCode'
+    );
   });
 });
