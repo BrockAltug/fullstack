@@ -1,44 +1,94 @@
-# 🐛 User Is Immediately Logged Out of Application
+# MERN Decode JWT Authentication
 
-Work with a partner to resolve the following issue:
+## Overview
 
-* As a user, I want to log in to the application and remain logged in.
-
-## Expected Behavior
-
-A user should be able to sign up or log in to their account and receive a JSON Web Token with a two-hour expiration.
-
-## Actual Behavior
-
-The user's token is immediately deemed expired by the client-side application and is removed from localStorage, logging out the user.
-
-## Steps to Reproduce the Problem
-
-To reproduce the problem, follow these steps:
-
-1. Navigate to `24-Stu_Decode-JWT/Unsolved` from the command line.
-
-2. Run `npm install`, `npm run seed`, and `npm run develop`.
-
-3. Open <localhost:3000/signup> in the browser to create a user and a session or log in as one of the seeded users at <localhost:3000/login>.
-
-4. When page redirects to the homepage, the user is still prompted to log in or sign up.
+This project demonstrates a **JWT-based Authentication System** using the MERN stack. The authentication system utilizes the `jwt-decode` library to decode JSON Web Tokens (JWT), validate session states, and handle user authentication.
 
 ---
 
-## 💡 Hints
+## Key Features
 
-* Where do we store all of our client-side authentication functionality? 
+1. **JWT Decoding**:
 
-* What unit of time measurement does the JSON Web Token use compared to JavaScript?
+   - Decodes JWT tokens to extract user profile information and expiration data.
 
-## 🏆 Bonus
+2. **Session Management**:
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+   - Verifies user login state by checking token validity and expiration.
+   - Automatically removes expired tokens from local storage.
 
-* When would you use JSON Web Tokens vs. cookies for user authentication?
+3. **User Authentication**:
 
-Use [Google](https://www.google.com) or another search engine to research this.
+   - Provides secure token storage during login.
+   - Automatically redirects users to the home page after login.
+   - Ensures secure logout by clearing tokens and reloading the application.
+
+4. **Utility Class Design**:
+   - Encapsulates authentication logic in a reusable `AuthService` class.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## Concepts Covered
+
+1. **Token Decoding**:
+
+   - Extracts and parses token payload using the `jwt-decode` library.
+
+2. **Authentication State Handling**:
+
+   - Implements utility methods (`loggedIn`, `isTokenExpired`, etc.) for managing user session states.
+
+3. **Local Storage Usage**:
+
+   - Securely stores and retrieves the token from the browser's local storage.
+
+4. **Application Navigation**:
+   - Redirects users upon login/logout events using `window.location`.
+
+---
+
+## Installation and Usage
+
+1. **Install Dependencies**:
+   Run the following command to install the required Node.js package:
+
+   ```bash
+   npm install jwt-decode
+   ```
+
+2. **Implementation**:
+
+   - Use the `AuthService` class as a singleton for managing user authentication states.
+
+   Example:
+
+   ```javascript
+   import AuthService from "./utils/auth";
+
+   if (AuthService.loggedIn()) {
+     const userProfile = AuthService.getProfile();
+     console.log("Logged-in user:", userProfile);
+   } else {
+     console.log("User not logged in.");
+   }
+   ```
+
+3. **Run the Application**:
+   Ensure your MERN application is running locally:
+   ```bash
+   npm start
+   ```
+
+---
+
+## Summary
+
+This project provides a streamlined way to manage user authentication in a MERN stack application. By leveraging `jwt-decode`, the application ensures token-based authentication, with features like session verification, token expiration handling, and secure login/logout flows.
+
+---
+
+## Resources
+
+- [jwt-decode Library Documentation](https://www.npmjs.com/package/jwt-decode)
+- [MERN Stack Documentation](https://mern.io/)
+- [Local Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
