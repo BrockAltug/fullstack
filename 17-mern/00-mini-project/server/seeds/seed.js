@@ -1,6 +1,6 @@
 const db = require('../config/connection');
-const cleanDB = require('./cleanDB');
 const { Tech } = require('../models');
+const cleanDB = require('./cleanDB');
 
 const techData = require('./techData.json');
 
