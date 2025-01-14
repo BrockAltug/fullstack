@@ -3,17 +3,14 @@ import { render } from '@testing-library/react';
 import SearchBar from '../components/SearchBar';
 
 describe('SearchBar', () => {
-  // In this example, we render the SearchBar component and format the rendered HTML using the pretty package before saving it as a snapshot
   it('should render and match snapshot', () => {
-    act(() => {
-      // Render the component
-      render(<SearchBar />, container);
-    });
+    // Render the component
+    const { container } = render(<SearchBar />);
 
     // Format the rendered output
     const html = pretty(container.innerHTML);
 
-    // Verify the output
+    // Verify the output matches the snapshot
     expect(html).toMatchSnapshot();
   });
 });
