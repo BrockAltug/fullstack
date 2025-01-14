@@ -33,6 +33,7 @@ const typeDefs = `
 
   type Mutation {
     addSchool(name: String!, location: String!, studentCount: Int!): School
+    # Define the required parameters for updating a class
     updateClass(id: ID!, building: String!): Class
   }
 `;

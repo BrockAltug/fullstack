@@ -23,7 +23,13 @@ const resolvers = {
       return await School.create({ name, location, studentCount });
     },
     updateClass: async (parent, { id, building }) => {
-      return await Class.findOneAndUpdate({ _id: id }, { building });
+      // Find and update the matching class using the destructured args
+      return await Class.findOneAndUpdate(
+        { _id: id }, 
+        { building },
+        // Return the newly updated object instead of the original
+        { new: true }
+      );
     }
   }
 };

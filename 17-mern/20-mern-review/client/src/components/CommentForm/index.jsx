@@ -2,29 +2,26 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import { ADD_COMMENT } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries';
 
-// TODO: Comments are not being added to the database the way we expect, and an error is shown on form submit
 const CommentForm = ({ thoughtId }) => {
   const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const { addComment, loading, error } = useMutation(ADD_COMMENT, {
-    variables: { thoughtId, commentText },
-    refetchQueries: [
-      QUERY_THOUGHTS,
-      'getThoughts'
-    ]
-  });
+  // The useMutation hook returns an array, which includes our addComment function
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addComment();
+      // We call the addComment function when the comment form submits, and give the variables argument needed to complete the query
+      const { data } = await addComment({
+        variables: { 
+          thoughtId, commentText 
+        }
+      });
 
       setCommentText('');
-      setCharacterCount(0);
     } catch (err) {
       console.error(err);
     }
