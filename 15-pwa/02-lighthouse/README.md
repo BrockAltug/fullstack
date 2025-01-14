@@ -1,34 +1,160 @@
 # 🏗️ Conduct a Lighthouse Audit of a PWA
 
-Work with a partner to implement the following user story:
-
-* As a developer, I want to review the performance metrics of a deployed PWA application using the Lighthouse Chrome extension.
+- As a developer, I want to review the performance metrics of a deployed PWA application using the Lighthouse Chrome extension.
 
 ## Acceptance Criteria
 
-* It's done when I have installed the [Lighthouse Chrome extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en)
+- It's done when I have installed the [Lighthouse Chrome extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en)
 
-* It's done when I have navigated to `https://mini-project-lighthouse.herokuapp.com/` in a Chrome browser.
+- It's done when I have navigated to `https://mini-project-lighthouse.herokuapp.com/` in a Chrome browser.
 
-* It's done when I have used the Lighthouse Chrome extension to generate an audit report.
+- It's done when I have used the Lighthouse Chrome extension to generate an audit report.
 
-* It's done when I have selected `Expand View` and have clicked on the link to each key metric and reviewed the provided information.
+- It's done when I have selected `Expand View` and have clicked on the link to each key metric and reviewed the provided information.
 
-* It's done when I have reviewed the key PWA optimizations.
+- It's done when I have reviewed the key PWA optimizations.
 
-* It's done when I have noted the performance metrics and PWA optimizations in the [audit.md](./Unsolved/audit.md) file.
+[It's done when I have noted the performance metrics and PWA optimizations](#performance-metrics-and-pwa-optimizations)
 
-## 💡 Hints
+# Running Lighthouse Through the Command Line or Node.js Module
 
-What can we click on to see PWA optimizations when generating a Lighthouse report?
-
-## 🏆 Bonus
-
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* How can we run Lighthouse through the command line or install as a node module?
-
-Use [Google](https://www.google.com) or another search engine to research this.
+Lighthouse is a powerful tool for auditing and improving the quality of web applications. This guide explains how to run Lighthouse through the command line or programmatically as a Node.js module.
 
 ---
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+## **Overview**
+
+- **Command Line**: Run Lighthouse directly from your terminal with customizable flags.
+- **Node.js Module**: Integrate Lighthouse into custom scripts and workflows.
+
+---
+
+## **Command Line Usage**
+
+### **1. Install Lighthouse**
+
+Ensure you have Node.js and npm installed, then install Lighthouse globally:
+
+```bash
+npm install -g lighthouse
+```
+
+### **2. Run Lighthouse**
+
+Audit a webpage using the command:
+
+```bash
+lighthouse <url>
+```
+
+#### **Example:**
+
+```bash
+lighthouse https://example.com
+```
+
+### **3. Common Flags**
+
+| **Flag**            | **Description**                                                                   |
+| ------------------- | --------------------------------------------------------------------------------- |
+| `--output [format]` | Specifies output format (`html`, `json`, `csv`). Default: `html`.                 |
+| `--output-path`     | Sets the output file path.                                                        |
+| `--view`            | Opens the report in your browser after the audit.                                 |
+| `--only-categories` | Runs audits only for specified categories (e.g., `performance`, `accessibility`). |
+| `--chrome-flags`    | Passes custom flags to Chrome (e.g., `--headless`).                               |
+
+#### **Example with Flags:**
+
+```bash
+lighthouse https://example.com --output=html --output-path=./report.html --view
+```
+
+---
+
+## **Node.js Module Usage**
+
+### **1. Install Lighthouse**
+
+Add Lighthouse to your project using npm:
+
+```bash
+npm install lighthouse
+```
+
+### **2. Write a Script**
+
+Use the following example to run Lighthouse programmatically:
+
+```javascript
+const lighthouse = require("lighthouse");
+const chromeLauncher = require("chrome-launcher");
+const fs = require("fs");
+
+(async () => {
+  const chrome = await chromeLauncher.launch({ chromeFlags: ["--headless"] });
+  const options = {
+    logLevel: "info",
+    output: "html",
+    onlyCategories: ["performance"],
+  };
+  const runnerResult = await lighthouse("https://example.com", {
+    ...options,
+    port: chrome.port,
+  });
+
+  // Output the Lighthouse report as HTML
+  const reportHtml = runnerResult.report;
+  fs.writeFileSync("lighthouse-report.html", reportHtml);
+
+  console.log(
+    `Lighthouse score: ${runnerResult.lhr.categories.performance.score * 100}`
+  );
+  await chrome.kill();
+})();
+```
+
+### **3. Run the Script**
+
+Save the script (e.g., `lighthouse-script.js`) and execute it:
+
+```bash
+node lighthouse-script.js
+```
+
+---
+
+## **Comparison**
+
+| **Method**         | **Advantages**                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| **Command Line**   | Quick, straightforward, great for one-off audits or generating reports without additional coding. |
+| **Node.js Module** | Ideal for programmatic control, custom workflows, and integration with CI/CD pipelines.           |
+
+---
+
+## **Summary**
+
+- **Command Line**: Simple and efficient for standalone audits.
+- **Node.js Module**: Flexible and powerful for custom applications.
+
+Choose the method that best fits your needs, and start optimizing your web applications with Lighthouse!
+
+## Performance Metrics and PWA Optimizations
+
+# Lighthouse Audit
+
+Make note of the performance metrics and PWA optimizations generated by the Lighthouse report. It's important to remember that metrics can vary greatly between operating systems, so don't worry if your results are different from your peers or instructor.
+
+## Performance Metrics
+
+Click on "Expand View" to get more information about the metrics. Make note of the metrics and their values below (the first one is done for you):
+
+- First Contentful Paint: 1.0s
+
+- (include as many bullet points as necessary)
+
+## PWA optimizations
+
+Scroll down the audit report until you see the `PWA` section that lists the PWA optimizations. Make note of the various aspects of a PWA below (the first one is done for you):
+
+- Registers a service worker that controls page and `start_url`

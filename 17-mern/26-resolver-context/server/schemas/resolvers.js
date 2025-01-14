@@ -16,7 +16,7 @@ const resolvers = {
     thought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId });
     },
-    me: async (parent, context) => {
+    me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate('thoughts');
       }
@@ -34,13 +34,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw AuthenticationError;
+        throw new AuthenticationError('User not found!');
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw AuthenticationError;
+        throw new AuthenticationError('Incorrect password!');
       }
 
       const token = signToken(user);
@@ -61,8 +61,7 @@ const resolvers = {
 
         return thought;
       }
-      throw AuthenticationError;
-      ('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
     addComment: async (parent, { thoughtId, commentText }, context) => {
       if (context.user) {
@@ -79,7 +78,7 @@ const resolvers = {
           }
         );
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('You need to be logged in!');
     },
     removeThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
@@ -95,7 +94,7 @@ const resolvers = {
 
         return thought;
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('You need to be logged in!');
     },
     removeComment: async (parent, { thoughtId, commentId }, context) => {
       if (context.user) {
@@ -112,7 +111,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw AuthenticationError;
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
