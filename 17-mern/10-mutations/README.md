@@ -1,64 +1,164 @@
-# 🐛 Class Mutation Does Not Show that Object Was Updated
+# MERN GraphQL Mutations with TypeScript
 
-Work with a partner to resolve the following issue:
+## Overview
 
-* As a developer, I want access to updated values so the front end can be updated accordingly.
+This project demonstrates the implementation of GraphQL mutations in a MERN (MongoDB, Express, React, Node.js) stack application. It provides examples of defining, resolving, and testing GraphQL mutations for managing `School`, `Class`, and `Professor` data models.
 
-## Expected Behavior
+## Key Features
 
-Updating a class's building number should show the new value in the returned object.
+- **GraphQL Type Definitions**: Clear schema design for `School`, `Class`, and `Professor` types.
+- **Query Operations**: Fetch all schools, classes, or professors; retrieve a specific class by ID.
+- **Mutations**:
+  - Add a new school.
+  - Update a class with specific details.
+- **MongoDB Integration**: Schema-backed data persistence with MongoDB models.
+- **Dynamic Resolvers**: Comprehensive implementation of query and mutation resolvers.
 
-## Actual Behavior
+## Concepts Covered
 
-The returned object still shows the old building number.
+### GraphQL Schema Design
 
-## Steps to Reproduce the Problem
+The schema defines types and operations for the entities in the system. Here's an example of type definitions:
 
-Follow these steps to reproduce the problem:
+```graphql
+type School {
+  _id: ID
+  name: String
+  location: String
+  studentCount: Int
+  classes: [Class]
+}
 
-1. In the command line, navigate to `10-Stu_Mutations/Unsolved`.
+type Class {
+  _id: ID
+  name: String
+  building: String
+  creditHours: Int
+  professor: Professor
+}
 
-2. Run `npm install`, `npm run seed`, and `npm start`.
+type Professor {
+  _id: ID
+  name: String
+  officeHours: String
+  officeLocation: String
+  studentScore: Float
+  classes: [Class]
+}
 
-3. Open <localhost:3001/graphql> in the browser.
+type Query {
+  schools: [School]
+  classes: [Class]
+  professors: [Professor]
+  class(id: ID!): Class
+}
 
-4. Set the following variables in the Query Variables panel:
+type Mutation {
+  addSchool(name: String!, location: String!, studentCount: Int!): School
+  updateClass(id: ID!, building: String!): Class
+}
+```
 
-    ```json
-    {
-      "id": "<insert ID of a class here>",
-      "building": "AA"
-    }
-    ```
+### Mutation Implementation
 
-5. Run the following mutation:
+#### Add a School
 
-    ```gql
-    mutation updateClass($id: ID!, $building: String!) {
-      updateClass(id: $id, building: $building) {
-        name
-        building
-      }
-    }
-    ```
+The `addSchool` mutation allows users to create a new school entry in the database:
 
-6. Note that the `building` property in the returned data is not set to `"AA"`
+```javascript
+addSchool: async (parent, { name, location, studentCount }) => {
+  return await School.create({ name, location, studentCount });
+};
+```
 
----
+#### Update a Class
 
-## 💡 Hints
+The `updateClass` mutation modifies the `building` field of a specific class:
 
-* What happens when you click the "Mutation" button a second time?
+```javascript
+updateClass: async (parent, { id, building }) => {
+  return await Class.findOneAndUpdate(
+    { _id: id },
+    { building },
+    { new: true } // Return updated class
+  );
+};
+```
 
-* How else could you verify if the data is being updated correctly?
+### Resolvers
 
-## 🏆 Bonus
+Resolvers provide functionality for queries and mutations:
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+- Queries fetch data from the database.
+- Mutations modify or add data in the database.
 
-* What tools will you need to run GraphQL queries in your own front end? 
+Example resolver for fetching all schools:
 
-Use [Google](https://www.google.com) or another search engine to research this.
+```javascript
+schools: async () => {
+  return await School.find({}).populate("classes").populate({
+    path: "classes",
+    populate: "professor",
+  });
+};
+```
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## Installation and Usage
+
+1. Install dependencies:
+   ```sh
+   npm install
+   ```
+2. Seed the database:
+   ```sh
+   npm run seed
+   ```
+3. Start the server:
+   ```sh
+   npm start
+   ```
+
+## Example Usage
+
+Run the following GraphQL query to add a school:
+
+```graphql
+mutation AddSchool {
+  addSchool(name: "Tech High", location: "San Francisco", studentCount: 500) {
+    _id
+    name
+    location
+    studentCount
+  }
+}
+```
+
+Run the following GraphQL mutation to update a class building:
+
+```graphql
+mutation UpdateClass {
+  updateClass(id: "classId123", building: "Engineering Hall") {
+    _id
+    name
+    building
+  }
+}
+```
+
+## Technologies Included
+
+- **MongoDB**: Database for managing application data.
+- **Express.js**: Backend framework for routing and middleware.
+- **React**: Frontend framework for building the user interface.
+- **Node.js**: Runtime for executing server-side JavaScript.
+- **Apollo Server**: GraphQL server implementation.
+
+## Summary
+
+This project serves as a foundational example of implementing and using GraphQL mutations in a MERN stack application. It demonstrates schema design, resolver logic, and the integration of MongoDB models for robust and scalable applications.
+
+## Resources
+
+- [GraphQL Official Documentation](https://graphql.org/)
+- [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+- [MERN Stack Guide](https://www.mongodb.com/mern-stack)
