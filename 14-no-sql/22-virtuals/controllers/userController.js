@@ -6,7 +6,7 @@ module.exports = {
       const users = await User.find();
       res.json(users);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err)
     }
   },
   async getSingleUser(req, res) {
@@ -28,7 +28,7 @@ module.exports = {
       const dbUserData = await User.create(req.body);
       res.json(dbUserData);
     } catch (err) {
-      res.status(500).json(err)
+      res.status(500).json(err);
     }
   },
 };
