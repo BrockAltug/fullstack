@@ -1,5 +1,3 @@
-# 02-mini-project
-
 ## CSS Snippet Cheatsheet
 
 ## Concepts Covered

@@ -1,5 +1,3 @@
-# 01-mini-project
-
 ## Simple Webpage with Semantic HTML and CSS
 
 ## Concepts Covered
