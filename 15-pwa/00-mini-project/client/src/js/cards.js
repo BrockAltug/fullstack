@@ -22,8 +22,6 @@ form.addEventListener('submit', (event) => {
   const cell = form.elements['cell-phone'].value;
   const email = form.elements['email'].value;
 
-
-
   // Post form data to IndexedDB
   postDb(name, home, cell, email);
 

@@ -1,5 +1,5 @@
 {
-  "name": "24-Stu_IndexedDB-CRUD-Unsolved",
+  "name": "24-indexed-db-crud",
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",

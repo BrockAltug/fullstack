@@ -1,5 +1,5 @@
 {
-  "name": "22-Stu_IndexedDB-Unsolved",
+  "name": "22-Stu_IndexedDB-Solved",
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",

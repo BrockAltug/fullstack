@@ -1,6 +1,6 @@
 import { boxClick } from "./box";
 import {headerClick} from "./header";
-import '../css/style.css'
+import '../css/style.css';
 import Yellow from '../images/yellow-robot.png';
 
 document.getElementById("boxBtn").addEventListener("click", boxClick);
