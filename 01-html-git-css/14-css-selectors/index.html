@@ -1,0 +1,41 @@
+<!DOCTYPE html> <!-- defines the document type and version of html being used (html5) -->
+<html lang="en-US"> <!-- opening tag for the html document, with the language set to english (us) -->
+  <head>
+    <meta charset="UTF-8"> <!-- sets the character encoding to utf-8, which supports most characters -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ensures the page is responsive by setting the viewport width to the device width -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"> <!-- links the external css stylesheet for styling the page -->
+    <title>CSS Selectors</title> <!-- sets the title of the webpage that appears in the browser tab -->
+  </head>
+
+  <body>
+    <header> <!-- defines the header section of the page -->
+      <h1>Student Bio</h1> <!-- main heading of the page, displaying the title "student bio" -->
+    </header>
+
+    <main> <!-- main content area of the page -->
+      <section> <!-- a section element used to group content, here it's used for the "about me" section -->
+        <h2>About Me</h2> <!-- subheading for the "about me" section -->
+        <figure> <!-- used to group media content with a caption -->
+          <img src="./assets/images/image-1.jpg" alt="placeholder image with text reading 200 width 200 height"/> <!-- an image element with a source and alternative text -->
+          <figcaption>Student Image</figcaption> <!-- caption for the image above -->
+        </figure>
+        <p class="highlighted-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p> <!-- a paragraph with a class "highlighted-text" for specific styling, containing placeholder text -->
+      </section>
+
+      <section id="contact-section"> <!-- a section element for contact information, identified by an id "contact-section" -->
+        <h2>Contact Information</h2> <!-- subheading for the contact information section -->
+        <ul class="highlighted-text"> <!-- an unordered list with a class "highlighted-text" for specific styling -->
+          <li>Email: <a href="#">someplace@gmail.com</a></li> <!-- list item for email, with a link placeholder -->
+          <li>GitHub: <a href="#">sampleName</a></li> <!-- list item for github profile, with a link placeholder -->
+          <li>Portfolio: <a href="#">coming soon</a></li> <!-- list item for portfolio, with a link placeholder -->
+        </ul>
+        <br> <!-- line break for spacing -->
+      </section>
+    </main>
+
+    <footer> <!-- footer section of the page -->
+      <p>© 2024 Student Bio Productions</p> <!-- paragraph displaying copyright information -->
+    </footer>
+  </body>
+
+</html> <!-- closing tag for the html document -->
