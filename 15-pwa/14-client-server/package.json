@@ -1,5 +1,5 @@
 {
-  "name": "14-stu_client-server-unsolved",
+  "name": "14-stu_client-server-solved",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -18,8 +18,7 @@
     "concurrently": "^5.2.0"
   },
   "comments": {
-    "comment-start:dev": "TODO: Add your comment about start:dev script inside these quotes",
-    "comment-concurrently": "TODO: Add your comment about concurrently inside these quotes"
+    "comment-start:dev": "Script uses concurrently to start client and server apps at same time",
+    "comment-concurrently": "Concurrently is installed as a dev dependency to allow client and server to be started using single script"
   }
 }
-
