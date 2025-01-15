@@ -1,0 +1,160 @@
+body {
+  display: flex; /* flexbox used for layout */
+  flex-direction: column; /* column layout for body content */
+  line-height: 1.3; /* sets line height for improved readability */
+}
+
+header {
+  display: flex; /* flexbox for horizontal alignment */
+  justify-content: space-between; /* space between header elements */
+  align-items: center; /* vertically centers items in the header */
+  padding: 1%; /* padding around the header */
+  background-color: #13293d; /* sets background color for the header */
+  color: #fff; /* sets text color to white */
+}
+
+h1 {
+  font-size: 200%; /* larger font size for main heading */
+}
+
+h2 {
+  margin: 2% 0; /* vertical margin for spacing */
+  font-size: 250%; /* larger font size for subheading */
+}
+
+nav ul {
+  display: flex; /* flexbox for horizontal navigation links */
+  justify-content: space-between; /* even spacing between links */
+  min-width: 300px; /* minimum width for the navigation */
+}
+
+nav a {
+  color: #b9C6ae; /* sets link color */
+  font-weight: bold; /* makes links bold */
+  text-decoration: none; /* removes underline from links */
+}
+
+nav a:hover {
+  color: #fff; /* changes link color on hover */
+}
+
+main {
+  display: flex; /* flexbox for main content layout */
+  flex: 1 1 0; /* flex properties to allow resizing */
+  max-width: 1200px; /* maximum width for main content */
+  margin: 2% auto; /* centers content with margin */
+}
+
+article {
+  border-bottom: 1px solid #d8a47f; /* bottom border for articles */
+}
+
+article p {
+  margin: 2% 0; /* vertical margins for paragraphs */
+  font-size: 110%; /* slightly larger font size for readability */
+}
+
+article ul {
+  margin-left: 5%; /* indent unordered list */
+  font-size: 110%; /* larger font size for list items */
+  list-style: circle; /* custom bullet points */
+}
+
+form {
+  max-width: 400px; /* maximum width for the form */
+}
+
+form h3 {
+  font-size: 150%; /* font size for form heading */
+}
+
+form p {
+  margin: 3% 0; /* vertical margins for form elements */
+}
+
+label {
+  display: block; /* block display for labels */
+}
+
+button {
+  padding: 1% 2%; /* padding inside the button */
+  color: #fff; /* button text color */
+  background-color: #13293d; /* button background color */
+  border: none; /* removes border */
+  outline: none; /* removes outline */
+  cursor: pointer; /* cursor changes to pointer on hover */
+}
+
+/* applies custom styling to the select element, removes default appearance */
+select {
+  appearance: none; /* removes default dropdown arrow */
+  background-image: url("../images/arrow.png"); /* custom arrow icon */
+  background-repeat: no-repeat; /* prevents repeat of background image */
+  background-position: right; /* positions the custom arrow to the right */
+  background-size: contain; /* ensures the custom arrow fits */
+}
+
+.text-input {
+  width: 100%; /* full width for text inputs */
+  max-width: 100%; /* prevents overflow */
+}
+
+.text-input, select {
+  padding: 1%; /* padding for text inputs and select */
+  outline: none; /* removes default outline */
+  border: 1.2px solid #b9C6ae; /* border styling */
+}
+
+.text-input:hover, .checkbox:hover, 
+select:hover, button:hover {
+  box-shadow: 0 0 5px #999; /* adds shadow on hover for interactivity */
+}
+
+.text-input:focus {
+  border-right-width: 5px; /* increases right border width on focus */
+}
+
+.text-input:placeholder-shown {
+  border-style: dashed; /* dashed border if placeholder is visible */
+}
+
+.flex-row {
+  display: flex; /* flexbox for aligning elements in a row */
+  align-items: center; /* centers items vertically */
+}
+
+.flex-row select {
+  flex: 1 0 0; /* flex property for equal distribution */
+  margin-left: 2%; /* margin for spacing */
+}
+
+.flex-row input {
+  margin-right: 2%; /* margin for spacing */
+}
+
+/* changes label style when the checkbox is checked */
+.checkbox:checked + label {
+  color: #999999; /* changes color */
+  font-style: italic; /* italicizes text */
+}
+
+/* adds additional text after the label when checkbox is checked */
+.checkbox:checked + label::after {
+  margin-left: 10px; /* adds margin before content */
+  font-size: 90%; /* smaller font size */
+  content: "(thanks!)"; /* adds custom content */
+}
+
+footer {
+  display: flex; /* flexbox for footer alignment */
+  justify-content: center; /* centers footer content */
+  padding: 2%; /* padding for footer */
+  background-color: #13293d; /* footer background color */
+  color: #fff; /* footer text color */
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column; /* adjusts header layout for smaller screens */
+  }
+}
