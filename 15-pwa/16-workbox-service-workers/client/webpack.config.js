@@ -1,8 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// Require the GenerateSW class of the WorkBoxPlugin 
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const path = require('path');
-
-//TODO: Add WorkboxPlugin with GenerateSW class
 
 module.exports = {
   mode: 'development',
@@ -18,6 +18,7 @@ module.exports = {
       title: 'Webpack Plugin',
     }),
     new MiniCssExtractPlugin(),
+    new WorkboxPlugin.GenerateSW()
   ],
   module: {
     rules: [
