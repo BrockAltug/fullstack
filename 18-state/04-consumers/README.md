@@ -1,32 +1,79 @@
-# 🏗️ Access and Update Global State Using React Context Hooks
+# Overview
 
-Work with a partner to implement the following user story:
+This project demonstrates the use of state and context in a React component to manage a list of students and their majors. The `StudentList` component allows users to add and remove students dynamically, showcasing best practices in state management and component composition.
 
-* As a developer, I want to have access to a global state object to avoid passing props down through multiple child components.
+# Key Features
 
-## Acceptance Criteria
+- Dynamic list of students with support for adding and removing entries.
+- Context-based state management using a custom hook (`useStudentContext`).
+- Input validation and controlled components for user inputs.
+- Modular and reusable code structure.
 
-* It's done when the `studentList` component pulls the global state variables `students` and `majors`.
+# Concepts Covered
 
-* It's done when the `studentList` components add and remove buttons to update the global state object.
+- React `useState` for managing component-level state.
+- Custom hooks (`useStudentContext`) for shared state and actions.
+- Controlled components for form elements.
+- Mapping and rendering dynamic lists in React.
 
-* It's done when changes in global state are reflected in necessary components.
+# Installation and Usage
 
-* It's done when the components render properly in the browser.
+1. **Install dependencies:**
 
----
+   ```bash
+   npm install
+   ```
 
-## 💡 Hints
+2. **Run the development server:**
 
-What argument does `useContext()` accept?
+   ```bash
+   npm run dev
+   ```
 
-## 🏆 Bonus
+3. **Build the project for production:**
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+   ```bash
+   npm run build
+   ```
 
-* When might you prefer to use the Context API as opposed to prop drilling?
+4. **Preview the production build:**
 
-Use [Google](https://google.com) or another search engine to research this.
+   ```bash
+   npm run preview
+   ```
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+5. **Run tests:**
+   ```bash
+   npm run test
+   ```
+
+# Example Usage
+
+The `StudentList` component provides a complete user interface for managing a list of students. Example:
+
+```jsx
+<StudentList />
+```
+
+- **Features:**
+  - Displays a list of students with their ID, name, and major.
+  - Input fields for adding new students with validation.
+  - Button to remove a student from the list.
+
+# Technologies Included
+
+- **React 18**: For building the user interface.
+- **Vite**: Fast development environment.
+- **Vitest**: Testing framework for React components.
+- **ESLint**: Code linting to ensure best practices.
+
+# Summary
+
+This project illustrates how to effectively manage state in a React application using hooks and context. The `StudentList` component is designed to be interactive, extensible, and maintainable, making it a great example for learning and practical usage.
+
+# Resources
+
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [Vitest Documentation](https://vitest.dev/)
+- [ESLint Documentation](https://eslint.org/)
