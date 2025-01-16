@@ -1,7 +1,28 @@
 import { ADD_CAR, START_CAR, STOP_CAR } from './actions';
 import createId from './createId';
 
-export default function reducer(state, action) {
+// Notice we moved the initial state object from our CarComponent to the reducer itself
+const initalState = {
+  cars: [
+    {
+      id: 1,
+      make: 'Honda',
+      model: 'Civic',
+      year: '2008',
+      isRunning: false,
+    },
+    {
+      id: 2,
+      make: 'Tesla',
+      model: 'Y',
+      year: '2021',
+      isRunning: false,
+    },
+  ],
+};
+
+// Here we pass a default value of initalState if none is provided
+export default function reducer(state = initalState, action) {
   switch (action.type) {
     case ADD_CAR: {
       const newCarId = createId(state.cars);

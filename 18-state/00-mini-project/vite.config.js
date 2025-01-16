@@ -9,7 +9,7 @@ export default defineConfig({
     open: true
   },
   test: {
-    environment: 'happy-dom',
-    globals: true
+    globals: true,
+    environment: 'happy-dom'
   }
 })

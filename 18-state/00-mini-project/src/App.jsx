@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import CarComponent from './components/CarComponent';
-import './App.css';
-// Importing our theme provider which will make our global state available to child components
+// Importing our context provider which will make our global state available to child components
 import CarProvider from './utils/CarContext';
 
 export default function App() {
