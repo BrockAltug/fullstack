@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { /* Todo: Import the required assets from 'react-router-dom' */ } from 'react-router-dom';
+// Bring in the Outlet component which will render the proper pages conditionally on the browser's URL
+import { Outlet } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,12 +11,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+  // All the elements in this return statement will render regardless of the URL
   return (
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
         <div className="container">
-            {/* TODO: Add code here that creates a allows for displaying the home page or single thought's comments */}
+          {/* The Outlet component will be replaced by the proper page based on the URL */}
+          <Outlet />
         </div>
         <Footer />
       </div>

@@ -1,5 +1,5 @@
-// TODO: Add code here to import necessary functionality
-
+// Import the `useParams()` hook from React Router
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import CommentList from '../components/CommentList';
@@ -8,7 +8,8 @@ import CommentForm from '../components/CommentForm';
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 const SingleThought = () => {
-  // TODO: Add code here to retrieve the query parameter `thoughtId` from the URL
+  // Use `useParams()` to retrieve value of the route parameter `:thoughtId`
+  const { thoughtId } = useParams();
 
   const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
     // Pass the `thoughtId` URL parameter into query to retrieve this thought's data
