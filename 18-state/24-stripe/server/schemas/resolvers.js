@@ -54,11 +54,11 @@ const resolvers = {
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
       await Order.create({ products: args.products.map(({ _id }) => _id) });
+      // eslint-disable-next-line camelcase
       const line_items = [];
 
       // eslint-disable-next-line no-restricted-syntax
       for (const product of args.products) {
-        // Create a line item for each product
         line_items.push({
           price_data: {
             currency: 'usd',
