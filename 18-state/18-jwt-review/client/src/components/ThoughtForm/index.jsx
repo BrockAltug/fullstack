@@ -28,7 +28,8 @@ const ThoughtForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
-          thoughtAuthor: // TODO: Display the user's username
+          // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username 
+          thoughtAuthor: Auth.getProfile().authenticatedPerson.username
         },
       });
 

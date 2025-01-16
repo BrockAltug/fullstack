@@ -18,7 +18,8 @@ const Profile = () => {
   const user = data?.me || data?.user || {};
   if (
     Auth.loggedIn() && 
-    /* TODO: Check if the user's username is strictly equal to the userParam variable's value */
+    /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username, and compare it to the userParam variable */
+    Auth.getProfile().authenticatedPerson.username === userParam
   ) {
     return <Navigate to="/me" />;
   }

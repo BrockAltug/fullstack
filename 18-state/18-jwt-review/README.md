@@ -1,61 +1,148 @@
-# 🐛 Profile Page isn't Displaying the Logged in User's Data
+# Overview
 
-Work with a partner to resolve the following issue(s):
+This project demonstrates the integration of JSON Web Tokens (JWT) for user authentication and authorization in a MERN stack application. Users can log in, view their profiles, and submit or comment on "thoughts." The JWT is used to manage user sessions securely, providing access to user-specific data.
 
-* As an authenticated user, I want my username to display on the profile link in the header.
+# Key Features
 
-* As a user, I want to see my own thoughts when I visit the profile page.
+- Secure authentication with JWT.
+- Access control for user-specific pages and actions.
+- Integration with Apollo Client and GraphQL for queries and mutations.
+- State management using React hooks (`useState`, `useQuery`, `useMutation`).
+- Dynamic updates with form handling and token-based user identification.
 
-* As a user, I want to enter my thoughts and comments into the appropriate forms, and have my submitted data appear on the page.
+# Concepts Covered
 
-## Acceptance Criteria
+- JWT for secure user authentication.
+- Retrieving and decoding JWTs to access user data.
+- React conditional rendering based on authentication state.
+- Controlled form components for input handling.
+- Integration with MongoDB for persistent data storage.
 
-* It is done when an authenticated user can see a link in the header which reflects their username.
+# Installation and Usage
 
-* It is done when an authenticated user can navigate to the `/me` route and see their post history.
+1. **Install MongoDB:**
+   Ensure MongoDB is installed and running on your system. Refer to the [MongoDB installation guide](https://www.mongodb.com/docs/manual/installation/) for setup instructions.
 
-* It is done when a user can see their newly submitted thoughts display on the page.
+2. **Install dependencies:**
 
-* It is done when a user can see their newly submitted comments display on the page.
+   ```bash
+   npm run install
+   ```
 
-## Steps to Setup
+3. **Seed the database:**
 
-1. Navigate to `18-Stu_JWT-Review/Unsolved` from the command line.
+   ```bash
+   npm run seed
+   ```
 
-2. Run `npm install`, `npm run seed`, and `npm run develop`.
+4. **Run the development server:**
 
-3. Open <localhost:3000/login> in the browser.
+   ```bash
+   npm run develop
+   ```
 
-4. Log in with the following test credentials, or create your own user and some thoughts:
+5. **Build the project for production:**
+   ```bash
+   npm run build
+   ```
 
-    ```json
-    {
-      "email": "lernantino@techfriends.dev",
-      "password": "password10"
+# Example Usage
+
+### CommentForm Component
+
+The `CommentForm` component uses JWT to fetch the authenticated user's username and allow them to submit a comment.
+
+```jsx
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+
+import { ADD_COMMENT } from "../../utils/mutations";
+import Auth from "../../utils/auth";
+
+const CommentForm = ({ thoughtId }) => {
+  const [commentText, setCommentText] = useState("");
+  const [characterCount, setCharacterCount] = useState(0);
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await addComment({
+        variables: {
+          thoughtId,
+          commentText,
+          commentAuthor: Auth.getProfile().authenticatedPerson.username,
+        },
+      });
+      setCommentText("");
+    } catch (err) {
+      console.error(err);
     }
-    ```
+  };
 
-## Assets
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "commentText" && value.length <= 280) {
+      setCommentText(value);
+      setCharacterCount(value.length);
+    }
+  };
 
-The following image demonstrates the profile page's appearance and functionality:
+  return (
+    <div>
+      <h4>What are your thoughts on this thought?</h4>
+      {Auth.loggedIn() ? (
+        <>
+          <p
+            className={`m-0 ${
+              characterCount === 280 || error ? "text-danger" : ""
+            }`}
+          >
+            Character Count: {characterCount}/280
+            {error && <span className="ml-2">{error.message}</span>}
+          </p>
+          <form onSubmit={handleFormSubmit}>
+            <textarea
+              name="commentText"
+              placeholder="Add your comment..."
+              value={commentText}
+              onChange={handleChange}
+            ></textarea>
+            <button type="submit">Add Comment</button>
+          </form>
+        </>
+      ) : (
+        <p>
+          You need to be logged in to share your thoughts. Please{" "}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+      )}
+    </div>
+  );
+};
 
-![The logged-in user's profile page displays thoughts that they've created and a form to create more thoughts.](./Images/01-screenshot.png)
+export default CommentForm;
+```
 
----
+# Technologies Included
 
-## 💡 Hints
+- **React 18**: Component-based UI library.
+- **Apollo Client**: GraphQL client for API requests.
+- **GraphQL**: Query language for APIs.
+- **JWT**: Secure token-based user authentication.
+- **MongoDB**: Database for storing user and thought data.
+- **Node.js**: Backend server.
+- **Express**: Middleware for creating API routes.
 
-* What tool can we use to debug the encoded payload within the JWT token?
+# Summary
 
-* Which entity in the JWT token cycle is responsible for signing and verifying the integrity of the token?
+This project demonstrates how to integrate JWT authentication into a MERN stack application, enabling secure user management and dynamic content updates based on user identity. By leveraging React, GraphQL, and Apollo Client, the application provides a seamless and secure user experience.
 
-## 🏆 Bonus
+# Resources
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
-
-* How could we implement authentication in a React app without using GraphQL?
-
-Use [Google](https://www.google.com) or another search engine to research this.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+- [JWT Introduction and Documentation](https://jwt.io/introduction/)
+- [React Documentation: Handling Events](https://reactjs.org/docs/handling-events.html)
+- [Apollo Client Documentation: Authentication](https://www.apollographql.com/docs/react/networking/authentication/)
+- [GraphQL Documentation: Mutations](https://graphql.org/learn/queries/#mutations)
+- [MongoDB Documentation: CRUD Operations](https://www.mongodb.com/docs/manual/crud/)
