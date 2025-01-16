@@ -1,42 +1,119 @@
-# 🐛 Reducer Fails to Add/Remove Students
+# Overview
 
-Work with a partner to resolve the following issue(s):
+This project demonstrates the implementation of state reducers in a React application for managing a list of students. The reducer handles actions such as adding and removing students, providing a centralized state management approach.
 
-* As a developer, I want to implement reducers into my application to update global state.
+# Key Features
 
-* As a developer, I want to be able to diagnose and fix the issue associated with the reducer that is causing the tests to fail.
+- Centralized state management using a reducer function.
+- Actions for adding and removing students.
+- Comprehensive test cases for reducer actions.
+- Integration with a React component for seamless state updates.
 
-## Expected Behavior
+# Concepts Covered
 
-When the tests are run, all of them should pass.
+- State reducers in React.
+- Action types and payloads for state management.
+- Unit testing for reducers using `Vitest`.
+- Component and context integration with reducers.
 
-## Actual Behavior
+# Installation and Usage
 
-The suite that tests the reducer is failing for adding and removing student functionality.
+1. **Install dependencies:**
 
-## Steps to Reproduce the Problem
+   ```bash
+   npm install
+   ```
 
-1. Navigate to the `06-Stu-Reducers/Unsolved` folder and run `npm install`.
+2. **Run the development server:**
 
-2. Run `npm run test`.
+   ```bash
+   npm run dev
+   ```
 
-3. Note that the test fails.
+3. **Run tests:**
+   ```bash
+   npm run test
+   ```
 
----
+# Example Usage
 
-## 💡 Hints
+### Reducer File (`utils/reducers.js`)
 
-How does the test's error message inform us about where the error is occurring?
+The reducer manages state updates based on actions.
 
-How can we use `switch` statements to an advantage in this activity?
+```javascript
+import { ADD_STUDENT, REMOVE_STUDENT } from "./actions";
 
-## 🏆 Bonus
+export default function reducer(state, action) {
+  switch (action.type) {
+    case ADD_STUDENT:
+      return {
+        ...state,
+        students: [...state.students, action.payload],
+      };
+    case REMOVE_STUDENT:
+      return {
+        ...state,
+        students: [...state.students].filter(
+          (student) => student.id !== action.payload
+        ),
+      };
+    default:
+      return state;
+  }
+}
+```
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+### Test File (`Reducers.test.jsx`)
 
-* Where have we seen the term **reduce** elsewhere in Javascript?
+```javascript
+import reducer from "../utils/reducers";
+import { ADD_STUDENT, REMOVE_STUDENT } from "../utils/actions";
 
-Use [Google](https://www.google.com) or another search engine to research this.
+const initialState = {
+  students: [
+    { id: 1, name: "Test Student 1", major: "Major 1" },
+    { id: 2, name: "Test Student 2", major: "Major 2" },
+  ],
+  majors: ["Mathematics", "Computer Science", "Art"],
+};
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+test("ADD_STUDENT", () => {
+  const newState = reducer(initialState, {
+    type: ADD_STUDENT,
+    payload: { id: 3, name: "Test Student 3", major: "Major 3" },
+  });
+
+  expect(initialState.students.length).toBe(2);
+  expect(newState.students.length).toBe(3);
+});
+
+test("REMOVE_STUDENT", () => {
+  const newState = reducer(initialState, {
+    type: REMOVE_STUDENT,
+    payload: 1,
+  });
+
+  expect(initialState.students.length).toBe(2);
+  expect(newState.students.length).toBe(1);
+});
+```
+
+# Technologies Included
+
+- **React 18**: Component-based UI development.
+- **Vite**: Modern development environment.
+- **Vitest**: Unit testing for state reducers.
+- **ESLint**: Code linting for clean and maintainable code.
+
+# Summary
+
+This project showcases the use of state reducers for centralized state management in a React application. The implementation supports dynamic updates, ensuring a scalable and testable solution for managing state transitions.
+
+# Resources
+
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Redux Documentation](https://redux.js.org/)
+- [Vitest Documentation](https://vitest.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [ESLint Documentation](https://eslint.org/)
