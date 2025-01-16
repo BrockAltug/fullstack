@@ -1,42 +1,106 @@
-# 📖 Implement React Hooks
+# Overview
 
-Work with a partner to implement the following user story:
+This project showcases the use of React hooks (`useState` and `useEffect`) for managing state and handling side effects. It includes a feature to fetch and display a list of issues from the GitHub repository `facebook/react`.
 
-* As a developer, I want to use React Hooks to perform an API request inside a React app.
+# Key Features
 
-## Acceptance Criteria
+- State management with `useState`.
+- Fetching data from an API using `useEffect`.
+- Controlled side effects with dependency arrays.
+- Passing state as props to child components.
 
-* It's done when I have imported `useState` and `useEffect` into my React App.
+# Concepts Covered
 
-* It's done when I have written a method, `getRepoIssues()`, to fetch all GitHub issues for a given repository.
+- `useState` for creating and updating state variables.
+- `useEffect` for handling side effects like data fetching.
+- Dependency arrays in `useEffect` to control re-renders.
+- Prop drilling to pass state to child components.
 
-* It's done when I have written a `useEffect` Hook that will invoke `getRepoIssues()` and fetch issues for the React repository on GitHub.
+# Installation and Usage
 
-* It's done when the results of the API request are stored in a state variable called `issues`.
+1. **Install dependencies:**
 
-* It's done when a list of issues is displayed when a user visits the page.
+   ```bash
+   npm install
+   ```
 
-## 📝 Notes
+2. **Run the development server:**
 
-Refer to the documentation:
+   ```bash
+   npm run dev
+   ```
 
-[React documentation on using the Effect Hook](https://react.dev/reference/react/useEffect)
+3. **Build the project for production:**
 
-[MDN Docs on Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+   ```bash
+   npm run build
+   ```
 
----
+4. **Preview the production build:**
+   ```bash
+   npm run preview
+   ```
 
-## 💡 Hints
+# Example Usage
 
-How can we use the browser's built-in `fetch()` method to perform the GET request?
+### App Component
 
-## 🏆 Bonus
+The `App` component fetches a list of issues from the GitHub API and displays them using the `IssueList` component.
 
-If you have completed this activity, work through the following challenge with your partner to further your knowledge:
+```jsx
+import { useState, useEffect } from "react";
+import IssueList from "./components/IssueList";
 
-* How can we restrict the `useEffect` Hook to running only once after the component mounts?
+function App() {
+  const [issues, setIssues] = useState([]);
 
-Use [Google](https://www.google.com) or another search engine to research this.
+  useEffect(() => {
+    getRepoIssues("facebook/react");
+  }, []);
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+  const getRepoIssues = (repo) => {
+    let issuesURL = `https://api.github.com/repos/${repo}/issues?direction=asc`;
+    fetch(issuesURL)
+      .then((res) => res.json())
+      .then((response) => setIssues(response));
+  };
+
+  return (
+    <div className="container">
+      <h2 className="header">GitHub issues for 'facebook/react'</h2>
+      <span className="text-primary">
+        Stored in state variable <code>issues</code>
+      </span>
+      <hr />
+      <div className="ui grid">
+        <div className="row">
+          <div className="col-11">
+            <IssueList issues={issues} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+# Technologies Included
+
+- **React 18**: Component-based UI library.
+- **Vite**: Development and build tool.
+- **GitHub API**: Data source for issues.
+- **ESLint**: Code quality and linting tool.
+
+# Summary
+
+This project provides a practical example of using React hooks to manage state and handle side effects. By leveraging `useState` and `useEffect`, developers can create dynamic, data-driven components while maintaining clean and efficient code.
+
+# Resources
+
+- [React Documentation: useState](https://reactjs.org/docs/hooks-reference.html#usestate)
+- [React Documentation: useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [GitHub API Documentation](https://docs.github.com/en/rest)
+- [ESLint Documentation](https://eslint.org/)
