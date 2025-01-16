@@ -5,7 +5,7 @@ import reducer from './reducers';
 // Initialize new context for students
 const StudentContext = createContext();
 
-// We create a custom hook to provide immediate usage of the student context value (students) in other components
+// We create a custom hook to immediately pass the student context value ({ students, majors } - see line 36) to any consumer component which invokes it
 export const useStudentContext = () => useContext(StudentContext);
 
 // The provider is responsible for creating our state, updating the state, and persisting values to the children

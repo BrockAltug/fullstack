@@ -10,8 +10,7 @@ export default function StudentList() {
   const [newStudentName, setNewStudentName] = useState('');
   const [newStudentMajor, setNewStudentMajor] = useState('');
 
-  // TODO: Add a comment explaining what this state variable will be used for after reviewing it's use in the app
-  // Your comment here
+  // Local state variable that will be used to hold the new name of a major before it gets dispatched to the reducer
   const [newMajorName, setNewMajorName] = useState('');
 
   return (
@@ -40,8 +39,7 @@ export default function StudentList() {
                         type="button"
                         onClick={() => {
                           console.log('StudentList.js: Dispatched remove!');
-                          // TODO: Add a comment explaining the functionality of the REMOVE_STUDENT action when it hits the reducer
-                          // Your comment here
+                          // The remove student action will return a new copy of state with an updated students array after the `id` has been filtered from the array
                           return dispatch({
                             type: REMOVE_STUDENT,
                             payload: student.id,
@@ -84,8 +82,7 @@ export default function StudentList() {
                 value={newStudentMajor}
               >
                 <option>Choose major...</option>
-                {/* //TODO: Add a commenting explaining what will happen if a major is added to the "Majors" array */}
-                {/* Your comment here */}
+                {/* Map through all the majors and render an option element. If state is updated, the entire component will re-render and allow our new major to be displayed */}
                 {state.majors.map((major) => (
                   <option key={major} value={major}>
                     {major}
@@ -103,8 +100,7 @@ export default function StudentList() {
               onSubmit={(e) => {
                 e.preventDefault();
                 console.log('StudentList.js: Dispatched add major! ');
-                // TODO: Explain what happens when the ADD_MAJOR action is dispatched to the reducer with a new major
-                // Your comment here
+                // The reducer will invoke the ADD_MAJOR case which will return a copy of state with an updated majors array containing the major name we provided in our payload
                 dispatch({
                   type: ADD_MAJOR,
                   payload: newMajorName,
@@ -113,8 +109,7 @@ export default function StudentList() {
                 setNewMajorName('');
               }}
             >
-              {/* //TODO: Does the setNewMajorName method affect local state or global state the way it is used in this onChange event */}
-              {/* Your comment here */}
+              {/* The setMajorName will update only the local state variable that holds the current value of the major name */}
               <input
                 value={newMajorName}
                 onChange={(e) => setNewMajorName(e.target.value)}
