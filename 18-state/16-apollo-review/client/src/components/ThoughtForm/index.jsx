@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// TODO: Add code to import necessary hook from Apollo Client
+import { useMutation } from '@apollo/client';
 
 import { ADD_THOUGHT } from '../../utils/mutations';
 
@@ -10,13 +10,18 @@ const ThoughtForm = () => {
   });
   const [characterCount, setCharacterCount] = useState(0);
 
-  // TODO: Add code to set up mutation
+  // Set up our mutation with an option to handle errors
+  const [addThought, { error }] = useMutation(ADD_THOUGHT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // On form submit, perform mutation and pass in form data object as arguments
+    // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
     try {
-      // TODO: Add code to execute asynchronous mutation function returned by `useMutation()` hook and pass in `formState` object
+      const { data } = addThought({
+        variables: { ...formState },
+      });
 
       window.location.reload();
     } catch (err) {
