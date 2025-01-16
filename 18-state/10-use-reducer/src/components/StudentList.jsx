@@ -1,21 +1,20 @@
-import { useState } from 'react';
+// Import type variables
+import {
+  ADD_STUDENT,
+  REMOVE_STUDENT,
+  SET_STUDENT_NAME,
+  SET_STUDENT_MAJOR,
+} from '../utils/actions';
 
-// TODO: Import our type variables
-
-// TODO: Import our custom context hook to have access to the global state
+import { useStudentContext } from '../utils/StudentContext';
 
 export default function StudentList() {
-  // The value property from our Student provider is made available from our custom hook. Here we pluck off the student array from our initial state.
   const [state, dispatch] = useStudentContext();
-
-  // Initialize state for new students and new student majors
-  const [newStudentName, setNewStudentName] = useState('');
-  const [newStudentMajor, setNewStudentMajor] = useState('');
 
   return (
     <div>
-      {/* // TODO: Refactor to access `students` from our state object */}
-      {students ? (
+      {/* Now accessing students from our state object returned from the useReducer hook */}
+      {state.students ? (
         <>
           <section className="student-list">
             <table>
@@ -29,18 +28,22 @@ export default function StudentList() {
               </thead>
 
               <tbody>
-                {/* // TODO: Refactor to access `students` from our state object */}
-                {students.map((student) => (
+                {/* Access students from our state object returned from useReducer */}
+                {state.students.map((student) => (
                   <tr key={student.id}>
                     <td>{student.id}</td>
                     <td>{student.name}</td>
                     <td>{student.major}</td>
                     <td>
+                      {/* We replace our removeStudent method with our dispatch function passing the type and payload */}
                       <button
                         type="button"
                         onClick={() => {
-                          // TODO: Call dispatch method with an object containing type and payload
-                          // Your code here
+                          console.log('StudentList.js: Dispatched remove!');
+                          return dispatch({
+                            type: REMOVE_STUDENT,
+                            payload: student.id,
+                          });
                         }}
                       >
                         <span role="img" aria-label="delete">
@@ -70,17 +73,25 @@ export default function StudentList() {
                 value={state.studentMajor}
               >
                 <option>Choose major...</option>
-                {/* // TODO: Refactor to access `students` from our state object */}
-                {majors.map((major) => (
+                {/* Access our majors array from our state object returned from useReducer */}
+                {state.majors.map((major) => (
                   <option key={major} value={major}>
                     {major}
                   </option>
                 ))}
               </select>
+
               <button
                 type="button"
                 onClick={() => {
-                  // TODO: Call dispatch method with an object containing type and payload for adding a new student
+                  console.log('StudentList.js: Dispatched add student! ');
+                  return dispatch({
+                    type: ADD_STUDENT,
+                    payload: {
+                      name: state.studentName,
+                      major: state.studentMajor,
+                    },
+                  });
                 }}
               >
                 Add Student
